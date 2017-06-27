@@ -22,16 +22,15 @@ var gulp = require('gulp'),
   watch = require('gulp-watch'),
   distFolder = './dist/';
  
-gulp.task('build', ['jshint', 'build:lib', 'build:js', 'build:css', 'build:static']);
+gulp.task('build', ['jshint', 'build:lib', 'build:js', 'build:css', 'build:static', 'build:readme']);
 //gulp.task('edit', ['build', 'watch:js', 'watch:css', 'watch:html']);
 gulp.task('default', ['build']);
 gulp.task('jshint', function(){
-  return watch('./src/app/**.*.js', function() {
+  // return watch('./src/app/**.*.js', function() {
     log('[[jshint]]');
-    gulp.src('./src/app/**/*.js')
+    return gulp.src('./src/app/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
-  });
 });
 
 gulp.task('clean', function () {
@@ -67,15 +66,14 @@ gulp.task('build:lib', function(){
 });
 
 gulp.task('build:js', function(){
-  return watch('./src/**/*.js', function() {
+  // return watch('./src/**/*.js', function() {
     log('[[build:js]]');
-    gulp.src('./src/**/*.js', {base: './src/'})
+    return gulp.src('./src/**/*.js', {base: './src/'})
     .pipe(concat('app.js'))
     .on('error', swallowError)
     .pipe(gutil.env.env === 'prod' ? uglify() : gutil.noop())
     .on('error', swallowError)
     .pipe(gulp.dest(distFolder+'js'));
-  });
 });
 
 gulp.task('build:css', function(){
@@ -88,20 +86,19 @@ gulp.task('build:css', function(){
     './node_modules/angular-material/angular-material.min.css',
     './src/css/**/*.css'
   ];
-  return watch('./src/css/**/*.css', function() {
+  // return watch('./src/css/**/*.css', function() {
     log('[[build:css]]');
-    gulp.src(gutil.env.env === 'prod' ? prodSrc : src)
+    return gulp.src(gutil.env.env === 'prod' ? prodSrc : src)
     .pipe(gulp.dest(distFolder+'css'));
-  });
+
 });
 
 gulp.task('build:static', function(){
-  return watch('./src/**/*.html', function() {
+  // return watch('./src/**/*.html', function() {
     log('[[build:static]]');
-    gulp.src(['./src/**/*.html', './README.md'], {base: './src/'})
+    return gulp.src(['./src/**/*.html', './README.md'], {base: './src/'})
     .on('error', swallowError)
     .pipe(gulp.dest(distFolder));
-  });
 });
 
 gulp.task('build:readme', function(){
