@@ -1,0 +1,8 @@
+#!/bin/sh
+#Script to deploy the given folder to gh-pages branch for github page.
+#if [ -z "$1" ]
+#then
+#  echo "Which folder do you want to deploy to GitHub Pages?"
+#  exit 1
+#fi
+git subtree push --prefix dist origin gh-pages

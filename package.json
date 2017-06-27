@@ -1,0 +1,42 @@
+{
+  "name": "bradtaniguchi.github.io",
+  "version": "1.0.0",
+  "description": "This repo represents my github page.",
+  "main": "index.js",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.1",
+    "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "angular-aria": "^1.6.4",
+    "angular-material": "^1.1.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-uglify": "^2.1.2",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^4.3.11",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build" : "gulp clean && gulp build",
+    "build:prod" : "gulp clean && gulp --env=prod build",
+    "clean" : "gulp clean",
+    "deploy" : "git subtree push --prefix dist origin master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bradtaniguchi/bradtaniguchi.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bradtaniguchi/bradtaniguchi.github.io/issues"
+  },
+  "homepage": "https://github.com/bradtaniguchi/bradtaniguchi.github.io#readme"
+}
