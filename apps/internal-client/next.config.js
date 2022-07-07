@@ -11,7 +11,8 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  assetPrefix: isProd ? '/nx-template/' : '',
+  // TODO: Change on rename
+  assetPrefix: isProd ? '/bradtaniguchi-dev/' : '',
 };
 
 module.exports = withNx(nextConfig);

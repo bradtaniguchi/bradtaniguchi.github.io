@@ -1,6 +1,16 @@
-# nx-template
+# bradtaniguchi-dev
 
-This template repository is a re-build of the [nx-workspace-template](https://github.com/bradtaniguchi/nx-workspace-template), which focuses on Angular development. This version will focus on React development, and a straight forward CI/CD pipeline.
+This repo represents my portfolio/blog site that is hosted on github-pages.
+
+This repo will be updated to replace the current one at:
+https://github.com/bradtaniguchi/bradtaniguchi.github.io
+
+Which uses a custom domain at:
+https://bradtaniguchi.dev/
+
+## Project road-map
+
+[roadmap](https://github.com/users/bradtaniguchi/projects/6)
 
 ## License
 
