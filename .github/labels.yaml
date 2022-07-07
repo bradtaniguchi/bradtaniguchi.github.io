@@ -19,3 +19,7 @@
 - name: chore
   description: A non-code related task
   color: 'FFFFFF'
+  
+- name: blog
+  description: An issue that represents a topic to write a blog post about
+  color: '#03a5fc'
