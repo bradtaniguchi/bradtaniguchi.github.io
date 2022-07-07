@@ -130,7 +130,7 @@
             },
             {
               "file": "apps/internal-client/next.config.js",
-              "hash": "c560f5dd488cb8a80156cb159dfbd2872fd74bf9",
+              "hash": "98786e83347764dec16a11f776ac360faaa7571f",
               "deps": [
                 "npm:@nrwl/next"
               ]
