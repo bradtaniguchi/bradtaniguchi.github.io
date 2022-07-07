@@ -1,0 +1,88 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "npmScope": "nx-template",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
+      }
+    }
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true,
+        "strict": true,
+        "e2eTestRunner": "none"
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "linter": "eslint",
+        "unitTestRunner": "jest",
+        "strict": true,
+        "standaloneConfig": true,
+        "buildable": true,
+        "publishable": false
+      }
+    },
+    "@nrwl/next": {
+      "app": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "babel": true,
+        "strict": true,
+        "e2eTestRunner": "none"
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "linter": "eslint",
+        "unitTestRunner": "jest",
+        "strict": true,
+        "standaloneConfig": true,
+        "buildable": true,
+        "publishable": false
+      },
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/node:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "strict": true,
+      "standaloneConfig": true,
+      "buildable": true,
+      "publishable": false
+    }
+  },
+  "defaultProject": "internal-client",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"]
+    }
+  }
+}

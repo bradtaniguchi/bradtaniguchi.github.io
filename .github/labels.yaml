@@ -1,0 +1,21 @@
+# List of labels that will be supported
+# all other labels will be removed
+- name: bug
+  description: Something isn't working
+  color: 'D73A4A'
+
+- name: feature
+  description: A new feature to add
+  color: '0052CC'
+
+- name: enhancement
+  description: Update an existing feature
+  color: 'A2EEEF'
+
+- name: documentation
+  description: Something related to documentation
+  color: '0075CA'
+
+- name: chore
+  description: A non-code related task
+  color: 'FFFFFF'
