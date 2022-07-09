@@ -36,7 +36,7 @@ jobs:
       - run: npx nx run internal-client:test
       - run: npx nx run internal-client:export
       - run: npx nx run internal-client:lighthouse
-      - run: npx rimraf dist/apps/internal-client/exported/nx-template
+      - run: npx rimraf dist/apps/internal-client/exported/bradtaniguchi-dev
       - uses: actions/upload-artifact@v2
         with:
           name: internal-client

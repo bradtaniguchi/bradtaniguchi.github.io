@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HeaderBar } from '@nx-template/common-react';
+import { HeaderBar } from '@bradtaniguchi-dev/common-react';
 import { DashboardPage } from '../components/dashboard-page/dashboard-page';
 import Typography from '@mui/material/Typography';
 

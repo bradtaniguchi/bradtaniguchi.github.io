@@ -2,7 +2,7 @@
 import { ReactElement } from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { GoogleAnalytics } from '@nx-template/common-react';
+import { GoogleAnalytics } from '@bradtaniguchi-dev/common-react';
 
 export default class CustomDocument extends Document<{
   styleTags: ReactElement[];
