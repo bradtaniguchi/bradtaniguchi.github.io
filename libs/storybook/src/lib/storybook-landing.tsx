@@ -1,6 +1,4 @@
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Box, Button, Text } from '@primer/react';
 import { ReactNode, SyntheticEvent } from 'react';
 
 export interface StorybookLandingProps {
@@ -31,12 +29,10 @@ export function StorybookLanding(props: StorybookLandingProps) {
 
   return (
     <Box sx={{ width: '100%', maxWidth: 500 }} p={2}>
-      <Typography variant="h1" component="h1">
-        Welcome to Storybook!
-      </Typography>
-      <Typography component="p">
+      <Text as="h1">Welcome to Storybook!</Text>
+      <Text as="p">
         This is a test component used to test storybook development.
-      </Typography>
+      </Text>
 
       {props.exampleProp ? props.exampleProp : null}
 
