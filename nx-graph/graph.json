@@ -84,12 +84,12 @@
               "options": {
                 "commands": [
                   {
-                    "command": "mkdir dist/apps/internal-client/exported/nx-template",
+                    "command": "mkdir dist/apps/internal-client/exported/bradtaniguchi-dev",
                     "description": "Make missing directories"
                   },
                   {
-                    "command": "cp -r dist/apps/internal-client/exported/_next dist/apps/internal-client/exported/nx-template/",
-                    "description": "Copy files into nx-template sub-folder for testing"
+                    "command": "cp -r dist/apps/internal-client/exported/_next dist/apps/internal-client/exported/bradtaniguchi-dev/",
+                    "description": "Copy files into bradtaniguchi-dev sub-folder for testing"
                   },
                   {
                     "command": "npx lhci autorun --config=./.lighthouse/lighthouserc.js --collect.staticDistDir=./dist/apps/internal-client/exported",
@@ -108,7 +108,7 @@
             },
             {
               "file": "apps/internal-client/components/dashboard-page/dashboard-page.tsx",
-              "hash": "95a88d95be6e677fe306901cc8ceb3b79430475d",
+              "hash": "4a49230f92090dc9c54b6a3691520478d29c4031",
               "deps": [
                 "npm:@mui/icons-material",
                 "npm:@mui/material",
@@ -144,7 +144,7 @@
             },
             {
               "file": "apps/internal-client/pages/_document.tsx",
-              "hash": "274a20618956faff38c930f2a352f710fd5938a8",
+              "hash": "1e5153fd501faea640e88a4223e8a1b94078fdaf",
               "deps": [
                 "npm:react",
                 "npm:next",
@@ -161,7 +161,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "fafbea9a176e69c72b3116a21b7d87d158376c97",
+              "hash": "c41922b53445c5abdda3d0d87b24d9dea92ddb02",
               "deps": [
                 "npm:styled-components",
                 "common-react",
@@ -174,7 +174,7 @@
             },
             {
               "file": "apps/internal-client/project.json",
-              "hash": "8894d4036b79d663947f1ce4c301b12d940cea22"
+              "hash": "9e202f13d623df40f87e57a2f94726f2419136ff"
             },
             {
               "file": "apps/internal-client/public/.gitkeep",
@@ -335,7 +335,7 @@
             },
             {
               "file": "libs/common-react/package.json",
-              "hash": "2dd5d55d0b94246e35c02731745fcaab54edf696"
+              "hash": "c99762c7de6ff4d0ee3b0f36d17f0468cf903f14"
             },
             {
               "file": "libs/common-react/project.json",
@@ -438,7 +438,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/use-logger.ts",
-              "hash": "832d8c2a257ef059aa9644e30720cb59e71362b8",
+              "hash": "6b96e68d73732e8feccd2a88a4b16140c76b4dcf",
               "deps": [
                 "common",
                 "npm:react"
@@ -637,7 +637,7 @@
             },
             {
               "file": "libs/storybook/package.json",
-              "hash": "e11efb1c82d82a7f137a0585c943452d65202408"
+              "hash": "c37f61b012a34ae809b0aaf2511b068823d0a473"
             },
             {
               "file": "libs/storybook/project.json",
@@ -764,7 +764,7 @@
             },
             {
               "file": "libs/common/package.json",
-              "hash": "36788b226c6c19d105c48c4e931beea1759afc5c"
+              "hash": "b1e154e88e13334f143ace9a26d89da97a56a948"
             },
             {
               "file": "libs/common/project.json",
