@@ -1,4 +1,4 @@
-import Card from '@mui/material/Card';
+import { Box } from '@primer/react';
 import { Meta, Story } from '@storybook/react';
 import { StorybookLanding, StorybookLandingProps } from './storybook-landing';
 
@@ -8,9 +8,9 @@ export default {
   argTypes: { onButtonClick: { action: 'onButtonClick' } },
   decorators: [
     (Story) => (
-      <Card>
+      <Box>
         <Story />
-      </Card>
+      </Box>
     ),
   ],
 } as Meta;
