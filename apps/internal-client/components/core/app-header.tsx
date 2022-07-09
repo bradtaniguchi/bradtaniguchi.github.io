@@ -1,20 +1,125 @@
-import { Header } from '@primer/react';
+import {
+  CodeIcon,
+  Icon,
+  MarkdownIcon,
+  PersonIcon,
+  ProjectIcon,
+  QuestionIcon,
+  ThreeBarsIcon,
+} from '@primer/octicons-react';
+import {
+  ActionMenu,
+  Box,
+  Header,
+  IconButton,
+  NavList,
+  StyledOcticon,
+} from '@primer/react';
+import { useRouter } from 'next/router';
+import { useCallback, useMemo } from 'react';
+import { AppHeaderSearch } from './app-header-search';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AppHeaderProps {}
+export interface AppHeaderProps {
+  /**
+   * Feature flag if we are to display the search field.
+   * This requires support for auto-complete, and
+   * data to be passed.
+   */
+  showSearch?: boolean;
+}
 
 /**
  * The header bar that appears on every page. Provider navigation
  */
 export default function AppHeader(props: AppHeaderProps) {
+  const router = useRouter();
+
+  const isCurrent = useCallback((href) => router.asPath === href, [router]);
+
+  const links: Array<{
+    href: string;
+    icon: Icon;
+    name: string;
+  }> = useMemo(
+    () => [
+      {
+        href: '/projects',
+        icon: ProjectIcon,
+        name: 'Projects',
+      },
+      {
+        href: '/snippets',
+        icon: CodeIcon,
+        name: 'Snippets',
+      },
+      {
+        href: '/blog',
+        icon: MarkdownIcon,
+        name: 'Blog',
+      },
+      {
+        href: '/about',
+        icon: QuestionIcon,
+        name: 'About',
+      },
+    ],
+    []
+  );
+
   return (
     <Header>
       <Header.Item>
-        <Header.Link href="#">
+        <Header.Link href="/">
+          <StyledOcticon icon={PersonIcon} size={16} sx={{ mr: 2 }} />
           <span>bradtaniguchi.dev</span>
         </Header.Link>
       </Header.Item>
-      <Header.Item full>Menu</Header.Item>
+
+      {props.showSearch ? (
+        <Header.Item full>
+          {/* TODO: Add support for icon version for mobile*/}
+          <AppHeaderSearch mode="full" />
+        </Header.Item>
+      ) : (
+        <Header.Item full></Header.Item>
+      )}
+
+      {links.map(({ href, icon, name }) => (
+        <Box display={['none', 'block']} key={href}>
+          <Header.Item>
+            <Header.Link href={href}>
+              <StyledOcticon icon={icon} size={16} sx={{ mr: 2 }} />
+              <span>{name}</span>
+            </Header.Link>
+          </Header.Item>
+        </Box>
+      ))}
+
+      <Box display={['block', 'none']}>
+        <Header.Item>
+          <ActionMenu>
+            <ActionMenu.Anchor>
+              <IconButton icon={ThreeBarsIcon} aria-label="Menu" />
+            </ActionMenu.Anchor>
+
+            <ActionMenu.Overlay>
+              <NavList>
+                {links.map(({ href, icon, name }) => (
+                  <NavList.Item
+                    href={href}
+                    key={href}
+                    aria-current={isCurrent(href)}
+                  >
+                    <StyledOcticon icon={icon} size={16} sx={{ mr: 2 }} />
+                    <span>{name}</span>
+                  </NavList.Item>
+                ))}
+              </NavList>
+            </ActionMenu.Overlay>
+          </ActionMenu>
+        </Header.Item>
+      </Box>
     </Header>
   );
 }
