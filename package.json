@@ -37,6 +37,7 @@
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.8.0",
     "@nrwl/next": "14.4.0",
+    "@primer/react": "^35.4.0",
     "core-js": "^3.6.5",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
