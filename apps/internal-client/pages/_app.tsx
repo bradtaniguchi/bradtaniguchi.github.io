@@ -22,6 +22,7 @@ export default function CustomApp({ Component, pageProps }: AppProps) {
       <SSRProvider>
         <ThemeProviderFixed theme={theme}>
           <BaseStyles>
+            {/* TODO: search can be a feature flag. */}
             <AppHeader></AppHeader>
             <main className="app">
               <Box
