@@ -107,13 +107,46 @@
               "hash": "f13f56cc53c7d94063a3c717349e025e863bc78c"
             },
             {
-              "file": "apps/internal-client/components/dashboard-page/dashboard-page.tsx",
-              "hash": "4a49230f92090dc9c54b6a3691520478d29c4031",
+              "file": "apps/internal-client/components/core/app-header.tsx",
+              "hash": "75b79915bc9e9290994c480ce25219255cf26093",
               "deps": [
-                "npm:@mui/icons-material",
-                "npm:@mui/material",
+                "npm:@primer/react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/components/internals/internal-config.tsx",
+              "hash": "25e742c9ca3c1bed73cf724b940ab73a4c0d93ce",
+              "deps": [
                 "common-react",
+                "npm:@primer/react",
                 "npm:react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/components/internals/internal-links.tsx",
+              "hash": "a4a6936f74f26e447f53f06c5caffa5a7bb766e0",
+              "deps": [
+                "npm:@primer/react",
+                "npm:react",
+                "npm:@primer/octicons-react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/components/internals/internal-projects.tsx",
+              "hash": "b19b1710cc09f1630eabe622ddcf33ecd622842a",
+              "deps": [
+                "common-react",
+                "npm:@primer/react",
+                "npm:nx",
+                "npm:@primer/octicons-react",
+                "npm:react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/components/spinner.tsx",
+              "hash": "263a96f37d89099bf5be80d1c9f6479dfd4cfcf0",
+              "deps": [
+                "npm:@primer/react"
               ]
             },
             {
@@ -137,8 +170,9 @@
             },
             {
               "file": "apps/internal-client/pages/_app.tsx",
-              "hash": "631a38aa5ae7b6b3a8a0784e6ebd0720c6cad3ce",
+              "hash": "2b70da796cac46e71278ab9b6d85f0b00fd85282",
               "deps": [
+                "npm:@primer/react",
                 "npm:next"
               ]
             },
@@ -154,23 +188,23 @@
             },
             {
               "file": "apps/internal-client/pages/404.tsx",
-              "hash": "07c722102e80f95c5916411ecf574d2dd643ef7f",
+              "hash": "3afeff96af8e5867de8f5f394f6eb05fa4f2475b"
+            },
+            {
+              "file": "apps/internal-client/pages/about.tsx",
+              "hash": "3dd052e7d61817edc755e4ff251ecdbbe12e7bc4",
               "deps": [
-                "npm:@mui/material"
+                "common-react",
+                "npm:@primer/react"
               ]
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "c41922b53445c5abdda3d0d87b24d9dea92ddb02",
-              "deps": [
-                "npm:styled-components",
-                "common-react",
-                "npm:@mui/material"
-              ]
+              "hash": "aed1549bae824bd5d56bafbd5f05db177584858a"
             },
             {
               "file": "apps/internal-client/pages/styles.css",
-              "hash": "e8df664b21310fb18e3a97b2c89935b5db788787"
+              "hash": "b68b52a48496ede1f545bc72ff1bc4134d444c71"
             },
             {
               "file": "apps/internal-client/project.json",
@@ -347,67 +381,11 @@
             },
             {
               "file": "libs/common-react/src/index.ts",
-              "hash": "bc2818fa2e5d5c727db6803e4944d1a2531c9d3d"
+              "hash": "e07c97f79c8a865a189e1e481d53d0d72fb46479"
             },
             {
               "file": "libs/common-react/src/lib/components/google-analytics/google-analytics.tsx",
               "hash": "4cd8039333cae6fddb60f7c8a855c2475c538ae2"
-            },
-            {
-              "file": "libs/common-react/src/lib/components/header-bar/header-bar-context.ts",
-              "hash": "0677e6b9daddd842b49751c2ee94f3f64f3aa532",
-              "deps": [
-                "npm:react"
-              ]
-            },
-            {
-              "file": "libs/common-react/src/lib/components/header-bar/header-bar.spec.tsx",
-              "hash": "e7b2f6b49ce9dacea72c24862f46f3d58b4c12ae",
-              "deps": [
-                "npm:@testing-library/react"
-              ]
-            },
-            {
-              "file": "libs/common-react/src/lib/components/header-bar/header-bar.stories.tsx",
-              "hash": "f96c6496b0df7ae21f4e8438feb82b8deb3f9330",
-              "deps": [
-                "npm:@mui/material",
-                "npm:@mui/icons-material",
-                "npm:@storybook/react"
-              ]
-            },
-            {
-              "file": "libs/common-react/src/lib/components/header-bar/header-bar.tsx",
-              "hash": "dd37a253333ef0109de8459df0cfa1bc74b86bcb",
-              "deps": [
-                "npm:@mui/icons-material",
-                "npm:@mui/material",
-                "npm:react"
-              ]
-            },
-            {
-              "file": "libs/common-react/src/lib/components/side-nav/side-nav.spec.tsx",
-              "hash": "bd89a59660cf03e8cd28252a21d958be65295502",
-              "deps": [
-                "npm:@testing-library/react"
-              ]
-            },
-            {
-              "file": "libs/common-react/src/lib/components/side-nav/side-nav.stories.tsx",
-              "hash": "2d939604e03b5b1857074fc9686220c6fa1ce2eb",
-              "deps": [
-                "npm:@mui/material",
-                "npm:@storybook/react"
-              ]
-            },
-            {
-              "file": "libs/common-react/src/lib/components/side-nav/side-nav.tsx",
-              "hash": "b150c7377635b2c11d666e4901737c77c96bb39e",
-              "deps": [
-                "npm:@mui/material",
-                "npm:@mui/icons-material",
-                "npm:react"
-              ]
             },
             {
               "file": "libs/common-react/src/lib/hooks/index.ts",
@@ -660,17 +638,17 @@
             },
             {
               "file": "libs/storybook/src/lib/storybook-landing.stories.tsx",
-              "hash": "1077d8f56b34ca2b9f8e07a33947ddfb279b71fa",
+              "hash": "f0e4fcd9eebf66279d7aa059a83424744511af53",
               "deps": [
-                "npm:@mui/material",
+                "npm:@primer/react",
                 "npm:@storybook/react"
               ]
             },
             {
               "file": "libs/storybook/src/lib/storybook-landing.tsx",
-              "hash": "a96abdad9b66b78a33e24d7eb76a10745314fa5e",
+              "hash": "447dae71200f0aaafd89bd8b0ad0a7f7efb3e8e6",
               "deps": [
-                "npm:@mui/material",
+                "npm:@primer/react",
                 "npm:react"
               ]
             },
