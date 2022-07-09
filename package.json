@@ -33,6 +33,7 @@
   "private": true,
   "dependencies": {
     "@nrwl/next": "14.4.0",
+    "@primer/octicons-react": "^17.3.0",
     "@primer/react": "^35.4.0",
     "core-js": "^3.6.5",
     "localforage": "^1.10.0",
