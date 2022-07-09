@@ -32,10 +32,6 @@
   },
   "private": true,
   "dependencies": {
-    "@emotion/react": "11.9.3",
-    "@emotion/styled": "11.9.3",
-    "@mui/icons-material": "^5.8.0",
-    "@mui/material": "^5.8.0",
     "@nrwl/next": "14.4.0",
     "@primer/react": "^35.4.0",
     "core-js": "^3.6.5",
