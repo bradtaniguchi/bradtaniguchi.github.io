@@ -14,7 +14,7 @@ import {
   getProjectsByTarget,
   useConfig,
   useNxGraph,
-} from '@nx-template/common-react';
+} from '@bradtaniguchi-dev/common-react';
 import { memo, useMemo } from 'react';
 
 const spinner = (
@@ -141,9 +141,7 @@ const DashboardPageProjects = memo(function DashboardPageProjects({
                       }}
                     >
                       <ArticleIcon color="primary" />
-                      <Link
-                        href={`docs/${project}`}
-                      >{`${project} docs`}</Link>
+                      <Link href={`docs/${project}`}>{`${project} docs`}</Link>
                     </Typography>
                   </Grid>
                 ))}
