@@ -1,5 +1,5 @@
 import { ProjectGraph } from '@nrwl/devkit';
-import { useDebugValue, useEffect, useState } from 'react';
+import { useDebugValue, useEffect, useRef, useState } from 'react';
 import { getNxGraph } from '../utils';
 
 /**
@@ -11,13 +11,13 @@ export function useNxGraph(params?: {
   overrides?: Partial<ProjectGraph>;
 }) {
   const { path, overrides } = params ?? {};
+  const mounted = useRef(false);
   const [nxGraphLoading, setNxGraphLoading] = useState<boolean>(false);
   const [nxGraphError, setNxGraphError] = useState<unknown>();
   const [nxGraph, setNxGraph] = useState<ProjectGraph>();
 
   useEffect(() => {
-    let mounted = false;
-    if (!mounted) {
+    if (!mounted.current) {
       setNxGraphLoading(true);
       getNxGraph(params)
         .then((config) => {
@@ -28,7 +28,7 @@ export function useNxGraph(params?: {
           setNxGraphLoading(false);
           if (!overrides) setNxGraphError(err);
         });
-      mounted = true;
+      mounted.current = true;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path, overrides]);
