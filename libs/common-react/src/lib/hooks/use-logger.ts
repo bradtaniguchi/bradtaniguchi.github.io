@@ -1,4 +1,4 @@
-import { CommonLogger, CommonLoggerConfig } from '@nx-template/common';
+import { CommonLogger, CommonLoggerConfig } from '@bradtaniguchi-dev/common';
 import { createContext, useDebugValue, useMemo } from 'react';
 
 /**
