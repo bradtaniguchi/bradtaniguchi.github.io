@@ -1,5 +1,7 @@
 # List of labels that will be supported
 # all other labels will be removed
+
+# issue template types
 - name: bug
   description: Something isn't working
   color: 'D73A4A'
@@ -23,3 +25,11 @@
 - name: blog
   description: An issue that represents a topic to write a blog post about
   color: '#03a5fc'
+
+
+# realms
+- name: realm:API
+  description: Issue representing changes to an api
+  color: 'F9F9C5'
+
+- name: 
