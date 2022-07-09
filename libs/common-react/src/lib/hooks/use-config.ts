@@ -1,4 +1,4 @@
-import { useState, useEffect, useDebugValue } from 'react';
+import { useState, useEffect, useDebugValue, useRef } from 'react';
 import { BaseConfig } from '../types';
 import { getConfig } from '../utils';
 
@@ -12,13 +12,13 @@ export function useConfig<AppConfig extends object>(params?: {
   overrides?: Partial<BaseConfig & AppConfig>;
 }) {
   const { path, overrides } = params ?? {};
+  const mounted = useRef(false);
   const [configLoading, setConfigLoading] = useState<boolean>(false);
   const [configError, setConfigError] = useState<unknown>();
   const [config, setConfig] = useState<BaseConfig>();
 
   useEffect(() => {
-    let mounted = false;
-    if (!mounted) {
+    if (!mounted.current) {
       setConfigLoading(true);
       getConfig(params)
         .then((config) => {
@@ -29,7 +29,7 @@ export function useConfig<AppConfig extends object>(params?: {
           setConfigLoading(false);
           if (!overrides) setConfigError(err);
         });
-      mounted = true;
+      mounted.current = true;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path, overrides]);
