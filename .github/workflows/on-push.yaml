@@ -33,7 +33,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/init-job
       - run: npx nx run internal-client:lint
-      - run: npx nx run internal-client:test
       - run: npx nx run internal-client:export
       - run: npx nx run internal-client:lighthouse
       - run: npx rimraf dist/apps/internal-client/exported/bradtaniguchi-dev
