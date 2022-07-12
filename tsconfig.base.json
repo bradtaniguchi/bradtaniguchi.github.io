@@ -17,6 +17,7 @@
     "paths": {
       "@bradtaniguchi-dev/common": ["libs/common/src/index.ts"],
       "@bradtaniguchi-dev/common-react": ["libs/common-react/src/index.ts"],
+      "@bradtaniguchi-dev/markdown": ["libs/markdown/src/index.ts"],
       "@bradtaniguchi-dev/storybook": ["libs/storybook/src/index.ts"]
     }
   },
