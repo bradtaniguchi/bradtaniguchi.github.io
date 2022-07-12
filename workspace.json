@@ -5,6 +5,7 @@
     "common": "libs/common",
     "common-react": "libs/common-react",
     "internal-client": "apps/internal-client",
+    "markdown": "libs/markdown",
     "storybook": "libs/storybook"
   }
 }
