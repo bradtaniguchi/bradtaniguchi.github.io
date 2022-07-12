@@ -1,16 +1,26 @@
-import { Box } from '@primer/react';
+import { Box, Timeline } from '@primer/react';
+import { useContext } from 'react';
+import { ActivityProject } from '../components/activity/activity-project';
 import { Card } from '../components/core/card';
+import { LoggerProvider } from '../utils/logger';
 
-export function Index() {
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface IndexProps {}
+
+export function Index(props: IndexProps) {
+  const logger = useContext(LoggerProvider);
+  logger.log('[Index]', props);
   return (
     <Box display="grid" gridGap={3} gridTemplateColumns="1fr 1fr 1fr">
-      <Box
-        borderColor="border.default"
-        borderWidth={1}
-        borderStyle="solid"
-        p={3}
-      >
-        <aside>Profile info goes here</aside>
+      <Box>
+        <Box
+          borderColor="border.default"
+          borderWidth={1}
+          borderStyle="solid"
+          p={3}
+        >
+          <aside>Profile info goes here</aside>
+        </Box>
       </Box>
 
       <Box gridColumn="span 2">
@@ -21,8 +31,37 @@ export function Index() {
               <Card.Body>README goes here</Card.Body>
             </Card>
             <Card>
-              <Card.Header>Activity</Card.Header>
-              <Card.Body>Activity will go here</Card.Body>
+              <Card.Header display="flex">
+                <Box flexGrow="100">Latest Activity</Box>
+                {/* TODO: add client-side filtering */}
+                {/* TODO: add support for RSS-feed */}
+                {/* <Box>
+                  <RssIcon></RssIcon>
+                </Box> */}
+              </Card.Header>
+              <Card.Body>
+                <Timeline>
+                  {/* TODO make dynamic */}
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                </Timeline>
+              </Card.Body>
             </Card>
           </Box>
         </Box>

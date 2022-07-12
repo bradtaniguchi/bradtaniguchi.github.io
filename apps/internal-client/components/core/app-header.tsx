@@ -27,6 +27,14 @@ export interface AppHeaderProps {
    * data to be passed.
    */
   showSearch?: boolean;
+  /**
+   * Feature flag for snippets feature.
+   */
+  showSnippets?: boolean;
+  /**
+   * Feature flag for the blog feature
+   */
+  showBlog?: boolean;
 }
 
 /**
@@ -48,16 +56,24 @@ export default function AppHeader(props: AppHeaderProps) {
         icon: ProjectIcon,
         name: 'Projects',
       },
-      {
-        href: '/snippets',
-        icon: CodeIcon,
-        name: 'Snippets',
-      },
-      {
-        href: '/blog',
-        icon: MarkdownIcon,
-        name: 'Blog',
-      },
+      ...(props.showSnippets
+        ? [
+            {
+              href: '/snippets',
+              icon: CodeIcon,
+              name: 'Snippets',
+            },
+          ]
+        : []),
+      ...(props.showBlog
+        ? [
+            {
+              href: '/blog',
+              icon: MarkdownIcon,
+              name: 'Blog',
+            },
+          ]
+        : []),
       {
         href: '/about',
         icon: QuestionIcon,
