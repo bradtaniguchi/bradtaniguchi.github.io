@@ -212,7 +212,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "aed1549bae824bd5d56bafbd5f05db177584858a"
+              "hash": "65c2865fc81525427695b93f3b815fae3c5da57a"
             },
             {
               "file": "apps/internal-client/pages/styles.css",
@@ -243,19 +243,21 @@
               "hash": "3621d89b6e8de790afd54ac835bf82292cf2420e"
             },
             {
-              "file": "apps/internal-client/specs/index.spec.tsx",
-              "hash": "77269d9ec1d2ead92093b9882e49eda89c5ccb74",
-              "deps": [
-                "npm:@testing-library/react"
-              ]
-            },
-            {
               "file": "apps/internal-client/tsconfig.json",
               "hash": "cadb8cda700070fec16641a4c734213862573c1c"
             },
             {
               "file": "apps/internal-client/tsconfig.spec.json",
-              "hash": "23a8088f2767edee8d855ed96148c2ec01fda8fc"
+              "hash": "14b06c6a5bf51709abab64ca3e8e0b35b5e52a43"
+            },
+            {
+              "file": "apps/internal-client/utils/get-markdown.ts",
+              "hash": "14286cad9b69b35199fedfb838250a8f43357262",
+              "deps": [
+                "npm:dompurify",
+                "npm:jsdom",
+                "npm:marked"
+              ]
             }
           ]
         }
@@ -683,6 +685,86 @@
           ]
         }
       },
+      "markdown": {
+        "name": "markdown",
+        "type": "lib",
+        "data": {
+          "root": "libs/markdown",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/markdown/src",
+          "projectType": "library",
+          "targets": {
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "libs/markdown/**/*.ts"
+                ]
+              }
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "coverage/libs/markdown"
+              ],
+              "options": {
+                "jestConfig": "libs/markdown/jest.config.ts",
+                "passWithNoTests": true
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "libs/markdown/.babelrc",
+              "hash": "cf7ddd99c615a064ac18eb3109eee4f394ab1faf"
+            },
+            {
+              "file": "libs/markdown/.eslintrc.json",
+              "hash": "9d9c0db55bb1e91c5f2e7b64a02bc6bf69fc7cb5"
+            },
+            {
+              "file": "libs/markdown/jest.config.ts",
+              "hash": "68c80783135304cb96fe208491c7647fabd0a8d1"
+            },
+            {
+              "file": "libs/markdown/project.json",
+              "hash": "1d6d10a09183d142fb6df500af74fee63419f8a7"
+            },
+            {
+              "file": "libs/markdown/README.md",
+              "hash": "10913a384fa701835c658c3d0590b5e58ee203ba"
+            },
+            {
+              "file": "libs/markdown/src/index.ts",
+              "hash": "26ce92b1897c77a648e1f83054b704fba085ac46"
+            },
+            {
+              "file": "libs/markdown/src/lib/markdown.spec.ts",
+              "hash": "b18b914b2d4a346cb62a213ecc0ea75a8b1e057e"
+            },
+            {
+              "file": "libs/markdown/src/lib/markdown.ts",
+              "hash": "83ed644f1a56ebb9ab14a28238a24ad46616db40"
+            },
+            {
+              "file": "libs/markdown/tsconfig.json",
+              "hash": "62ebbd946474cea997e774d20fffc4d585c184f3"
+            },
+            {
+              "file": "libs/markdown/tsconfig.lib.json",
+              "hash": "0e2a172abd561482f8c5e4d9ad900e03a9e48260"
+            },
+            {
+              "file": "libs/markdown/tsconfig.spec.json",
+              "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            }
+          ]
+        }
+      },
       "common": {
         "name": "common",
         "type": "lib",
@@ -824,6 +906,7 @@
         }
       ],
       "storybook": [],
+      "markdown": [],
       "common": []
     }
   },
