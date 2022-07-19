@@ -1,14 +1,14 @@
-<<<<<<< HEAD
 import { Box, Timeline } from '@primer/react';
 import { useContext } from 'react';
 import { ActivityProject } from '../components/activity/activity-project';
 import { Card } from '../components/core/card';
+import { getMarkdown } from '../utils/get-markdown';
 import { LoggerProvider } from '../utils/logger';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IndexProps {}
 
-export function Index(props: IndexProps) {
+export default function Index(props: IndexProps) {
   const logger = useContext(LoggerProvider);
   logger.log('[Index]', props);
   return (
@@ -69,16 +69,7 @@ export function Index(props: IndexProps) {
       </Box>
     </Box>
   );
-=======
-import { getMarkdown } from '../utils/get-markdown';
-
-export function Index(props: { content: string }) {
-  console.log('props', props);
-  return <div dangerouslySetInnerHTML={{ __html: props.content }}></div>;
->>>>>>> main
 }
-
-export default Index;
 
 export async function getStaticProps() {
   const content = await getMarkdown('README.md');
