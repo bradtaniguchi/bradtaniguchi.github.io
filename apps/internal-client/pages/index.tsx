@@ -1,17 +1,118 @@
+import { LogoGithubIcon, MarkGithubIcon } from '@primer/octicons-react';
+import { Box, StyledOcticon, Timeline } from '@primer/react';
+import Link from 'next/link';
+import { useContext } from 'react';
+import { ActivityProject } from '../components/activity/activity-project';
+import { Card } from '../components/core/card';
+import { GITHUB_URL } from '../constants/github-url';
 import { getMarkdown } from '../utils/get-markdown';
+import { LoggerProvider } from '../utils/logger';
 
-export function Index(props: { content: string }) {
-  console.log('props', props);
-  return <div dangerouslySetInnerHTML={{ __html: props.content }}></div>;
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface IndexProps {
+  /**
+   * The README contents
+   */
+  readme: string;
 }
 
-export default Index;
+export default function Index(props: IndexProps) {
+  const logger = useContext(LoggerProvider);
+  logger.log('[Index]', props);
+  return (
+    <Box display="grid" gridGap={3} gridTemplateColumns="1fr 1fr 1fr">
+      <Box>
+        <Box
+          borderColor="border.default"
+          borderWidth={1}
+          borderStyle="solid"
+          p={3}
+        >
+          <aside>Profile info goes here</aside>
+        </Box>
+      </Box>
 
-export async function getStaticProps() {
-  const content = await getMarkdown('README.md');
+      <Box gridColumn="span 2">
+        <Box gridColumn="span 2">
+          <Box display="grid" gridGap={3} gridTemplateColumns="1fr">
+            <Card gridColumn="span 2">
+              <Card.Header display="flex">README</Card.Header>
+              <Card.Body>
+                <p>
+                  This website acts as my portfolio and blog. Its currently
+                  under construction and will be continually updated. This is
+                  actually the third version of my portfolio site and is used as
+                  a test-bed for developing things with new technologies. To
+                  learn more about how this project was built, checkout the{' '}
+                  <Link href="about">about</Link> page.
+                </p>
+              </Card.Body>
+            </Card>
+            <Card gridColumn="span 2">
+              <Card.Header display="flex">
+                <Box flexGrow="100">Latest Activity</Box>
+                {/* TODO: add client-side filtering */}
+                {/* TODO: add support for RSS-feed */}
+                {/* <Box>
+                  <RssIcon></RssIcon>
+                </Box> */}
+              </Card.Header>
+              <Card.Body>
+                <Timeline>
+                  {/* TODO make dynamic */}
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                  <ActivityProject
+                    project={{ name: 'Test Project', createdAt: new Date() }}
+                  />
+                </Timeline>
+              </Card.Body>
+            </Card>
+            <Card gridColumn="span 2">
+              <Card.Header display="flex">
+                <Box flexGrow="100">Github README</Box>
+                <Box>
+                  <a href={GITHUB_URL}>
+                    <StyledOcticon
+                      icon={MarkGithubIcon}
+                      size={16}
+                      sx={{ mr: 2 }}
+                    />
+                  </a>
+                </Box>
+              </Card.Header>
+              <Card.Body>
+                {/* TODO: update/move to about? */}
+                <div dangerouslySetInnerHTML={{ __html: props.readme }}></div>
+              </Card.Body>
+            </Card>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+export async function getStaticProps(): Promise<{
+  props: IndexProps;
+}> {
+  const readme = await getMarkdown('README.md');
   return {
     props: {
-      content,
+      readme,
     },
   };
 }
