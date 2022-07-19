@@ -107,6 +107,16 @@
               "hash": "f13f56cc53c7d94063a3c717349e025e863bc78c"
             },
             {
+              "file": "apps/internal-client/components/activity/activity-project.tsx",
+              "hash": "0ef90748c758f603d1a221062aceec451f965c4e",
+              "deps": [
+                "npm:@primer/octicons-react",
+                "npm:@primer/react",
+                "npm:react",
+                "npm:luxon"
+              ]
+            },
+            {
               "file": "apps/internal-client/components/core/app-header-search.tsx",
               "hash": "3703ee432c2417b062910b05f4f5c541d507a57e",
               "deps": [
@@ -117,12 +127,19 @@
             },
             {
               "file": "apps/internal-client/components/core/app-header.tsx",
-              "hash": "9bcbbb2f4cdbb965267c2aa36e6626ab95cd0b64",
+              "hash": "3d958f96fd3aaa680283c2d3653962dddc15cacb",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
                 "npm:next",
                 "npm:react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/components/core/card.tsx",
+              "hash": "0152fe89da4cae561c3d574b03f874c0690d7beb",
+              "deps": [
+                "npm:@primer/react"
               ]
             },
             {
@@ -155,11 +172,22 @@
               ]
             },
             {
+              "file": "apps/internal-client/components/profile/profile.tsx",
+              "hash": "ef32b5a5a7afc34dd68160a4ea16ebe587884604",
+              "deps": [
+                "npm:@primer/react"
+              ]
+            },
+            {
               "file": "apps/internal-client/components/spinner.tsx",
               "hash": "263a96f37d89099bf5be80d1c9f6479dfd4cfcf0",
               "deps": [
                 "npm:@primer/react"
               ]
+            },
+            {
+              "file": "apps/internal-client/constants/github-url.ts",
+              "hash": "5c52742da2d4c7ee086c607b20db74d81b315f05"
             },
             {
               "file": "apps/internal-client/index.d.ts",
@@ -212,7 +240,46 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "65c2865fc81525427695b93f3b815fae3c5da57a"
+              "hash": "be6d0dafd1e8d66347dcbacd02be44c385155d83",
+              "deps": [
+                "npm:@primer/octicons-react",
+                "npm:@primer/react",
+                "npm:next",
+                "npm:react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/pages/posts/[slug].tsx",
+              "hash": "0e6fca8c36aa04d271a55a541271fc6d005a8d34",
+              "deps": [
+                "npm:next"
+              ]
+            },
+            {
+              "file": "apps/internal-client/pages/posts/index.tsx",
+              "hash": "5cc78ad607bb2762bd24ce2e27ed10bc085d7112"
+            },
+            {
+              "file": "apps/internal-client/pages/projects/[name].tsx",
+              "hash": "86addde05d4aae498fe18c3a6239bb7c9f7b2e66",
+              "deps": [
+                "npm:next"
+              ]
+            },
+            {
+              "file": "apps/internal-client/pages/projects/index.tsx",
+              "hash": "7e8cab50295f4302124b7ab27e18fd6b03600006"
+            },
+            {
+              "file": "apps/internal-client/pages/snippets/[id].tsx",
+              "hash": "b1f95f91a0e2911490df035c31f49478cbe70f44",
+              "deps": [
+                "npm:next"
+              ]
+            },
+            {
+              "file": "apps/internal-client/pages/snippets/index.tsx",
+              "hash": "c06c8286eeefbbbd5cc346c0319ad07adf258f81"
             },
             {
               "file": "apps/internal-client/pages/styles.css",
@@ -257,6 +324,13 @@
                 "npm:dompurify",
                 "npm:jsdom",
                 "npm:marked"
+              ]
+            },
+            {
+              "file": "apps/internal-client/utils/logger.tsx",
+              "hash": "8fd35c21303c00d9b2774d802037ebed15506587",
+              "deps": [
+                "common-react"
               ]
             }
           ]
