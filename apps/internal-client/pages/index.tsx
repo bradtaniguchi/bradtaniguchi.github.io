@@ -44,7 +44,7 @@ export default function Index(props: IndexProps) {
                   actually the third version of my portfolio site and is used as
                   a test-bed for developing things with new technologies. To
                   learn more about how this project was built, checkout the{' '}
-                  <Link href="about">about</Link> page.
+                  <Link href="/about">about</Link> page.
                 </p>
               </Card.Body>
             </Card>
