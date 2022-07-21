@@ -11,6 +11,9 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  images: {
+    domains: ['avatars.githubusercontent.com']
+  },
   // TODO: Change on rename
   assetPrefix: isProd ? '/bradtaniguchi-dev/' : '',
 };

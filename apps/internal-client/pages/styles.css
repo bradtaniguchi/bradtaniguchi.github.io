@@ -5,3 +5,7 @@ body {
   min-height: 100%;
   overflow: hidden;
 }
+
+.image-wrapper img {
+  border-radius: 8px;
+}

@@ -1,4 +1,4 @@
-import { LogoGithubIcon, MarkGithubIcon } from '@primer/octicons-react';
+import { MarkGithubIcon } from '@primer/octicons-react';
 import { Box, StyledOcticon, Timeline } from '@primer/react';
 import Link from 'next/link';
 import { useContext } from 'react';
@@ -7,6 +7,8 @@ import { Card } from '../components/core/card';
 import { GITHUB_URL } from '../constants/github-url';
 import { getMarkdown } from '../utils/get-markdown';
 import { LoggerProvider } from '../utils/logger';
+import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
+import Image from 'next/image';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IndexProps {
@@ -14,6 +16,10 @@ export interface IndexProps {
    * The README contents
    */
   readme: string;
+  /**
+   * The github user data loaded from the API
+   */
+  user: RestEndpointMethodTypes['users']['getByUsername']['response']['data'];
 }
 
 export default function Index(props: IndexProps) {
@@ -28,7 +34,21 @@ export default function Index(props: IndexProps) {
           borderStyle="solid"
           p={3}
         >
-          <aside>Profile info goes here</aside>
+          <aside>
+            <div className="image-wrapper">
+              <Image
+                layout="responsive"
+                width={260}
+                height={260}
+                src={props.user.avatar_url}
+                alt="Github profile picture"
+              />
+            </div>
+            {/* TODO: add the following:
+               - github username
+               - socials
+             */}
+          </aside>
         </Box>
       </Box>
 
@@ -109,10 +129,17 @@ export default function Index(props: IndexProps) {
 export async function getStaticProps(): Promise<{
   props: IndexProps;
 }> {
-  const readme = await getMarkdown('README.md');
+  const octokit = new Octokit();
+  const [readme, { data: user }] = await Promise.all([
+    getMarkdown('README.md'),
+    octokit.users.getByUsername({
+      username: 'bradtaniguchi',
+    }),
+  ]);
   return {
     props: {
       readme,
+      user,
     },
   };
 }
