@@ -12,7 +12,9 @@ const nextConfig = {
     svgr: false,
   },
   images: {
-    domains: ['avatars.githubusercontent.com']
+    loader: 'akamai',
+    path: '',
+    domains: ['avatars.githubusercontent.com'],
   },
   // TODO: Change on rename
   assetPrefix: isProd ? '/bradtaniguchi-dev/' : '',
