@@ -44,17 +44,78 @@ export default function Index(props: IndexProps) {
                 alt="Github profile picture"
               />
             </div>
-            {/* TODO: add the following:
-               - github username
-               - socials
-             */}
+            <h2>
+              <Link
+                href={props.user.html_url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Github profile url"
+              >
+                Brad Taniguchi
+              </Link>
+            </h2>
+            <p>{props.user.bio}</p>
+
+            <section>
+              <h4>Socials</h4>
+              <ul>
+                <li>
+                  <Link
+                    href={props.user.html_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="LinkedIn url"
+                  >
+                    bradtaniguchi
+                    {/* TODO: add "open new tab" icon */}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://twitter.com/brad_taniguchi"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Twitter handle url"
+                  >
+                    {/* TODO: add twitter icon */}
+                    twitter handle: @brad_taniguchi
+                    {/* TODO: add "open new tab" icon */}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://www.linkedin.com/in/bradley-taniguchi-62a052104"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="LinkedIn profile url"
+                  >
+                    {/* TODO: add linkedIn icon */}
+                    LinkedIn
+                    {/* TODO: add "open new tab" icon */}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="https://www.codewars.com/users/bradtaniguchi"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Codewars profile url"
+                  >
+                    {/* TODO: add linkedIn icon */}
+                    Codewars
+                    {/* TODO: add "open new tab" icon */}
+                  </Link>
+                </li>
+              </ul>
+            </section>
           </aside>
         </Box>
       </Box>
 
       <Box gridColumn="span 2">
         <Box gridColumn="span 2">
-          <Box display="grid" gridGap={3} gridTemplateColumns="1fr">
+          <Box display="grid" gridGap={3}>
             <Card gridColumn="span 2">
               <Card.Header display="flex">README</Card.Header>
               <Card.Body>
@@ -105,7 +166,12 @@ export default function Index(props: IndexProps) {
               <Card.Header display="flex">
                 <Box flexGrow="100">Github README</Box>
                 <Box>
-                  <a href={GITHUB_URL}>
+                  <a
+                    href={GITHUB_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Github profile URL"
+                  >
                     <StyledOcticon
                       icon={MarkGithubIcon}
                       size={16}
