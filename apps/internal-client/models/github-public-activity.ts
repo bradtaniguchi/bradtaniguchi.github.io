@@ -7,5 +7,5 @@ type GithubListPublicEventData =
  * Interface representing public github activity
  */
 export interface GithubPublicActivity extends GithubListPublicEventData {
-  type: 'github-public-activity';
+  internalType: 'github-public-activity' | string;
 }

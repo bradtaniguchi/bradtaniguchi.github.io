@@ -135,6 +135,7 @@ export default function Index(props: IndexProps) {
                 </p>
               </Card.Body>
             </Card>
+
             <Card gridColumn="span 2">
               <Card.Header display="flex">
                 <Box flexGrow="100">Latest Activity</Box>
@@ -148,6 +149,7 @@ export default function Index(props: IndexProps) {
                 <Activities activities={props.activities} />
               </Card.Body>
             </Card>
+
             <Card gridColumn="span 2">
               <Card.Header display="flex">
                 <Box flexGrow="100">Github README</Box>
@@ -182,16 +184,28 @@ export async function getStaticProps(): Promise<{
   props: IndexProps;
 }> {
   const octokit = new Octokit();
-  const [readme, { data: user }] = await Promise.all([
+  const [readme, { data: user }, githubActivities] = await Promise.all([
     getMarkdown('README.md'),
     octokit.users.getByUsername({
       username: 'bradtaniguchi',
     }),
+    octokit.activity
+      .listPublicEventsForUser({
+        username: 'bradtaniguchi',
+      })
+      .then(({ data }) =>
+        data
+          .map((el) => ({
+            ...el,
+            internalType: 'github-public-activity' as const,
+          }))
+          .sort((a, b) => (a.created_at > b.created_at ? 1 : -1))
+      ),
   ]);
   return {
     props: {
       readme,
-      activities: [],
+      activities: [...githubActivities],
       user,
     },
   };
