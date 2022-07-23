@@ -1,10 +1,11 @@
-import { LogoGithubIcon, MarkGithubIcon } from '@primer/octicons-react';
-import { Box, StyledOcticon, Timeline } from '@primer/react';
+import { MarkGithubIcon } from '@primer/octicons-react';
+import { Box, StyledOcticon } from '@primer/react';
 import Link from 'next/link';
 import { useContext } from 'react';
-import { ActivityProject } from '../components/activity/activity-project';
+import { Activities } from '../components/activity/activities';
 import { Card } from '../components/core/card';
 import { GITHUB_URL } from '../constants/github-url';
+import { Activity } from '../models/activity';
 import { getMarkdown } from '../utils/get-markdown';
 import { LoggerProvider } from '../utils/logger';
 
@@ -14,6 +15,8 @@ export interface IndexProps {
    * The README contents
    */
   readme: string;
+
+  activities: Activity[];
 }
 
 export default function Index(props: IndexProps) {
@@ -58,27 +61,7 @@ export default function Index(props: IndexProps) {
                 </Box> */}
               </Card.Header>
               <Card.Body>
-                <Timeline>
-                  {/* TODO make dynamic */}
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                </Timeline>
+                <Activities activities={props.activities} />
               </Card.Body>
             </Card>
             <Card gridColumn="span 2">
@@ -113,6 +96,7 @@ export async function getStaticProps(): Promise<{
   return {
     props: {
       readme,
+      activities: [],
     },
   };
 }
