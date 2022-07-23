@@ -6,6 +6,7 @@ export function Card(props: BoxProps) {
       borderColor="border.default"
       borderWidth={1}
       borderStyle="solid"
+      borderRadius="8px"
       {...props}
     >
       {props.children}
@@ -15,7 +16,7 @@ export function Card(props: BoxProps) {
 
 Card.Header = function Header(props: BoxProps) {
   return (
-    <Box bg="canvas.inset" p={3} {...props}>
+    <Box bg="canvas.inset" p={3} borderRadius="8px 8px 0 0" {...props}>
       {props.children}
     </Box>
   );
