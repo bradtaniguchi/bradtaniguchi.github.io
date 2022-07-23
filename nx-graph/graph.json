@@ -137,7 +137,7 @@
             },
             {
               "file": "apps/internal-client/components/core/card.tsx",
-              "hash": "0152fe89da4cae561c3d574b03f874c0690d7beb",
+              "hash": "dd482ae168885d84608fa3c16218f0497be83469",
               "deps": [
                 "npm:@primer/react"
               ]
@@ -203,7 +203,7 @@
             },
             {
               "file": "apps/internal-client/next.config.js",
-              "hash": "98786e83347764dec16a11f776ac360faaa7571f",
+              "hash": "c462762ffd1a49186a846a0ba334229857b4ce67",
               "deps": [
                 "npm:@nrwl/next"
               ]
@@ -240,12 +240,14 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "be6d0dafd1e8d66347dcbacd02be44c385155d83",
+              "hash": "2c794e33e7ec400159181fdda8e3ba9a60317cd7",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
                 "npm:next",
-                "npm:react"
+                "npm:react",
+                "npm:@octokit/rest",
+                "npm:react-icons"
               ]
             },
             {
@@ -283,7 +285,7 @@
             },
             {
               "file": "apps/internal-client/pages/styles.css",
-              "hash": "b68b52a48496ede1f545bc72ff1bc4134d444c71"
+              "hash": "2cf71cc2a02c386178e8245417d76017ec3ee206"
             },
             {
               "file": "apps/internal-client/project.json",
