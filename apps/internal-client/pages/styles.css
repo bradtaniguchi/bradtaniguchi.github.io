@@ -9,3 +9,7 @@ body {
 .image-wrapper img {
   border-radius: 8px;
 }
+
+a {
+  color: inherit;
+}

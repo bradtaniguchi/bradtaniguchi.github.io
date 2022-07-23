@@ -9,6 +9,8 @@ import { getMarkdown } from '../utils/get-markdown';
 import { LoggerProvider } from '../utils/logger';
 import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
 import Image from 'next/image';
+import { SiCodewars } from 'react-icons/si';
+import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IndexProps {
@@ -28,89 +30,88 @@ export default function Index(props: IndexProps) {
   return (
     <Box display="grid" gridGap={3} gridTemplateColumns="1fr 1fr 1fr">
       <Box>
-        <Box
-          borderColor="border.default"
-          borderWidth={1}
-          borderStyle="solid"
-          p={3}
-        >
-          <aside>
-            <div className="image-wrapper">
-              <Image
-                layout="responsive"
-                width={260}
-                height={260}
-                src={props.user.avatar_url}
-                alt="Github profile picture"
-              />
-            </div>
-            <h2>
-              <Link
-                href={props.user.html_url}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Github profile url"
-              >
-                Brad Taniguchi
-              </Link>
-            </h2>
-            <p>{props.user.bio}</p>
+        <Card>
+          <Card.Body>
+            <aside>
+              <div className="image-wrapper">
+                <Image
+                  layout="responsive"
+                  width={260}
+                  height={260}
+                  src={props.user.avatar_url}
+                  alt="Github profile picture"
+                />
+              </div>
+              <h2>
+                <Link
+                  href={props.user.html_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Github profile url"
+                >
+                  Brad Taniguchi
+                </Link>
+              </h2>
+              <p>{props.user.bio}</p>
 
-            <section>
-              <h4>Socials</h4>
-              <ul>
-                <li>
-                  <Link
-                    href={props.user.html_url}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="LinkedIn url"
-                  >
-                    bradtaniguchi
-                    {/* TODO: add "open new tab" icon */}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://twitter.com/brad_taniguchi"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Twitter handle url"
-                  >
-                    {/* TODO: add twitter icon */}
-                    twitter handle: @brad_taniguchi
-                    {/* TODO: add "open new tab" icon */}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://www.linkedin.com/in/bradley-taniguchi-62a052104"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="LinkedIn profile url"
-                  >
-                    {/* TODO: add linkedIn icon */}
-                    LinkedIn
-                    {/* TODO: add "open new tab" icon */}
-                  </Link>
-                </li>
+              <section>
+                <h4>Socials</h4>
+                <ul>
+                  <li>
+                    <Link
+                      href={props.user.html_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="LinkedIn url"
+                    >
+                      <a>
+                        <FaGithub /> bradtaniguchi
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://twitter.com/brad_taniguchi"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Twitter handle url"
+                    >
+                      <a>
+                        <FaTwitter /> @brad_taniguchi
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://www.linkedin.com/in/bradley-taniguchi-62a052104"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="LinkedIn profile url"
+                    >
+                      <a>
+                        <FaLinkedin /> LinkedIn
+                      </a>
+                    </Link>
+                  </li>
 
-                <li>
-                  <Link
-                    href="https://www.codewars.com/users/bradtaniguchi"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Codewars profile url"
-                  >
-                    {/* TODO: add linkedIn icon */}
-                    Codewars
-                    {/* TODO: add "open new tab" icon */}
-                  </Link>
-                </li>
-              </ul>
-            </section>
-          </aside>
-        </Box>
+                  <li>
+                    <Link
+                      href="https://www.codewars.com/users/bradtaniguchi"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Codewars profile url"
+                    >
+                      <a>
+                        <SiCodewars /> Codewars
+                      </a>
+                      {/* TODO: add "open new tab" icon */}
+                    </Link>
+                  </li>
+                </ul>
+              </section>
+            </aside>
+          </Card.Body>
+        </Card>
       </Box>
 
       <Box gridColumn="span 2">
