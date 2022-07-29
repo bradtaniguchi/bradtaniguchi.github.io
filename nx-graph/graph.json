@@ -107,6 +107,10 @@
               "hash": "f13f56cc53c7d94063a3c717349e025e863bc78c"
             },
             {
+              "file": "apps/internal-client/.gitignore",
+              "hash": "737f3f5484b600482c57007f3c0185a48dd3b8f5"
+            },
+            {
               "file": "apps/internal-client/components/activity/activity-project.tsx",
               "hash": "0ef90748c758f603d1a221062aceec451f965c4e",
               "deps": [
@@ -203,8 +207,9 @@
             },
             {
               "file": "apps/internal-client/next.config.js",
-              "hash": "c462762ffd1a49186a846a0ba334229857b4ce67",
+              "hash": "e32746f1d7cc50099623024490a2dff6c2b2371b",
               "deps": [
+                "npm:@sentry/nextjs",
                 "npm:@nrwl/next"
               ]
             },
@@ -224,6 +229,14 @@
                 "npm:next",
                 "npm:styled-components",
                 "common-react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/pages/_error.tsx",
+              "hash": "024eafe831b4cd55054b4bb6c20aafedee92e3e3",
+              "deps": [
+                "npm:@sentry/nextjs",
+                "npm:next"
               ]
             },
             {
@@ -310,6 +323,24 @@
             {
               "file": "apps/internal-client/README.md",
               "hash": "3621d89b6e8de790afd54ac835bf82292cf2420e"
+            },
+            {
+              "file": "apps/internal-client/sentry.client.config.ts",
+              "hash": "513996c020e223d08fc84669109edc4631c5c6a3",
+              "deps": [
+                "npm:@sentry/nextjs"
+              ]
+            },
+            {
+              "file": "apps/internal-client/sentry.properties",
+              "hash": "97593db9b957d62313b8b352da400a158ccaf6bb"
+            },
+            {
+              "file": "apps/internal-client/sentry.server.config.ts",
+              "hash": "0a1a160e92ccd8dcbee99185c2385f713ce2691d",
+              "deps": [
+                "npm:@sentry/nextjs"
+              ]
             },
             {
               "file": "apps/internal-client/tsconfig.json",
