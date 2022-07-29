@@ -6,6 +6,7 @@ import { GoogleAnalytics } from '@bradtaniguchi-dev/common-react';
 
 export default class CustomDocument extends Document<{
   styleTags: ReactElement[];
+  googleAnalytics: string;
 }> {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
@@ -16,7 +17,9 @@ export default class CustomDocument extends Document<{
 
     const styleTags = sheet.getStyleElement();
 
-    return { ...page, styleTags };
+    const googleAnalytics = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
+
+    return { ...page, styleTags, googleAnalytics };
   }
 
   render() {
@@ -24,7 +27,7 @@ export default class CustomDocument extends Document<{
       <Html>
         <Head>
           {this.props.styleTags}
-          {<GoogleAnalytics key={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />}
+          <GoogleAnalytics googleAnalyticsKey={this.props.googleAnalytics} />
         </Head>
         <body>
           <Main />
