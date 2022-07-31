@@ -1,3 +1,4 @@
+import { Theme, useLogger } from '@bradtaniguchi-dev/common-react';
 import {
   CodeIcon,
   Icon,
@@ -10,13 +11,15 @@ import {
 import {
   ActionMenu,
   Box,
+  Button,
   Header,
   IconButton,
   NavList,
   StyledOcticon,
 } from '@primer/react';
+import { ThemeContext } from '../../utils/theme-context';
 import { useRouter } from 'next/router';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 import { AppHeaderSearch } from './app-header-search';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -42,8 +45,32 @@ export interface AppHeaderProps {
  */
 export default function AppHeader(props: AppHeaderProps) {
   const router = useRouter();
+  const logger = useLogger();
+  const { theme, setTheme } = useContext(ThemeContext);
 
-  const isCurrent = useCallback((href) => router.asPath === href, [router]);
+  const themeToggleHandle = useCallback(() => {
+    let nextTheme: Theme;
+
+    if (theme === 'light') {
+      nextTheme = 'grey';
+    } else if (theme === 'grey') {
+      nextTheme = 'dark';
+    } else {
+      nextTheme = 'light';
+    }
+
+    logger.log('[AppHeader]', {
+      currentTheme: theme,
+      nextTheme,
+    });
+
+    setTheme(nextTheme);
+  }, [logger, setTheme, theme]);
+
+  const isCurrent = useCallback(
+    (href: string) => router.asPath === href,
+    [router]
+  );
 
   const links: Array<{
     href: string;
@@ -111,6 +138,11 @@ export default function AppHeader(props: AppHeaderProps) {
           </Header.Item>
         </Box>
       ))}
+
+      <Box>
+        {/* theme switcher */}
+        <Button onClick={themeToggleHandle}>theme</Button>
+      </Box>
 
       <Box display={['block', 'none']}>
         <Header.Item>
