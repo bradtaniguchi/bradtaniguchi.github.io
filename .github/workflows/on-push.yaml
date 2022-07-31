@@ -29,6 +29,13 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - gen-affected
+    env:
+      # configuration:
+      # https://blog.sentry.io/2019/12/17/using-github-actions-to-create-sentry-releases
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+      SENTRY_DEPLOYMENT_ENVIRONMENT: 'production'
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/init-job
