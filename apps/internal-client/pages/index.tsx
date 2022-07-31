@@ -1,16 +1,17 @@
+import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
 import { MarkGithubIcon } from '@primer/octicons-react';
-import { Box, StyledOcticon, Timeline } from '@primer/react';
+import { Box, StyledOcticon } from '@primer/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useContext } from 'react';
-import { ActivityProject } from '../components/activity/activity-project';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { SiCodewars } from 'react-icons/si';
+import { Activities } from '../components/activity/activities';
 import { Card } from '../components/core/card';
 import { GITHUB_URL } from '../constants/github-url';
+import { Activity } from '../models/activity';
 import { getMarkdown } from '../utils/get-markdown';
 import { LoggerProvider } from '../utils/logger';
-import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
-import Image from 'next/image';
-import { SiCodewars } from 'react-icons/si';
-import { FaTwitter, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IndexProps {
@@ -18,6 +19,10 @@ export interface IndexProps {
    * The README contents
    */
   readme: string;
+  /**
+   * The list of activities to show
+   */
+  activities: Activity[];
   /**
    * The github user data loaded from the API
    */
@@ -130,6 +135,7 @@ export default function Index(props: IndexProps) {
                 </p>
               </Card.Body>
             </Card>
+
             <Card gridColumn="span 2">
               <Card.Header display="flex">
                 <Box flexGrow="100">Latest Activity</Box>
@@ -140,29 +146,10 @@ export default function Index(props: IndexProps) {
                 </Box> */}
               </Card.Header>
               <Card.Body>
-                <Timeline>
-                  {/* TODO make dynamic */}
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                  <ActivityProject
-                    project={{ name: 'Test Project', createdAt: new Date() }}
-                  />
-                </Timeline>
+                <Activities activities={props.activities} />
               </Card.Body>
             </Card>
+
             <Card gridColumn="span 2">
               <Card.Header display="flex">
                 <Box flexGrow="100">Github README</Box>
@@ -197,15 +184,28 @@ export async function getStaticProps(): Promise<{
   props: IndexProps;
 }> {
   const octokit = new Octokit();
-  const [readme, { data: user }] = await Promise.all([
+  const [readme, { data: user }, githubActivities] = await Promise.all([
     getMarkdown('README.md'),
     octokit.users.getByUsername({
       username: 'bradtaniguchi',
     }),
+    octokit.activity
+      .listPublicEventsForUser({
+        username: 'bradtaniguchi',
+      })
+      .then(({ data }) =>
+        data
+          .map((el) => ({
+            ...el,
+            internalType: 'github-public-activity' as const,
+          }))
+          .sort((a, b) => (a.created_at > b.created_at ? -1 : 1))
+      ),
   ]);
   return {
     props: {
       readme,
+      activities: [...githubActivities],
       user,
     },
   };
