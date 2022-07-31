@@ -8,6 +8,15 @@ import { Theme } from '../types/themes';
  * @params theme the theme to default to initially
  * @unstable
  */
-export function themeContextFactory(theme: Theme) {
-  return createContext(theme);
+export function themeContextFactory({
+  theme,
+  setTheme,
+}: {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+}) {
+  return createContext({
+    theme,
+    setTheme,
+  });
 }
