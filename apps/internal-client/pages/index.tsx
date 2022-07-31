@@ -199,7 +199,7 @@ export async function getStaticProps(): Promise<{
             ...el,
             internalType: 'github-public-activity' as const,
           }))
-          .sort((a, b) => (a.created_at > b.created_at ? 1 : -1))
+          .sort((a, b) => (a.created_at > b.created_at ? -1 : 1))
       ),
   ]);
   return {

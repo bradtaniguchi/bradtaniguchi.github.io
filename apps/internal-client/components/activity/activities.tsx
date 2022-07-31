@@ -1,5 +1,5 @@
 import { Timeline } from '@primer/react';
-import { Activity } from 'apps/internal-client/models/activity';
+import { Activity } from '../../models/activity';
 import { memo } from 'react';
 import { GithubPublicActivity } from './github-public-activity';
 
