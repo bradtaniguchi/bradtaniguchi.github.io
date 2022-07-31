@@ -111,6 +111,14 @@
               "hash": "737f3f5484b600482c57007f3c0185a48dd3b8f5"
             },
             {
+              "file": "apps/internal-client/components/activity/activities.tsx",
+              "hash": "90de6544333a424cb5790f50a3c9668d2beaf0b9",
+              "deps": [
+                "npm:@primer/react",
+                "npm:react"
+              ]
+            },
+            {
               "file": "apps/internal-client/components/activity/activity-project.tsx",
               "hash": "0ef90748c758f603d1a221062aceec451f965c4e",
               "deps": [
@@ -118,6 +126,17 @@
                 "npm:@primer/react",
                 "npm:react",
                 "npm:luxon"
+              ]
+            },
+            {
+              "file": "apps/internal-client/components/activity/github-public-activity.tsx",
+              "hash": "8cbc77c5107a58a0a60566b924b9f249803a5615",
+              "deps": [
+                "npm:@primer/octicons-react",
+                "npm:@primer/react",
+                "npm:luxon",
+                "npm:next",
+                "npm:react"
               ]
             },
             {
@@ -202,6 +221,17 @@
               "hash": "315b134a141cb9ac26109a983501097abfe95d35"
             },
             {
+              "file": "apps/internal-client/models/activity.ts",
+              "hash": "25d1f5d5096ef88a750bf99638b40926c62e4edd"
+            },
+            {
+              "file": "apps/internal-client/models/github-public-activity.ts",
+              "hash": "5cf2115336df4706b779a82bc02c0f0655174d77",
+              "deps": [
+                "npm:@octokit/rest"
+              ]
+            },
+            {
               "file": "apps/internal-client/next-env.d.ts",
               "hash": "4f11a03dc6cc37f2b5105c08f2e7b24c603ab2f4"
             },
@@ -253,13 +283,13 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "2c794e33e7ec400159181fdda8e3ba9a60317cd7",
+              "hash": "786f1c73901f3afdeb9f58a500b21eb32b896e9d",
               "deps": [
+                "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
                 "npm:next",
                 "npm:react",
-                "npm:@octokit/rest",
                 "npm:react-icons"
               ]
             },
@@ -361,9 +391,10 @@
             },
             {
               "file": "apps/internal-client/utils/logger.tsx",
-              "hash": "8fd35c21303c00d9b2774d802037ebed15506587",
+              "hash": "c716af5f9abd784bcc1dcc2aecc5c1e68e4e2879",
               "deps": [
-                "common-react"
+                "common-react",
+                "npm:@sentry/nextjs"
               ]
             }
           ]
