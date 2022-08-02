@@ -1,4 +1,4 @@
-import { Theme, useLogger } from '@bradtaniguchi-dev/common-react';
+import { useLogger } from '@bradtaniguchi-dev/common-react';
 import {
   CodeIcon,
   Icon,
@@ -7,19 +7,19 @@ import {
   ProjectIcon,
   QuestionIcon,
   ThreeBarsIcon,
+  SunIcon,
 } from '@primer/octicons-react';
 import {
   ActionMenu,
   Box,
-  Button,
   Header,
   IconButton,
   NavList,
   StyledOcticon,
+  useTheme,
 } from '@primer/react';
-import { ThemeContext } from '../../utils/theme-context';
 import { useRouter } from 'next/router';
-import { useCallback, useContext, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { AppHeaderSearch } from './app-header-search';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -46,26 +46,23 @@ export interface AppHeaderProps {
 export default function AppHeader(props: AppHeaderProps) {
   const router = useRouter();
   const logger = useLogger();
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { colorMode, setColorMode } = useTheme();
 
   const themeToggleHandle = useCallback(() => {
-    let nextTheme: Theme;
+    let nextColorMode: 'day' | 'night' | 'auto';
 
-    if (theme === 'light') {
-      nextTheme = 'grey';
-    } else if (theme === 'grey') {
-      nextTheme = 'dark';
+    if (colorMode === 'day') {
+      nextColorMode = 'night';
     } else {
-      nextTheme = 'light';
+      nextColorMode = 'day';
     }
+    setColorMode(nextColorMode);
 
     logger.log('[AppHeader]', {
-      currentTheme: theme,
-      nextTheme,
+      colorMode,
+      nextColorMode,
     });
-
-    setTheme(nextTheme);
-  }, [logger, setTheme, theme]);
+  }, [logger, colorMode, setColorMode]);
 
   const isCurrent = useCallback(
     (href: string) => router.asPath === href,
@@ -107,7 +104,7 @@ export default function AppHeader(props: AppHeaderProps) {
         name: 'About',
       },
     ],
-    []
+    [props.showBlog, props.showSnippets]
   );
 
   return (
@@ -141,7 +138,12 @@ export default function AppHeader(props: AppHeaderProps) {
 
       <Box>
         {/* theme switcher */}
-        <Button onClick={themeToggleHandle}>theme</Button>
+        {/* <Button>theme</Button> */}
+        <IconButton
+          icon={SunIcon}
+          aria-label="Toggle Theme"
+          onClick={themeToggleHandle}
+        />
       </Box>
 
       <Box display={['block', 'none']}>
