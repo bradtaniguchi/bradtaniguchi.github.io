@@ -9,7 +9,7 @@ import {
 } from '@primer/react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useEffect, useLayoutEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import AppHeader from '../components/core/app-header';
 import { LOCAL_FORAGE_THEME_KEY } from '../constants/local-forage-theme-key';
 import './styles.css';
@@ -42,7 +42,7 @@ function ThemedComponent({ Component, pageProps }: AppProps) {
     });
   }, [logger, setColorMode, localForage]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (colorMode === 'night') {
       document.body.style.backgroundColor = 'black';
     } else {

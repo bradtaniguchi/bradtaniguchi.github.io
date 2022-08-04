@@ -8,7 +8,7 @@ import {
   QuestionIcon,
   ThreeBarsIcon,
   SunIcon,
-  MoonIcon
+  MoonIcon,
 } from '@primer/octicons-react';
 import {
   ActionMenu,
@@ -116,6 +116,14 @@ export default function AppHeader(props: AppHeaderProps) {
     }
   })();
 
+  const themeTitle = (() => {
+    if (colorMode === 'night') {
+      return 'Switch to day mode';
+    } else {
+      return 'Switch to night mode';
+    }
+  })();
+
   return (
     <Header>
       <Header.Item>
@@ -150,7 +158,8 @@ export default function AppHeader(props: AppHeaderProps) {
         {/* <Button>theme</Button> */}
         <IconButton
           icon={themeIcon}
-          aria-label="Toggle Theme"
+          title={themeTitle}
+          aria-label={themeTitle}
           onClick={themeToggleHandle}
         />
       </Box>
