@@ -17,7 +17,7 @@ export default class CustomDocument extends Document<{
 
     const styleTags = sheet.getStyleElement();
 
-    const googleAnalytics = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
+    const googleAnalytics = process.env.GOOGLE_ANALYTICS;
 
     return { ...page, styleTags, googleAnalytics };
   }
