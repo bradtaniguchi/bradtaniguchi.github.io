@@ -1,28 +1,54 @@
-import { useLogger } from '@bradtaniguchi-dev/common-react';
+import { useLocalForage, useLogger } from '@bradtaniguchi-dev/common-react';
 import {
   BaseStyles,
   Box,
   SSRProvider,
-  theme as primerTheme,
+  theme,
   ThemeProvider,
   useTheme,
 } from '@primer/react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useEffect, useLayoutEffect, useMemo } from 'react';
 import AppHeader from '../components/core/app-header';
+import { LOCAL_FORAGE_THEME_KEY } from '../constants/local-forage-theme-key';
 import './styles.css';
-
-// TODO: move into another file
-const myTheme = primerTheme;
-// myTheme.colorSchemes.light.colors.canvas.default = 'green';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ThemeProviderFixed = ThemeProvider as any;
 
+/**
+ * Top level wrapper component used to manage the page theme.
+ */
 function ThemedComponent({ Component, pageProps }: AppProps) {
-  const { colorMode } = useTheme();
+  const { colorMode, setColorMode } = useTheme();
   const logger = useLogger();
-  logger.log('[ThemedComponent]', { colorMode });
+  const localForage = useLocalForage(useMemo(() => ({}), []));
+
+  useEffect(() => {
+    localForage.setItem(LOCAL_FORAGE_THEME_KEY, colorMode);
+  }, [localForage, colorMode]);
+
+  useEffect(() => {
+    logger.log('[ThemedComponent] getting initial');
+    localForage.getItem(LOCAL_FORAGE_THEME_KEY).then((colorMode?: string) => {
+      const colorModes = ['night', 'day', 'auto'] as const;
+      type ColorMode = typeof colorModes[number];
+
+      if (colorModes.includes(colorMode as ColorMode)) {
+        setColorMode(colorMode as ColorMode);
+      }
+      logger.log('[ThemedComponent] initial colorMode: ', colorMode);
+    });
+  }, [logger, setColorMode, localForage]);
+
+  useLayoutEffect(() => {
+    if (colorMode === 'night') {
+      document.body.style.backgroundColor = 'black';
+    } else {
+      document.body.style.backgroundColor = 'inherit';
+    }
+  }, [colorMode]);
 
   return (
     <>
@@ -53,7 +79,7 @@ export default function CustomApp(props: AppProps) {
         {/* TODO: update theme settings
           See:https://github.com/bradtaniguchi/bradtaniguchi.github.io/blob/main/apps/client/src/app/app.component.html
            */}
-        <ThemeProviderFixed theme={myTheme} nightScheme="dark">
+        <ThemeProviderFixed theme={theme} nightScheme="dark">
           <BaseStyles>
             <ThemedComponent {...props} />
           </BaseStyles>
