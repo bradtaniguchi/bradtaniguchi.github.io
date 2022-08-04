@@ -35,6 +35,7 @@ const { writeFile, stat, mkdir } = fs;
           const common = {
             sha: process.env.GITHUB_SHA ?? '',
             ref_type: process.env.GITHUB_REF_TYPE ?? '',
+            date: new Date().toISOString(),
           };
           if (process.env.GITHUB_REF_TYPE === 'branch')
             return {
