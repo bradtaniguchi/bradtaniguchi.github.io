@@ -150,8 +150,9 @@
             },
             {
               "file": "apps/internal-client/components/core/app-header.tsx",
-              "hash": "3d958f96fd3aaa680283c2d3653962dddc15cacb",
+              "hash": "3b68c8a339094b0f3dcfd0e113f6797889f3f820",
               "deps": [
+                "common-react",
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
                 "npm:next",
@@ -213,6 +214,10 @@
               "hash": "5c52742da2d4c7ee086c607b20db74d81b315f05"
             },
             {
+              "file": "apps/internal-client/constants/local-forage-theme-key.ts",
+              "hash": "82132f27efb583192039512dae089c78b29dd5e5"
+            },
+            {
               "file": "apps/internal-client/index.d.ts",
               "hash": "7ba08fa17ccbb3d5eaa4d9c7b435bd44ff43f330"
             },
@@ -245,10 +250,12 @@
             },
             {
               "file": "apps/internal-client/pages/_app.tsx",
-              "hash": "d054da791f3578c1d460a5381a07b49033909da5",
+              "hash": "76207fa6935c96c6429c67cd8e694c8a4b595970",
               "deps": [
+                "common-react",
                 "npm:@primer/react",
-                "npm:next"
+                "npm:next",
+                "npm:react"
               ]
             },
             {
@@ -396,6 +403,13 @@
                 "common-react",
                 "npm:@sentry/nextjs"
               ]
+            },
+            {
+              "file": "apps/internal-client/utils/theme-context.tsx",
+              "hash": "b744a97ee36cfb8344ebdcb6f160c56a2ee77b47",
+              "deps": [
+                "common-react"
+              ]
             }
           ]
         }
@@ -541,7 +555,14 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/index.ts",
-              "hash": "eb3423ee1c140d433defd99c5e4013b742198354"
+              "hash": "67954b453c8cdcbc2d31c1e1f01cfc9b8e1681e3"
+            },
+            {
+              "file": "libs/common-react/src/lib/hooks/theme-context-factory.ts",
+              "hash": "a81c5364f26300b112af6564d50dabb009c736ed",
+              "deps": [
+                "npm:react"
+              ]
             },
             {
               "file": "libs/common-react/src/lib/hooks/use-config.spec.tsx",
@@ -594,7 +615,11 @@
             },
             {
               "file": "libs/common-react/src/lib/types/index.ts",
-              "hash": "237f6b6a13bf4305f6e59a3c3b4fbc02cea5ae3b"
+              "hash": "5161f4c99558ace611f07d674479df81aab171eb"
+            },
+            {
+              "file": "libs/common-react/src/lib/types/themes.ts",
+              "hash": "98fae24608f74841f42fed968d272405b1702ee3"
             },
             {
               "file": "libs/common-react/src/lib/utils/combine-components.tsx",
