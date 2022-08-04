@@ -8,6 +8,7 @@ import {
   QuestionIcon,
   ThreeBarsIcon,
   SunIcon,
+  MoonIcon
 } from '@primer/octicons-react';
 import {
   ActionMenu,
@@ -107,6 +108,14 @@ export default function AppHeader(props: AppHeaderProps) {
     [props.showBlog, props.showSnippets]
   );
 
+  const themeIcon = (() => {
+    if (colorMode === 'night') {
+      return SunIcon;
+    } else {
+      return MoonIcon;
+    }
+  })();
+
   return (
     <Header>
       <Header.Item>
@@ -140,7 +149,7 @@ export default function AppHeader(props: AppHeaderProps) {
         {/* theme switcher */}
         {/* <Button>theme</Button> */}
         <IconButton
-          icon={SunIcon}
+          icon={themeIcon}
           aria-label="Toggle Theme"
           onClick={themeToggleHandle}
         />
