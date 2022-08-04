@@ -1,3 +1,4 @@
+export * from './theme-context-factory';
 export * from './use-config';
 export * from './use-local-forage';
 export * from './use-logger';

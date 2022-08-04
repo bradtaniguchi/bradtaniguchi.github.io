@@ -1,3 +1,4 @@
+import { useLogger } from '@bradtaniguchi-dev/common-react';
 import {
   CodeIcon,
   Icon,
@@ -6,6 +7,8 @@ import {
   ProjectIcon,
   QuestionIcon,
   ThreeBarsIcon,
+  SunIcon,
+  MoonIcon,
 } from '@primer/octicons-react';
 import {
   ActionMenu,
@@ -14,6 +17,7 @@ import {
   IconButton,
   NavList,
   StyledOcticon,
+  useTheme,
 } from '@primer/react';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo } from 'react';
@@ -42,8 +46,29 @@ export interface AppHeaderProps {
  */
 export default function AppHeader(props: AppHeaderProps) {
   const router = useRouter();
+  const logger = useLogger();
+  const { colorMode, setColorMode } = useTheme();
 
-  const isCurrent = useCallback((href) => router.asPath === href, [router]);
+  const themeToggleHandle = useCallback(() => {
+    let nextColorMode: 'day' | 'night' | 'auto';
+
+    if (colorMode === 'day') {
+      nextColorMode = 'night';
+    } else {
+      nextColorMode = 'day';
+    }
+    setColorMode(nextColorMode);
+
+    logger.log('[AppHeader]', {
+      colorMode,
+      nextColorMode,
+    });
+  }, [logger, colorMode, setColorMode]);
+
+  const isCurrent = useCallback(
+    (href: string) => router.asPath === href,
+    [router]
+  );
 
   const links: Array<{
     href: string;
@@ -80,8 +105,24 @@ export default function AppHeader(props: AppHeaderProps) {
         name: 'About',
       },
     ],
-    []
+    [props.showBlog, props.showSnippets]
   );
+
+  const themeIcon = (() => {
+    if (colorMode === 'night') {
+      return SunIcon;
+    } else {
+      return MoonIcon;
+    }
+  })();
+
+  const themeTitle = (() => {
+    if (colorMode === 'night') {
+      return 'Switch to day mode';
+    } else {
+      return 'Switch to night mode';
+    }
+  })();
 
   return (
     <Header>
@@ -111,6 +152,17 @@ export default function AppHeader(props: AppHeaderProps) {
           </Header.Item>
         </Box>
       ))}
+
+      <Box>
+        {/* theme switcher */}
+        {/* <Button>theme</Button> */}
+        <IconButton
+          icon={themeIcon}
+          title={themeTitle}
+          aria-label={themeTitle}
+          onClick={themeToggleHandle}
+        />
+      </Box>
 
       <Box display={['block', 'none']}>
         <Header.Item>
