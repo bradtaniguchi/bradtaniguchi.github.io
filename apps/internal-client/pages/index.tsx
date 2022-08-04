@@ -126,7 +126,7 @@ export default function Index(props: IndexProps) {
               <Card.Header display="flex">README</Card.Header>
               <Card.Body>
                 <p>
-                  This website acts as my portfolio and blog. Its currently
+                  This website acts as my portfolio and blog. It is currently
                   under construction and will be continually updated. This is
                   actually the third version of my portfolio site and is used as
                   a test-bed for developing things with new technologies. To
