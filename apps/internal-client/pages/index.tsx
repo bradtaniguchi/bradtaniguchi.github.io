@@ -138,20 +138,6 @@ export default function Index(props: IndexProps) {
 
             <Card gridColumn="span 2">
               <Card.Header display="flex">
-                <Box flexGrow="100">Latest Activity</Box>
-                {/* TODO: add client-side filtering */}
-                {/* TODO: add support for RSS-feed */}
-                {/* <Box>
-                  <RssIcon></RssIcon>
-                </Box> */}
-              </Card.Header>
-              <Card.Body>
-                <Activities activities={props.activities} />
-              </Card.Body>
-            </Card>
-
-            <Card gridColumn="span 2">
-              <Card.Header display="flex">
                 <Box flexGrow="100">Github README</Box>
                 <Box>
                   <a
@@ -171,6 +157,20 @@ export default function Index(props: IndexProps) {
               <Card.Body>
                 {/* TODO: update/move to about? */}
                 <div dangerouslySetInnerHTML={{ __html: props.readme }}></div>
+              </Card.Body>
+            </Card>
+
+            <Card gridColumn="span 2">
+              <Card.Header display="flex">
+                <Box flexGrow="100">Latest Activity</Box>
+                {/* TODO: add client-side filtering */}
+                {/* TODO: add support for RSS-feed */}
+                {/* <Box>
+                  <RssIcon></RssIcon>
+                </Box> */}
+              </Card.Header>
+              <Card.Body>
+                <Activities activities={props.activities} />
               </Card.Body>
             </Card>
           </Box>
