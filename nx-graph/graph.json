@@ -290,7 +290,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "5deeaadbc34c0c83f168ffb9c1b0ec14445701b9",
+              "hash": "767ed56f456198e48f18f65c75885283272a5b1f",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
