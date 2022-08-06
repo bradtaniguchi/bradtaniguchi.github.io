@@ -6,7 +6,7 @@ export interface ProjectsProps {
   /**
    * The list of projects to display.
    */
-  projects: Array<IStaticProject>;
+  projects: Array<Partial<IStaticProject>>;
 }
 
 export default function Projects(props: ProjectsProps) {
@@ -16,7 +16,9 @@ export default function Projects(props: ProjectsProps) {
       <Card.Body p={0}>
         {props.projects.map((project) => (
           <Card.Row p={3} key={project.slug}>
-            <StaticProject project={project}></StaticProject>
+            <StaticProject
+              project={project as unknown as IStaticProject}
+            ></StaticProject>
           </Card.Row>
         ))}
       </Card.Body>
@@ -33,12 +35,26 @@ export async function getStaticProps(): Promise<{
       projects: [
         {
           slug: 'project-1',
+          title: 'Project One',
+          description: 'Project one description',
+          tags: ['one'],
+          date: new Date().toISOString(),
         },
         {
           slug: 'project-2',
+          title: 'Project Two',
+          description: 'Project two description',
+          tags: ['two', 'three'],
+          date: new Date().toISOString(),
         },
         {
           slug: 'project-3',
+          title: 'Project Three',
+          description:
+            'Project three description this one is extra long as a test' +
+            new Array(100).fill(' test'),
+          tags: ['four', 'long'],
+          date: new Date().toISOString(),
         },
       ],
     },
