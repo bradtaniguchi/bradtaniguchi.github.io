@@ -192,7 +192,7 @@ export const GithubPublicActivity = memo(function GithubPublicActivity(
                 return (
                   <Box sx={{ display: 'inline' }}>
                     <GithubPublicActivityLogin activity={props.activity} />
-                    stared repo{' '}
+                    starred repo{' '}
                     <GithubPublicActivityRepo activity={props.activity} />
                     <GithubPublicActivityTime activity={props.activity} />
                   </Box>
@@ -200,7 +200,7 @@ export const GithubPublicActivity = memo(function GithubPublicActivity(
               return (
                 <Box sx={{ display: 'inline' }}>
                   <GithubPublicActivityLogin activity={props.activity} />
-                  un-stared repo{' '}
+                  un-starred repo{' '}
                   <GithubPublicActivityRepo activity={props.activity} />
                   <GithubPublicActivityTime activity={props.activity} />
                 </Box>
