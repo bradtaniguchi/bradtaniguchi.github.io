@@ -130,7 +130,7 @@
             },
             {
               "file": "apps/internal-client/components/activity/github-public-activity.tsx",
-              "hash": "8cbc77c5107a58a0a60566b924b9f249803a5615",
+              "hash": "a2e7ff83d20a91bd3b10190334c118c44641cd01",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
