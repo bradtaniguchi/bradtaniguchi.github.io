@@ -1,4 +1,5 @@
 import { LabelColorOptions } from '@primer/react/lib/Label';
+import { DateTime } from 'luxon';
 
 export type Project = StaticProject;
 
@@ -49,3 +50,27 @@ export interface StaticProject {
       }
   >;
 }
+
+/**
+ * Type guard that returns if the given data is a
+ * valid static-project.
+ */
+export const isStaticProject = (data: unknown): data is StaticProject => {
+  const castData = data as Partial<StaticProject>;
+  return (
+    typeof castData.slug === 'string' &&
+    typeof castData.title === 'string' &&
+    (castData.description ? typeof castData.description === 'string' : true) &&
+    (castData.published === undefined ||
+      typeof castData.published === 'boolean') &&
+    castData.date &&
+    typeof castData.date === 'string' &&
+    DateTime.fromISO(castData.date).isValid &&
+    (() => {
+      if (!castData.tags) return true;
+      if (Array.isArray(castData.tags))
+        return castData.tags.every((tag) => typeof tag === 'string');
+      return typeof castData.tags === 'string';
+    })()
+  );
+};
