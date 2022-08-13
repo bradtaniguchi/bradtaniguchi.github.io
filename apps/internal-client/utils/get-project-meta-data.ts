@@ -24,6 +24,15 @@ export const getProjectMetaData = async (
         JSON.stringify(invalidProps, null, 2)
     );
   }
+
+  // front-matter auto-parses iso dates, but we don't want that
+  // we so cast it if its parsed as a Date object back to an ISO string
+  if (
+    rawAttributes.date &&
+    (rawAttributes.date as unknown as Date) instanceof Date
+  )
+    rawAttributes.date = (rawAttributes.date as unknown as Date).toISOString();
+
   return rawAttributes;
 };
 
