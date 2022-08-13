@@ -1,6 +1,10 @@
 import fm from 'front-matter';
 import { readFile } from 'fs/promises';
-import { isStaticProject, StaticProject } from '../models/project';
+import {
+  getInvalidStaticProjectProps,
+  isStaticProject,
+  StaticProject,
+} from '../models/project';
 
 /**
  * Returns a list of project meta-data from their markdown.
@@ -11,8 +15,15 @@ export const getProjectMetaData = async (
 ): Promise<StaticProject> => {
   const rawFileContent = await readFile(path);
   const rawAttributes = fm(rawFileContent.toString()).attributes;
-  if (!isStaticProject(rawAttributes))
-    throw new Error('Invalid project at path ' + path);
+  if (!isStaticProject(rawAttributes)) {
+    const invalidProps = getInvalidStaticProjectProps(rawAttributes);
+    throw new Error(
+      'Invalid project at path ' +
+        path +
+        '\n with invalid props: \n' +
+        JSON.stringify(invalidProps, null, 2)
+    );
+  }
   return rawAttributes;
 };
 

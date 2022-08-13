@@ -61,6 +61,12 @@
         "command": "npx http-server dist/apps/internal-client/exported"
       }
     },
+    "get-meta-data": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/get-meta-data.ts"
+      }
+    },
     "lighthouse": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
