@@ -3,8 +3,8 @@ title: fcc Calculator
 description: A fcc Project
 published: true
 date: 2021-07-20T00:00:00.000Z
-slug: fcc-calculator
-github: bradtaniguchi/fcc-calculator
+slugs:
+  - fcc-calculator
 tags:
   - angular
   - angular-material
