@@ -79,6 +79,12 @@
                 "command": "npx http-server dist/apps/internal-client/exported"
               }
             },
+            "get-meta-data": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/get-meta-data.ts"
+              }
+            },
             "lighthouse": {
               "executor": "@nrwl/workspace:run-commands",
               "options": {
@@ -161,7 +167,7 @@
             },
             {
               "file": "apps/internal-client/components/core/card.tsx",
-              "hash": "dd482ae168885d84608fa3c16218f0497be83469",
+              "hash": "9273ff893eb02c27800912955068e931977ad9a4",
               "deps": [
                 "npm:@primer/react"
               ]
@@ -203,6 +209,16 @@
               ]
             },
             {
+              "file": "apps/internal-client/components/project/static-project.tsx",
+              "hash": "d0b5cf290df463f1dc602ac8df41ebc16fa1d059",
+              "deps": [
+                "npm:@primer/react",
+                "npm:react",
+                "npm:luxon",
+                "npm:next"
+              ]
+            },
+            {
               "file": "apps/internal-client/components/spinner.tsx",
               "hash": "263a96f37d89099bf5be80d1c9f6479dfd4cfcf0",
               "deps": [
@@ -234,6 +250,14 @@
               "hash": "5cf2115336df4706b779a82bc02c0f0655174d77",
               "deps": [
                 "npm:@octokit/rest"
+              ]
+            },
+            {
+              "file": "apps/internal-client/models/project.ts",
+              "hash": "97e10a8135801832c6299614b7435171e83a1edc",
+              "deps": [
+                "npm:@primer/react",
+                "npm:luxon"
               ]
             },
             {
@@ -320,7 +344,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "7e8cab50295f4302124b7ab27e18fd6b03600006"
+              "hash": "bf9230fec5d1c1b7c2f2238c3447437e4dc9406a"
             },
             {
               "file": "apps/internal-client/pages/snippets/[id].tsx",
@@ -339,7 +363,7 @@
             },
             {
               "file": "apps/internal-client/project.json",
-              "hash": "9e202f13d623df40f87e57a2f94726f2419136ff"
+              "hash": "87f35e5f43ab596e83a3643fdfa63ef0f18c5512"
             },
             {
               "file": "apps/internal-client/public/.gitkeep",
@@ -359,7 +383,19 @@
             },
             {
               "file": "apps/internal-client/README.md",
-              "hash": "3621d89b6e8de790afd54ac835bf82292cf2420e"
+              "hash": "9c26295aa37fce78e12a3f1a1d9a14c424261b71"
+            },
+            {
+              "file": "apps/internal-client/scripts/get-meta-data.ts",
+              "hash": "5a7aecfd401752e2241a82aa5cc8b9501e56cf22",
+              "deps": [
+                "npm:fs-extra",
+                "npm:yargs"
+              ]
+            },
+            {
+              "file": "apps/internal-client/scripts/tsconfig.json",
+              "hash": "8ca3c084ecc312b5673440d7b7912c98402f84c9"
             },
             {
               "file": "apps/internal-client/sentry.client.config.ts",
@@ -380,6 +416,62 @@
               ]
             },
             {
+              "file": "apps/internal-client/static/.gitkeep",
+              "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+            },
+            {
+              "file": "apps/internal-client/static/projects/bomb-defuse-utils.md",
+              "hash": "37b63658c2181567267ea85fe6561e2fc41009be"
+            },
+            {
+              "file": "apps/internal-client/static/projects/bradtaniguchi-github-io.md",
+              "hash": "6b9eda0081dc2e22a940c65cc16139af48cdeb40"
+            },
+            {
+              "file": "apps/internal-client/static/projects/chrome-neo.md",
+              "hash": "3b5f3e196b3a92b3e60a9fb10b40f0977e95a012"
+            },
+            {
+              "file": "apps/internal-client/static/projects/codewars-node-api.md",
+              "hash": "b1e1eb45a5709f426345041df739251f44100b54"
+            },
+            {
+              "file": "apps/internal-client/static/projects/dynamic-app-builder.md",
+              "hash": "bbc8f311a6857362ff1c0d58c975bc687bb4f463"
+            },
+            {
+              "file": "apps/internal-client/static/projects/es6-timed-map.md",
+              "hash": "63cede8f495f721d1f0a894777b40cc6d507a1b7"
+            },
+            {
+              "file": "apps/internal-client/static/projects/fcc-calculator.md",
+              "hash": "5c8cfe74899d45e37546a081f9482acefce3ee08"
+            },
+            {
+              "file": "apps/internal-client/static/projects/fcc-markdown-previewer.md",
+              "hash": "c43f327b83327d17fa18d495b868c4f7fe80c0b3"
+            },
+            {
+              "file": "apps/internal-client/static/projects/free-code-camp-discord-bot.md",
+              "hash": "4bfb578b0b583203f4b8bf33a5ef213731bfeec6"
+            },
+            {
+              "file": "apps/internal-client/static/projects/go-toros-bank.md",
+              "hash": "9c05859765b0752097539f4f0580346eb097d47c"
+            },
+            {
+              "file": "apps/internal-client/static/projects/health-portal-app.md",
+              "hash": "ea04cc7f7ca3070e88494fd4b3a94e913bb11067"
+            },
+            {
+              "file": "apps/internal-client/static/projects/ims-room-renter.md",
+              "hash": "2bd33831f62d42211fde1689795dd1507d386204"
+            },
+            {
+              "file": "apps/internal-client/static/projects/intercept-game.md",
+              "hash": "9da55625caacc5df5d39d7d4cadc356d6f6507c1"
+            },
+            {
               "file": "apps/internal-client/tsconfig.json",
               "hash": "cadb8cda700070fec16641a4c734213862573c1c"
             },
@@ -388,12 +480,26 @@
               "hash": "14b06c6a5bf51709abab64ca3e8e0b35b5e52a43"
             },
             {
+              "file": "apps/internal-client/utils/get-markdown-files.ts",
+              "hash": "8012e6a16aabef2d780ef4f217e4c92c6c482641",
+              "deps": [
+                "npm:fs-extra"
+              ]
+            },
+            {
               "file": "apps/internal-client/utils/get-markdown.ts",
               "hash": "14286cad9b69b35199fedfb838250a8f43357262",
               "deps": [
                 "npm:dompurify",
                 "npm:jsdom",
                 "npm:marked"
+              ]
+            },
+            {
+              "file": "apps/internal-client/utils/get-project-meta-data.ts",
+              "hash": "f487ce60b0692225f47a3beacc96a16deeaa350a",
+              "deps": [
+                "npm:front-matter"
               ]
             },
             {
