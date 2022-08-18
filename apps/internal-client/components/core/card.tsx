@@ -29,3 +29,17 @@ Card.Body = function Body(props: BoxProps) {
     </Box>
   );
 };
+
+Card.Row = function Row(props: BoxProps) {
+  // TODO: add row styling
+  return (
+    <Box
+      borderTopColor="border.default"
+      borderTopStyle="solid"
+      borderTopWidth="1px"
+      {...props}
+    >
+      {props.children}
+    </Box>
+  );
+};
