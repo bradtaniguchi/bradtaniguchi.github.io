@@ -3,6 +3,7 @@ import { Card } from '../../components/core/card';
 import { StaticProject as IStaticProject } from '../../models/project';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
 import { getProjectsMetaData } from '../../utils/get-project-meta-data';
+import { PROJECTS_PATH } from '../../constants/projects-path';
 
 export interface ProjectsProps {
   /**
@@ -57,7 +58,7 @@ export async function getStaticProps(): Promise<{
       date: new Date().toISOString(),
     },
   ];
-  const PROJECTS_PATH = 'apps/internal-client/static/projects/';
+
   const projectPaths = await getMarkdownFiles(PROJECTS_PATH);
 
   console.log('projects-paths: ', projectPaths);
