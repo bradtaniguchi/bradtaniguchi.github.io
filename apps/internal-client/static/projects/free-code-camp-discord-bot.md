@@ -1,15 +1,15 @@
 ---
-title: free-code-map-discord-bot
+title: free-code-camp-discord-bot
 description: 'Now official discord bot created to learn how to develop and maintain a discord bot'
 published: true
 date: 2020-05-12T00:00:00.000Z
-slug: free-code-map-discord-bot
+slug: free-code-camp-discord-bot
 tags:
   - free-code-camp
   - discord
 ---
 
-# free-code-map-discord-bot
+# free-code-camp-discord-bot
 
 This project started as an unofficial discord bot that was being tested on the freeCodeCamp discord. However, over time this project was moved into being an official discord bot that is still be worked on today.
 
