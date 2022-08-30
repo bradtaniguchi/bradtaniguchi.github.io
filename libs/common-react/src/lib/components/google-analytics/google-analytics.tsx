@@ -14,7 +14,6 @@ export interface GoogleAnalyticsProps {
  * to the <head> of the document once.
  */
 export function GoogleAnalytics(props: GoogleAnalyticsProps) {
-  console.log('GoogleAnalytics props:', props);
   return props.googleAnalyticsKey ? (
     <>
       <script

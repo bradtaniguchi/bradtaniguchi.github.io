@@ -28,5 +28,14 @@ This script is used to get meta-data for a given static markdown file using
 front-matter. This primarily exists for testing.
 
 ```bash
-nx run internal-client:get-meta-data --path=apps/internal-client/static/projects/fcc-calculator.md
+npx nx run internal-client:get-meta-data --path=apps/internal-client/static/projects/fcc-calculator.md
+```
+
+### validate-static-projects
+
+This script is used to run validation checks on the static
+projects folder using front-matter. This primarily exists for testing.
+
+```bash
+npx nx run internal-client:validate-static-projects --path=apps/internal-client/static/projects/
 ```

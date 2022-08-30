@@ -1,8 +1,13 @@
-import { StaticProject } from '../../components/project/static-project';
+import { GetStaticPropsResult } from 'next';
 import { Card } from '../../components/core/card';
+import { StaticProject } from '../../components/project/static-project';
+import { PROJECTS_PATH } from '../../constants/projects-path';
 import { StaticProject as IStaticProject } from '../../models/project';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
-import { getProjectsMetaData } from '../../utils/get-project-meta-data';
+import {
+  getProjectsMetaData,
+  verifyProjectsMetaData,
+} from '../../utils/get-project-meta-data';
 
 export interface ProjectsProps {
   /**
@@ -28,45 +33,20 @@ export default function Projects(props: ProjectsProps) {
   );
 }
 
-export async function getStaticProps(): Promise<{
-  props: ProjectsProps;
-}> {
-  // TODO: verify all slugs are different
-  const STATIC_EXAMPLE_PROJECTS = [
-    {
-      slug: 'project-1',
-      title: 'Project One',
-      description: 'Project one description',
-      tags: ['one'],
-      date: new Date().toISOString(),
-    },
-    {
-      slug: 'project-2',
-      title: 'Project Two',
-      description: 'Project two description',
-      tags: ['two', 'three'],
-      date: new Date().toISOString(),
-    },
-    {
-      slug: 'project-3',
-      title: 'Project Three',
-      description:
-        'Project three description this one is extra long as a test' +
-        new Array(100).fill(' test'),
-      tags: ['four', 'long'],
-      date: new Date().toISOString(),
-    },
-  ];
-  const PROJECTS_PATH = 'apps/internal-client/static/projects/';
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<ProjectsProps>
+> {
   const projectPaths = await getMarkdownFiles(PROJECTS_PATH);
 
   console.log('projects-paths: ', projectPaths);
 
   const projectsMetaData = await getProjectsMetaData(projectPaths);
 
+  verifyProjectsMetaData(projectsMetaData);
+
   return {
     props: {
-      projects: [...STATIC_EXAMPLE_PROJECTS, ...projectsMetaData],
+      projects: projectsMetaData,
     },
   };
 }

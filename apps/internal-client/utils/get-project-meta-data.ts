@@ -46,3 +46,19 @@ export const getProjectsMetaData = (
   Promise.all(
     projectPaths.map((projectPath) => getProjectMetaData(projectPath))
   );
+
+/**
+ * Verifies the project meta-data does not include any duplicate slugs.
+ */
+export const verifyProjectsMetaData = (
+  projectsMetaData: Array<StaticProject>
+): void => {
+  if (
+    new Set(projectsMetaData.map(({ slug }) => slug)).size ===
+    projectsMetaData.length
+  ) {
+    return;
+  }
+
+  throw new Error('Duplicate slugs detected');
+};

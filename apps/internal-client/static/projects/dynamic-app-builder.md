@@ -3,9 +3,7 @@ title: dynamic-app-builder
 description: 'Dynamic SaaS no-code cloud based application'
 published: false
 date: 2021-08-28T00:00:00.000Z
-slugs:
-    - dynamic-app-builder
-    - ___UNPUBLISHED___ksy4n4pe_HqB9zMC4kjxhi6wObjtfeXLEnFJcJ2aU
+slug: dynamic-app-builder
 ---
 
 # dynamic-app-builder

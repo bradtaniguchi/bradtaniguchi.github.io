@@ -67,6 +67,12 @@
         "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/get-meta-data.ts"
       }
     },
+    "validate-static-projects": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/validate-static-projects.ts"
+      }
+    },
     "lighthouse": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

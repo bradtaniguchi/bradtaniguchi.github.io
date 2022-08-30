@@ -3,8 +3,7 @@ title: health-portal-app
 description: a health portal app
 published: true
 date: 2021-08-28T00:00:00.000Z
-slugs:
-  - health-portal-app
+slug: health-portal-app
 tags:
   - github-action
   - github
