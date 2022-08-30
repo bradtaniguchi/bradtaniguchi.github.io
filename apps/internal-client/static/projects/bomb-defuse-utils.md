@@ -3,8 +3,7 @@ title: 'Bomb Defuse Utils'
 description: 'An app that provides utilities for the game keep talking and nobody explodes'
 published: true
 date: 2021-07-24T00:00:00.000Z
-slugs:
-  - bomb-defuse-utils
+slug: bomb-defuse-utils
 tags:
   - angular
 ---

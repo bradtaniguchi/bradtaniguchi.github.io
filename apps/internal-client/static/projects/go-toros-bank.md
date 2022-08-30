@@ -2,9 +2,8 @@
 title: go-toros-bank
 description: 'Java based bank project for college'
 published: true
-date: '2021-08-28T00:00:00.000Z'
-slugs:
-  - go-toros-bank
+date: 2021-08-28T00:00:00.000Z
+slug: go-toros-bank
 tags:
   - java
 ---

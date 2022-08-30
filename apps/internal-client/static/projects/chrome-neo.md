@@ -3,8 +3,7 @@ title: 'chrome-neo'
 description: 'A chrome extension that connects to the asterank API to show Near Earth Objects'
 published: true
 date: 2021-07-30T00:00:00.000Z
-slugs:
-  - chrome-neo
+slug: chrome-neo
 tags:
   - angularjs
   - travis-ci

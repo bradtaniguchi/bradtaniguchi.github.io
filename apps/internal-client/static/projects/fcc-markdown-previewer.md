@@ -3,8 +3,7 @@ title: FCC Markdown Previewer
 description: A FCC Project
 published: true
 date: 2021-07-20T00:00:00.000Z
-slugs:
-  - FCC-markdown-previewer
+slug: FCC-markdown-previewer
 tags:
   - angular
   - angular-material

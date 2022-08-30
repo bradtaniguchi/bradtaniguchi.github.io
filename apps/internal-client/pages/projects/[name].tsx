@@ -1,10 +1,14 @@
-import { getMarkdown } from '../../utils/get-markdown';
-import { GetStaticPropsContext } from 'next';
+import { Box } from '@primer/react';
+import { getMarkdownFiles } from '../../utils/get-markdown-files';
+import { GetStaticPathsResult, GetStaticPropsContext } from 'next';
+import { Card } from '../../components/core/card';
 import { PROJECTS_PATH } from '../../constants/projects-path';
 import { StaticProject } from '../../models/project';
-import { getProjectMetaData } from '../../utils/get-project-meta-data';
-import { Card } from '../../components/core/card';
-import { Box } from '@primer/react';
+import { getMarkdown } from '../../utils/get-markdown';
+import {
+  getProjectMetaData,
+  getProjectsMetaData,
+} from '../../utils/get-project-meta-data';
 
 export interface ProjectProps {
   project: StaticProject;
@@ -22,12 +26,26 @@ export default function Project({ markdown, project }: ProjectProps) {
           {project.title}
         </Box>
       </Card.Header>
+      {/* TODO: add meta-data information here in a "sub-card"? */}
       <Card.Body>
         {/* TODO: update/move to about? */}
         <div dangerouslySetInnerHTML={{ __html: markdown }}></div>
       </Card.Body>
+      {/* TODO: add social media "shares" here */}
     </Card>
   );
+}
+
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  const projectPaths = await getMarkdownFiles(PROJECTS_PATH);
+
+  const projectsMetaData = await getProjectsMetaData(projectPaths);
+
+  console.log('projects meta-data', projectsMetaData);
+  return {
+    paths: projectsMetaData.map(({ slug }) => slug),
+    fallback: false,
+  };
 }
 
 export async function getStaticProps({
