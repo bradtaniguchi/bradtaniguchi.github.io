@@ -2,6 +2,9 @@
 
 This project is used to display data within a github-page app using nextjs.
 
+
+<!-- whitespace change to trigger build -->
+
 ## Building for static export
 
 Run the following to build a static build:
