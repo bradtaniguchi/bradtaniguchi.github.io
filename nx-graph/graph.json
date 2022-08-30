@@ -85,6 +85,12 @@
                 "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/get-meta-data.ts"
               }
             },
+            "validate-static-projects": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/validate-static-projects.ts"
+              }
+            },
             "lighthouse": {
               "executor": "@nrwl/workspace:run-commands",
               "options": {
@@ -234,6 +240,10 @@
               "hash": "82132f27efb583192039512dae089c78b29dd5e5"
             },
             {
+              "file": "apps/internal-client/constants/projects-path.ts",
+              "hash": "fbc7ec2e2d717fb662c7d1407614847640a8991a"
+            },
+            {
               "file": "apps/internal-client/index.d.ts",
               "hash": "7ba08fa17ccbb3d5eaa4d9c7b435bd44ff43f330"
             },
@@ -337,14 +347,18 @@
             },
             {
               "file": "apps/internal-client/pages/projects/[name].tsx",
-              "hash": "86addde05d4aae498fe18c3a6239bb7c9f7b2e66",
+              "hash": "0a7663bb6acc9855c82dffd03148c3ef8bfde978",
               "deps": [
+                "npm:@primer/react",
                 "npm:next"
               ]
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "bf9230fec5d1c1b7c2f2238c3447437e4dc9406a"
+              "hash": "652788e007a53a58ff226a047e9d2931de43c111",
+              "deps": [
+                "npm:next"
+              ]
             },
             {
               "file": "apps/internal-client/pages/snippets/[id].tsx",
@@ -363,7 +377,7 @@
             },
             {
               "file": "apps/internal-client/project.json",
-              "hash": "87f35e5f43ab596e83a3643fdfa63ef0f18c5512"
+              "hash": "fd22e83c850cac7acf40f066b785de77cfe58948"
             },
             {
               "file": "apps/internal-client/public/.gitkeep",
@@ -383,7 +397,7 @@
             },
             {
               "file": "apps/internal-client/README.md",
-              "hash": "9c26295aa37fce78e12a3f1a1d9a14c424261b71"
+              "hash": "75f67b66fb701be5605aa099e10a305d27bc573c"
             },
             {
               "file": "apps/internal-client/scripts/get-meta-data.ts",
@@ -396,6 +410,14 @@
             {
               "file": "apps/internal-client/scripts/tsconfig.json",
               "hash": "8ca3c084ecc312b5673440d7b7912c98402f84c9"
+            },
+            {
+              "file": "apps/internal-client/scripts/validate-static-projects.ts",
+              "hash": "256ba1bf3d75b5a4264607f78d0ebd84f801b7bf",
+              "deps": [
+                "npm:fs-extra",
+                "npm:yargs"
+              ]
             },
             {
               "file": "apps/internal-client/sentry.client.config.ts",
@@ -421,55 +443,55 @@
             },
             {
               "file": "apps/internal-client/static/projects/bomb-defuse-utils.md",
-              "hash": "37b63658c2181567267ea85fe6561e2fc41009be"
+              "hash": "ebceeb8f02ab009eb1186e52ccdd82af761d9718"
             },
             {
               "file": "apps/internal-client/static/projects/bradtaniguchi-github-io.md",
-              "hash": "6b9eda0081dc2e22a940c65cc16139af48cdeb40"
+              "hash": "d346c90c44fe5a0acb0f5858290d00047f6fade1"
             },
             {
               "file": "apps/internal-client/static/projects/chrome-neo.md",
-              "hash": "3b5f3e196b3a92b3e60a9fb10b40f0977e95a012"
+              "hash": "e321b2ab76547a533978a16658fef53804519a59"
             },
             {
               "file": "apps/internal-client/static/projects/codewars-node-api.md",
-              "hash": "b1e1eb45a5709f426345041df739251f44100b54"
+              "hash": "b8c50de0557d65b4e558de47cf20dc38cea928a2"
             },
             {
               "file": "apps/internal-client/static/projects/dynamic-app-builder.md",
-              "hash": "bbc8f311a6857362ff1c0d58c975bc687bb4f463"
+              "hash": "9f39cf882c293ee26e49139546f83861ac0d33c3"
             },
             {
               "file": "apps/internal-client/static/projects/es6-timed-map.md",
-              "hash": "63cede8f495f721d1f0a894777b40cc6d507a1b7"
+              "hash": "1dc95b53939524310ce7ff55cca9694cce141002"
             },
             {
               "file": "apps/internal-client/static/projects/fcc-calculator.md",
-              "hash": "5c8cfe74899d45e37546a081f9482acefce3ee08"
+              "hash": "00c8d5615455524b07df4e3971acf65c66e9585d"
             },
             {
               "file": "apps/internal-client/static/projects/fcc-markdown-previewer.md",
-              "hash": "c43f327b83327d17fa18d495b868c4f7fe80c0b3"
+              "hash": "52bc6f13bd7e3fc3772add06a0251d007f0423a2"
             },
             {
               "file": "apps/internal-client/static/projects/free-code-camp-discord-bot.md",
-              "hash": "4bfb578b0b583203f4b8bf33a5ef213731bfeec6"
+              "hash": "0fd7a1363254b57d01f31360ab87464d51c1462c"
             },
             {
               "file": "apps/internal-client/static/projects/go-toros-bank.md",
-              "hash": "9c05859765b0752097539f4f0580346eb097d47c"
+              "hash": "d7746438ce8eeb9484114b6d966411d141d32978"
             },
             {
               "file": "apps/internal-client/static/projects/health-portal-app.md",
-              "hash": "ea04cc7f7ca3070e88494fd4b3a94e913bb11067"
+              "hash": "93a6148e5d60c84ec6d061ca7813781bbbea981f"
             },
             {
               "file": "apps/internal-client/static/projects/ims-room-renter.md",
-              "hash": "2bd33831f62d42211fde1689795dd1507d386204"
+              "hash": "1d023a0cd8e4b1a12ed82068a82b1b82d11aecfb"
             },
             {
               "file": "apps/internal-client/static/projects/intercept-game.md",
-              "hash": "9da55625caacc5df5d39d7d4cadc356d6f6507c1"
+              "hash": "8a1c203611acf4abf44848d469b6898e41721fbc"
             },
             {
               "file": "apps/internal-client/tsconfig.json",
@@ -497,7 +519,7 @@
             },
             {
               "file": "apps/internal-client/utils/get-project-meta-data.ts",
-              "hash": "f487ce60b0692225f47a3beacc96a16deeaa350a",
+              "hash": "fec215ee75cb4d95cfca711e068792e71701f1fa",
               "deps": [
                 "npm:front-matter"
               ]
@@ -657,7 +679,7 @@
             },
             {
               "file": "libs/common-react/src/lib/components/google-analytics/google-analytics.tsx",
-              "hash": "47583544840884b986e6496d8e117af928672300"
+              "hash": "df4d1326d02425b0b183a7403f144af54705b292"
             },
             {
               "file": "libs/common-react/src/lib/hooks/index.ts",
