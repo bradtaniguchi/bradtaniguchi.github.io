@@ -2,7 +2,10 @@ import { stat } from 'fs-extra';
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 const argv = yargs(hideBin(process.argv)).argv;
-import { getProjectsMetaData } from '../utils/get-project-meta-data';
+import {
+  getProjectsMetaData,
+  verifyProjectsMetaData,
+} from '../utils/get-project-meta-data';
 import { getMarkdownFiles } from '../utils/get-markdown-files';
 import {
   getInvalidStaticProjectProps,
@@ -40,7 +43,11 @@ import {
         invalidProps: getInvalidStaticProjectProps(invalidProject),
       }))
     );
+
     if (invalidProjects.length) throw new Error('Invalid projects found');
+
+    // check for duplicate slugs
+    verifyProjectsMetaData(projectsMetaData); // this throws internally
 
     process.exit(0);
   } catch (err) {

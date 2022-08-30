@@ -12,6 +12,7 @@ import { getMarkdown } from '../../utils/get-markdown';
 import {
   getProjectMetaData,
   getProjectsMetaData,
+  verifyProjectsMetaData,
 } from '../../utils/get-project-meta-data';
 
 export interface ProjectProps {
@@ -44,6 +45,8 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
   const projectPaths = await getMarkdownFiles(PROJECTS_PATH);
 
   const projectsMetaData = await getProjectsMetaData(projectPaths);
+
+  verifyProjectsMetaData(projectsMetaData);
 
   console.log('projects meta-data', projectsMetaData);
   return {
