@@ -1,9 +1,10 @@
-import { StaticProject } from '../../components/project/static-project';
+import { GetStaticPropsResult } from 'next';
 import { Card } from '../../components/core/card';
+import { StaticProject } from '../../components/project/static-project';
+import { PROJECTS_PATH } from '../../constants/projects-path';
 import { StaticProject as IStaticProject } from '../../models/project';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
 import { getProjectsMetaData } from '../../utils/get-project-meta-data';
-import { PROJECTS_PATH } from '../../constants/projects-path';
 
 export interface ProjectsProps {
   /**
@@ -29,9 +30,9 @@ export default function Projects(props: ProjectsProps) {
   );
 }
 
-export async function getStaticProps(): Promise<{
-  props: ProjectsProps;
-}> {
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<ProjectsProps>
+> {
   // TODO: verify all slugs are different
   const STATIC_EXAMPLE_PROJECTS = [
     {

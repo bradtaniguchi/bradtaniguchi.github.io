@@ -1,6 +1,10 @@
 import { Box } from '@primer/react';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
-import { GetStaticPathsResult, GetStaticPropsContext } from 'next';
+import {
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from 'next';
 import { Card } from '../../components/core/card';
 import { PROJECTS_PATH } from '../../constants/projects-path';
 import { StaticProject } from '../../models/project';
@@ -43,14 +47,18 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 
   console.log('projects meta-data', projectsMetaData);
   return {
-    paths: projectsMetaData.map(({ slug }) => slug),
+    paths: projectsMetaData.map(({ slug }) => ({
+      params: {
+        name: slug,
+      },
+    })),
     fallback: false,
   };
 }
 
 export async function getStaticProps({
   params,
-}: GetStaticPropsContext): Promise<ProjectProps> {
+}: GetStaticPropsContext): Promise<GetStaticPropsResult<ProjectProps>> {
   const { name } = params;
 
   const filePath = `${PROJECTS_PATH}/${name}.md`;
@@ -60,7 +68,9 @@ export async function getStaticProps({
   ]);
 
   return {
-    project,
-    markdown,
+    props: {
+      project,
+      markdown,
+    },
   };
 }
