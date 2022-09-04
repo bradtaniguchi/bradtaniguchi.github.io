@@ -257,7 +257,7 @@
             },
             {
               "file": "apps/internal-client/models/github-public-activity.ts",
-              "hash": "5cf2115336df4706b779a82bc02c0f0655174d77",
+              "hash": "c62d00c5668417d5453d64a19353b463d93e293e",
               "deps": [
                 "npm:@octokit/rest"
               ]
@@ -324,7 +324,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "767ed56f456198e48f18f65c75885283272a5b1f",
+              "hash": "04a00bba86839e903946783e5754b1a81662f23e",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
