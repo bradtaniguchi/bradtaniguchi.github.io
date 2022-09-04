@@ -14,6 +14,8 @@ import {
   getProjectsMetaData,
   verifyProjectsMetaData,
 } from '../../utils/get-project-meta-data';
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 
 export interface ProjectProps {
   project: StaticProject;
@@ -25,11 +27,20 @@ export default function Project({ markdown, project }: ProjectProps) {
   // currently only handling static ones.
   return (
     <Card>
-      <Card.Header display="flex">
-        <Box flexGrow="100">
-          {/* might change later */}
-          {project.title}
-        </Box>
+      <Card.Header
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+      >
+        <span>{project.title}</span>
+
+        <span>
+          <Link href="/projects" aria-label="Back to Projects List">
+            <a>
+              <FaArrowLeft />
+            </a>
+          </Link>
+        </span>
       </Card.Header>
       {/* TODO: add meta-data information here in a "sub-card"? */}
       <Card.Body>
