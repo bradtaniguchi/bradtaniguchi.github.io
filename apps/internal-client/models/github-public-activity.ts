@@ -9,7 +9,7 @@ type GithubListPublicEventData =
 export interface GithubPublicActivity
   extends Pick<
     GithubListPublicEventData,
-    'type' | 'actor' | 'repo' | 'created_at' | 'payload'
+    'id' | 'type' | 'actor' | 'repo' | 'created_at' | 'payload'
   > {
   internalType: 'github-public-activity' | string;
 }
