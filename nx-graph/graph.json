@@ -347,10 +347,11 @@
             },
             {
               "file": "apps/internal-client/pages/projects/[name].tsx",
-              "hash": "0a7663bb6acc9855c82dffd03148c3ef8bfde978",
+              "hash": "c4897e4d27fc739e2107c1540fb47a695286f684",
               "deps": [
                 "npm:@primer/react",
-                "npm:next"
+                "npm:next",
+                "npm:react-icons"
               ]
             },
             {
