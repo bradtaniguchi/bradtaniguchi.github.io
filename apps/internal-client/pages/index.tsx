@@ -195,8 +195,14 @@ export async function getStaticProps(): Promise<{
       })
       .then(({ data }) =>
         data
-          .map((el) => ({
-            ...el,
+          .map(({ type, actor, repo, created_at, payload }) => ({
+            // explicitly provide properties to save on some data sending over to the
+            // client
+            type,
+            actor,
+            repo,
+            created_at,
+            payload,
             internalType: 'github-public-activity' as const,
           }))
           .sort((a, b) => (a.created_at > b.created_at ? -1 : 1))
