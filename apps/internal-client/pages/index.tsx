@@ -195,9 +195,10 @@ export async function getStaticProps(): Promise<{
       })
       .then(({ data }) =>
         data
-          .map(({ type, actor, repo, created_at, payload }) => ({
+          .map(({ id, type, actor, repo, created_at, payload }) => ({
             // explicitly provide properties to save on some data sending over to the
             // client
+            id,
             type,
             actor,
             repo,
