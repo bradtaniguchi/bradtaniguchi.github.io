@@ -510,7 +510,7 @@
             },
             {
               "file": "apps/internal-client/utils/get-markdown.ts",
-              "hash": "14286cad9b69b35199fedfb838250a8f43357262",
+              "hash": "8f4b755015dfa2acb618a7a8bce50e72100c516c",
               "deps": [
                 "npm:dompurify",
                 "npm:jsdom",
