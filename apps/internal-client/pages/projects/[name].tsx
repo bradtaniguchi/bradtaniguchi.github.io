@@ -16,6 +16,7 @@ import {
 } from '../../utils/get-project-meta-data';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { CommonLogger } from '@bradtaniguchi-dev/common';
 
 export interface ProjectProps {
   project: StaticProject;
@@ -53,13 +54,14 @@ export default function Project({ markdown, project }: ProjectProps) {
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  const logger = new CommonLogger();
   const projectPaths = await getMarkdownFiles(PROJECTS_PATH);
 
   const projectsMetaData = await getProjectsMetaData(projectPaths);
 
   verifyProjectsMetaData(projectsMetaData);
 
-  console.log('projects meta-data', projectsMetaData);
+  logger.log('projects meta-data', projectsMetaData);
   return {
     paths: projectsMetaData.map(({ slug }) => ({
       params: {
