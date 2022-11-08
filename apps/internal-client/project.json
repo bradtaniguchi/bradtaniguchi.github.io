@@ -1,4 +1,5 @@
 {
+  "name": "internal-client",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/internal-client",
   "projectType": "application",
@@ -12,7 +13,9 @@
         "outputPath": "dist/apps/internal-client"
       },
       "configurations": {
-        "development": {},
+        "development": {
+          "outputPath": "apps/internal-client"
+        },
         "production": {}
       }
     },
@@ -42,7 +45,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/internal-client"],
+      "outputs": ["{workspaceRoot}/coverage/apps/internal-client"],
       "options": {
         "jestConfig": "apps/internal-client/jest.config.ts",
         "passWithNoTests": true
@@ -56,25 +59,25 @@
       }
     },
     "smoke": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "npx http-server dist/apps/internal-client/exported"
       }
     },
     "get-meta-data": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/get-meta-data.ts"
       }
     },
     "validate-static-projects": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/validate-static-projects.ts"
       }
     },
     "lighthouse": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           {
