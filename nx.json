@@ -13,7 +13,7 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "nx/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": [
           "build",
@@ -21,7 +21,8 @@
           "test",
           "e2e",
           "build-storybook"
-        ]
+        ],
+        "accessToken": "ZGY0YjQ0ZjItMTU3Yi00ZGQ0LTk0YWMtZTg4MmRjNGEyNmMwfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -82,7 +83,9 @@
   "defaultProject": "internal-client",
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     }
   }
 }
