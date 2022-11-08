@@ -40,7 +40,6 @@ export default function Index(props: IndexProps) {
             <aside>
               <div className="image-wrapper">
                 <Image
-                  layout="responsive"
                   width={260}
                   height={260}
                   src={props.user.avatar_url}
