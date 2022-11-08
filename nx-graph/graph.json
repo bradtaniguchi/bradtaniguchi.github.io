@@ -315,6 +315,10 @@
               "hash": "3afeff96af8e5867de8f5f394f6eb05fa4f2475b"
             },
             {
+              "file": "apps/internal-client/pages/500.tsx",
+              "hash": "02c533c6eba6270f88549c6037bab0b0d2634012"
+            },
+            {
               "file": "apps/internal-client/pages/about.tsx",
               "hash": "3dd052e7d61817edc755e4ff251ecdbbe12e7bc4",
               "deps": [
