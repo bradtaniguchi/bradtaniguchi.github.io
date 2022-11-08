@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { stat } from 'fs-extra';
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
