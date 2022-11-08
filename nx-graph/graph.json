@@ -116,7 +116,7 @@
           "files": [
             {
               "file": "apps/internal-client/.eslintrc.json",
-              "hash": "f13f56cc53c7d94063a3c717349e025e863bc78c"
+              "hash": "cd7b0320ecbe096c9d39295be64ddf5a83509506"
             },
             {
               "file": "apps/internal-client/.gitignore",
@@ -351,17 +351,19 @@
             },
             {
               "file": "apps/internal-client/pages/projects/[name].tsx",
-              "hash": "c4897e4d27fc739e2107c1540fb47a695286f684",
+              "hash": "757afb0672f2abfc634917f9a9b8869ed8bcecae",
               "deps": [
                 "npm:@primer/react",
                 "npm:next",
-                "npm:react-icons"
+                "npm:react-icons",
+                "common"
               ]
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "652788e007a53a58ff226a047e9d2931de43c111",
+              "hash": "08cc546d301ae3143ea9c385b7eebfa9bb674322",
               "deps": [
+                "common",
                 "npm:next"
               ]
             },
@@ -406,7 +408,7 @@
             },
             {
               "file": "apps/internal-client/scripts/get-meta-data.ts",
-              "hash": "5a7aecfd401752e2241a82aa5cc8b9501e56cf22",
+              "hash": "3d4c670e137e19d0d3372c48f23c2fa3d6ed1495",
               "deps": [
                 "npm:fs-extra",
                 "npm:yargs"
@@ -418,7 +420,7 @@
             },
             {
               "file": "apps/internal-client/scripts/validate-static-projects.ts",
-              "hash": "256ba1bf3d75b5a4264607f78d0ebd84f801b7bf",
+              "hash": "d69a8d1bf1d948b188ded427fb2a4165e88f7b85",
               "deps": [
                 "npm:fs-extra",
                 "npm:yargs"
@@ -1191,6 +1193,11 @@
         {
           "source": "internal-client",
           "target": "common-react",
+          "type": "static"
+        },
+        {
+          "source": "internal-client",
+          "target": "common",
           "type": "static"
         }
       ],
