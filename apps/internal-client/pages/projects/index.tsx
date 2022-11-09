@@ -1,3 +1,4 @@
+import { CommonLogger } from '@bradtaniguchi-dev/common';
 import { GetStaticPropsResult } from 'next';
 import { Card } from '../../components/core/card';
 import { StaticProject } from '../../components/project/static-project';
@@ -36,9 +37,11 @@ export default function Projects(props: ProjectsProps) {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<ProjectsProps>
 > {
+  const logger = new CommonLogger();
+
   const projectPaths = await getMarkdownFiles(PROJECTS_PATH);
 
-  console.log('projects-paths: ', projectPaths);
+  logger.log('projects-paths: ', projectPaths);
 
   const projectsMetaData = await getProjectsMetaData(projectPaths);
 
