@@ -33,7 +33,9 @@ const GithubPublicActivityRepo = (props: GithubPublicActivityProps) => (
       mr: 1,
     }}
   >
-    {props.activity.repo.name}
+    <Link href={props.activity.repo.url}>
+      <a>{props.activity.repo.name}</a>
+    </Link>
   </Box>
 );
 
@@ -211,14 +213,6 @@ export const GithubPublicActivity = memo(function GithubPublicActivity(
                 props.activity
               );
               return null;
-            // return (
-            //   <Box
-            //     sx={{ display: 'inline' }}
-            //     title={JSON.stringify(props.activity, null, 2)}
-            //   >
-            //     Unknown activity given
-            //   </Box>
-            // );
           }
         })()}
       </Timeline.Body>

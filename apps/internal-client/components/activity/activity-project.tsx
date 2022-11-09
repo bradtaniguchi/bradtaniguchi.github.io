@@ -35,7 +35,7 @@ export const ActivityProject = memo(function ActivityProject(
           >
             Brad
           </Box>
-          created a new {/* TODO: make a link to the actual project post */}
+          created a new
           <Box
             as="span"
             sx={{
