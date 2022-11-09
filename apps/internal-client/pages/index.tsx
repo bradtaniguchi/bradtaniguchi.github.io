@@ -175,6 +175,7 @@ export async function getStaticProps(): Promise<{
   props: IndexProps;
 }> {
   const octokit = new Octokit();
+  octokit.auth();
   const [readme, { data: user }, githubActivities] = await Promise.all([
     getMarkdown('README.md'),
     octokit.users.getByUsername({

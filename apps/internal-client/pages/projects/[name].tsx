@@ -37,9 +37,7 @@ export default function Project({ markdown, project }: ProjectProps) {
 
         <span>
           <Link href="/projects" aria-label="Back to Projects List">
-            <a>
-              <FaArrowLeft />
-            </a>
+            <FaArrowLeft />
           </Link>
         </span>
       </Card.Header>

@@ -33,9 +33,7 @@ const GithubPublicActivityRepo = (props: GithubPublicActivityProps) => (
       mr: 1,
     }}
   >
-    <Link href={props.activity.repo.url}>
-      <a>{props.activity.repo.name}</a>
-    </Link>
+    <Link href={props.activity.repo.url}>{props.activity.repo.name}</Link>
   </Box>
 );
 
