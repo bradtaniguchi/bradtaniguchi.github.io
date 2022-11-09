@@ -125,7 +125,7 @@ export const GithubPublicActivity = memo(function GithubPublicActivity(
                           .replace('api.github.com/repos/', 'github.com/')
                           .replace('/commits/', '/commit/')}
                       >
-                        <a>{hasMultiple ? 'commits ' : 'a commit '}</a>
+                        {hasMultiple ? 'commits ' : 'a commit '}
                       </Link>
                     );
                   })()}
@@ -160,10 +160,10 @@ export const GithubPublicActivity = memo(function GithubPublicActivity(
                         .pull_request.title
                     }
                   >
-                    <a>{`#${
+                    {`#${
                       (props.activity.payload as PayloadWithPullRequest)
                         .pull_request.number
-                    }`}</a>
+                    }`}
                   </Link>{' '}
                   for <GithubPublicActivityRepo activity={props.activity} />
                   <GithubPublicActivityTime activity={props.activity} />
@@ -181,7 +181,7 @@ export const GithubPublicActivity = memo(function GithubPublicActivity(
                     href={props.activity.payload.issue.html_url}
                     title={props.activity.payload.issue.title}
                   >
-                    <a>{`#${props.activity.payload.issue.number}`}</a>
+                    {`#${props.activity.payload.issue.number}`}
                   </Link>{' '}
                   for <GithubPublicActivityRepo activity={props.activity} />
                   <GithubPublicActivityTime activity={props.activity} />
