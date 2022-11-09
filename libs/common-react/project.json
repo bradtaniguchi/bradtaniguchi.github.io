@@ -1,11 +1,12 @@
 {
+  "name": "common-react",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/common-react/src",
   "projectType": "library",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nrwl/web:rollup",
+      "executor": "@nrwl/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/common-react",
@@ -33,14 +34,14 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/common-react"],
+      "outputs": ["{workspaceRoot}/coverage/libs/common-react"],
       "options": {
         "jestConfig": "libs/common-react/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "typedoc": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "npx typedoc --options libs/common-react/typedoc.json"
       }

@@ -40,7 +40,6 @@ export default function Index(props: IndexProps) {
             <aside>
               <div className="image-wrapper">
                 <Image
-                  layout="responsive"
                   width={260}
                   height={260}
                   src={props.user.avatar_url}
@@ -69,9 +68,7 @@ export default function Index(props: IndexProps) {
                       rel="noreferrer"
                       aria-label="LinkedIn url"
                     >
-                      <a>
-                        <FaGithub /> bradtaniguchi
-                      </a>
+                      <FaGithub /> bradtaniguchi
                     </Link>
                   </li>
                   <li>
@@ -81,9 +78,7 @@ export default function Index(props: IndexProps) {
                       rel="noreferrer"
                       aria-label="Twitter handle url"
                     >
-                      <a>
-                        <FaTwitter /> @brad_taniguchi
-                      </a>
+                      <FaTwitter /> @brad_taniguchi
                     </Link>
                   </li>
                   <li>
@@ -93,9 +88,7 @@ export default function Index(props: IndexProps) {
                       rel="noreferrer"
                       aria-label="LinkedIn profile url"
                     >
-                      <a>
-                        <FaLinkedin /> LinkedIn
-                      </a>
+                      <FaLinkedin /> LinkedIn
                     </Link>
                   </li>
 
@@ -106,9 +99,7 @@ export default function Index(props: IndexProps) {
                       rel="noreferrer"
                       aria-label="Codewars profile url"
                     >
-                      <a>
-                        <SiCodewars /> Codewars
-                      </a>
+                      <SiCodewars /> Codewars
                       {/* TODO: add "open new tab" icon */}
                     </Link>
                   </li>

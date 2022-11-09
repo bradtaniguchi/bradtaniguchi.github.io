@@ -1,11 +1,12 @@
 {
+  "name": "storybook",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/storybook/src",
   "projectType": "library",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nrwl/web:rollup",
+      "executor": "@nrwl/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/storybook",
@@ -33,7 +34,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/storybook"],
+      "outputs": ["{workspaceRoot}/coverage/libs/storybook"],
       "options": {
         "jestConfig": "libs/storybook/jest.config.ts",
         "passWithNoTests": true
@@ -71,7 +72,7 @@
       }
     },
     "typedoc": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "npx typedoc --options libs/storybook/typedoc.json"
       }
