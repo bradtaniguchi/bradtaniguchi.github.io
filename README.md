@@ -8,6 +8,9 @@ https://github.com/bradtaniguchi/bradtaniguchi.github.io
 Which uses a custom domain at:
 https://bradtaniguchi.dev/
 
+Before the migration away from the older page, this repo is available here:
+https://bradtaniguchi.dev/bradtaniguchi-dev/
+
 ## Project road-map
 
 [roadmap](https://github.com/users/bradtaniguchi/projects/6)
@@ -15,6 +18,3 @@ https://bradtaniguchi.dev/
 ## License
 
 [MIT](./LICENSE.md)
-
-
-# whitespace change to trigger deployment
