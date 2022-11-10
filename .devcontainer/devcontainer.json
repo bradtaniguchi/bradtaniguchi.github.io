@@ -6,6 +6,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "postStartCommand": "npm ci",
   "extensions": [
     "aaron-bond.better-comments",
     "christian-kohler.path-intellisense",
