@@ -20,7 +20,7 @@ const GithubPublicActivityLogin = (props: GithubPublicActivityProps) => (
       mr: 1,
     }}
   >
-    {props.activity.actor.login}
+    <Link href={props.activity.actor.url}>{props.activity.actor.login}</Link>
   </Box>
 );
 
@@ -33,7 +33,7 @@ const GithubPublicActivityRepo = (props: GithubPublicActivityProps) => (
       mr: 1,
     }}
   >
-    {props.activity.repo.name}
+    <Link href={props.activity.repo.url}>{props.activity.repo.name}</Link>
   </Box>
 );
 
@@ -205,20 +205,22 @@ export const GithubPublicActivity = memo(function GithubPublicActivity(
                   <GithubPublicActivityTime activity={props.activity} />
                 </Box>
               );
+            case 'IssueCommentEvent':
+              // this is an experiment
+              return (
+                <Box sx={{ display: 'inline' }}>
+                  <GithubPublicActivityLogin activity={props.activity} />
+                  un-starred repo{' '}
+                  <GithubPublicActivityRepo activity={props.activity} />
+                  <GithubPublicActivityTime activity={props.activity} />
+                </Box>
+              );
             default:
               logger.error(
                 `[GithubPublicActivity] unknown public-activity: ${props.activity.type}`,
                 props.activity
               );
               return null;
-            // return (
-            //   <Box
-            //     sx={{ display: 'inline' }}
-            //     title={JSON.stringify(props.activity, null, 2)}
-            //   >
-            //     Unknown activity given
-            //   </Box>
-            // );
           }
         })()}
       </Timeline.Body>
