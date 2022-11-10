@@ -147,18 +147,8 @@
               ]
             },
             {
-              "file": "apps/internal-client/components/activity/activity-project.tsx",
-              "hash": "0ef90748c758f603d1a221062aceec451f965c4e",
-              "deps": [
-                "npm:@primer/octicons-react",
-                "npm:@primer/react",
-                "npm:react",
-                "npm:luxon"
-              ]
-            },
-            {
               "file": "apps/internal-client/components/activity/github-public-activity.tsx",
-              "hash": "169574d39a76d19ef8600fa028b84b4702c9661f",
+              "hash": "826003c5310515888b24d1dc7e65f2f2ab15a20f",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
@@ -344,7 +334,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "92e0abec04bf9d493b288d6b11e9e19bfba19e55",
+              "hash": "8da9385d7fa0fe9e539da885532b701500f1b0c1",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
@@ -367,7 +357,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/[name].tsx",
-              "hash": "757afb0672f2abfc634917f9a9b8869ed8bcecae",
+              "hash": "14759b66560c7abd357396aef90221b4036271e4",
               "deps": [
                 "npm:@primer/react",
                 "npm:next",
