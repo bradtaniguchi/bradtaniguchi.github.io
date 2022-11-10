@@ -20,7 +20,7 @@ const GithubPublicActivityLogin = (props: GithubPublicActivityProps) => (
       mr: 1,
     }}
   >
-    {props.activity.actor.login}
+    <Link href={props.activity.actor.url}>{props.activity.actor.login}</Link>
   </Box>
 );
 
@@ -197,6 +197,16 @@ export const GithubPublicActivity = memo(function GithubPublicActivity(
                     <GithubPublicActivityTime activity={props.activity} />
                   </Box>
                 );
+              return (
+                <Box sx={{ display: 'inline' }}>
+                  <GithubPublicActivityLogin activity={props.activity} />
+                  un-starred repo{' '}
+                  <GithubPublicActivityRepo activity={props.activity} />
+                  <GithubPublicActivityTime activity={props.activity} />
+                </Box>
+              );
+            case 'IssueCommentEvent':
+              // this is an experiment
               return (
                 <Box sx={{ display: 'inline' }}>
                   <GithubPublicActivityLogin activity={props.activity} />
