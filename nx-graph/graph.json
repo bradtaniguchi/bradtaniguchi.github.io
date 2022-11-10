@@ -334,13 +334,12 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "8da9385d7fa0fe9e539da885532b701500f1b0c1",
+              "hash": "4dafe80eee33a26267b53d9dbd6529f77dde789d",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
                 "npm:next",
-                "npm:react",
                 "npm:react-icons"
               ]
             },
@@ -434,7 +433,7 @@
             },
             {
               "file": "apps/internal-client/sentry.client.config.ts",
-              "hash": "513996c020e223d08fc84669109edc4631c5c6a3",
+              "hash": "09f7c52f3f95dc6907fdb47fdbeff354867e30ec",
               "deps": [
                 "npm:@sentry/nextjs"
               ]
@@ -445,7 +444,7 @@
             },
             {
               "file": "apps/internal-client/sentry.server.config.ts",
-              "hash": "0a1a160e92ccd8dcbee99185c2385f713ce2691d",
+              "hash": "990cf22a51e1d45c954980e0670c53fbcc68d64e",
               "deps": [
                 "npm:@sentry/nextjs"
               ]
@@ -550,6 +549,13 @@
               "hash": "b744a97ee36cfb8344ebdcb6f160c56a2ee77b47",
               "deps": [
                 "common-react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/utils/with-headers.ts",
+              "hash": "19d1616f4e9dea22a3fad301dd74d79ef9b8b6bb",
+              "deps": [
+                "npm:@octokit/auth-token"
               ]
             }
           ]
