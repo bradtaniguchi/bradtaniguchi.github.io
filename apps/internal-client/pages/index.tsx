@@ -3,7 +3,6 @@ import { MarkGithubIcon } from '@primer/octicons-react';
 import { Box, StyledOcticon } from '@primer/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { SiCodewars } from 'react-icons/si';
 import { Activities } from '../components/activity/activities';
@@ -11,7 +10,7 @@ import { Card } from '../components/core/card';
 import { GITHUB_URL } from '../constants/github-url';
 import { Activity } from '../models/activity';
 import { getMarkdown } from '../utils/get-markdown';
-import { LoggerProvider } from '../utils/logger';
+import { withHeaders } from '../utils/with-headers';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IndexProps {
@@ -30,8 +29,6 @@ export interface IndexProps {
 }
 
 export default function Index(props: IndexProps) {
-  const logger = useContext(LoggerProvider);
-  logger.log('[Index]', props);
   return (
     <Box display="grid" gridGap={3} gridTemplateColumns="1fr 1fr 1fr">
       <Box>
@@ -175,14 +172,16 @@ export async function getStaticProps(): Promise<{
   props: IndexProps;
 }> {
   const octokit = new Octokit();
-  octokit.auth();
+
   const [readme, { data: user }, githubActivities] = await Promise.all([
     getMarkdown('README.md'),
     octokit.users.getByUsername({
+      headers: withHeaders(),
       username: 'bradtaniguchi',
     }),
     octokit.activity
       .listPublicEventsForUser({
+        headers: withHeaders(),
         username: 'bradtaniguchi',
       })
       .then(({ data }) =>
@@ -201,6 +200,7 @@ export async function getStaticProps(): Promise<{
           .sort((a, b) => (a.created_at > b.created_at ? -1 : 1))
       ),
   ]);
+
   return {
     props: {
       readme,
