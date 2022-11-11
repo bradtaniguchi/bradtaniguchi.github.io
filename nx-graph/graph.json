@@ -334,7 +334,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "4dafe80eee33a26267b53d9dbd6529f77dde789d",
+              "hash": "7572df5188db0413d6f53acc1f318427b7687fc7",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
@@ -512,6 +512,13 @@
             {
               "file": "apps/internal-client/tsconfig.spec.json",
               "hash": "14b06c6a5bf51709abab64ca3e8e0b35b5e52a43"
+            },
+            {
+              "file": "apps/internal-client/utils/error-boundary.tsx",
+              "hash": "d675881492e43b54539454c39190968e34d5080d",
+              "deps": [
+                "npm:react"
+              ]
             },
             {
               "file": "apps/internal-client/utils/get-markdown-files.ts",
