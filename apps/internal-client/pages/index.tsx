@@ -9,6 +9,7 @@ import { Activities } from '../components/activity/activities';
 import { Card } from '../components/core/card';
 import { GITHUB_URL } from '../constants/github-url';
 import { Activity } from '../models/activity';
+import { ErrorBoundary } from '../utils/error-boundary';
 import { getMarkdown } from '../utils/get-markdown';
 import { withHeaders } from '../utils/with-headers';
 
@@ -30,141 +31,143 @@ export interface IndexProps {
 
 export default function Index(props: IndexProps) {
   return (
-    <Box display="grid" gridGap={3} gridTemplateColumns="1fr 1fr 1fr">
-      <Box>
-        <Card>
-          <Card.Body>
-            <aside>
-              <div className="image-wrapper">
-                <Image
-                  width={260}
-                  height={260}
-                  src={props.user.avatar_url}
-                  alt="Github profile picture"
-                />
-              </div>
-              <h2>
-                <Link
-                  href={props.user.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Github profile url"
-                >
-                  Brad Taniguchi
-                </Link>
-              </h2>
-              <p>{props.user.bio}</p>
-
-              <section>
-                <h4>Socials</h4>
-                <ul>
-                  <li>
-                    <Link
-                      href={props.user.html_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="LinkedIn url"
-                    >
-                      <FaGithub /> bradtaniguchi
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="https://twitter.com/brad_taniguchi"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Twitter handle url"
-                    >
-                      <FaTwitter /> @brad_taniguchi
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="https://www.linkedin.com/in/bradley-taniguchi-62a052104"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="LinkedIn profile url"
-                    >
-                      <FaLinkedin /> LinkedIn
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link
-                      href="https://www.codewars.com/users/bradtaniguchi"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Codewars profile url"
-                    >
-                      <SiCodewars /> Codewars
-                      {/* TODO: add "open new tab" icon */}
-                    </Link>
-                  </li>
-                </ul>
-              </section>
-            </aside>
-          </Card.Body>
-        </Card>
-      </Box>
-
-      <Box gridColumn="span 2">
-        <Box gridColumn="span 2">
-          <Box display="grid" gridGap={3}>
-            <Card gridColumn="span 2">
-              <Card.Header display="flex">README</Card.Header>
-              <Card.Body>
-                <p>
-                  This website acts as my portfolio and blog. It is currently
-                  under construction and will be continually updated. This is
-                  actually the third version of my portfolio site and is used as
-                  a test-bed for developing things with new technologies. To
-                  learn more about how this project was built, checkout the{' '}
-                  <Link href="/about">about</Link> page.
-                </p>
-              </Card.Body>
-            </Card>
-
-            <Card gridColumn="span 2">
-              <Card.Header display="flex">
-                <Box flexGrow="100">Github README</Box>
-                <Box>
-                  <a
-                    href={GITHUB_URL}
+    <ErrorBoundary>
+      <Box display="grid" gridGap={3} gridTemplateColumns="1fr 1fr 1fr">
+        <Box>
+          <Card>
+            <Card.Body>
+              <aside>
+                <div className="image-wrapper">
+                  <Image
+                    width={260}
+                    height={260}
+                    src={props.user.avatar_url}
+                    alt="Github profile picture"
+                  />
+                </div>
+                <h2>
+                  <Link
+                    href={props.user.html_url}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label="Github profile URL"
+                    aria-label="Github profile url"
                   >
-                    <StyledOcticon
-                      icon={MarkGithubIcon}
-                      size={16}
-                      sx={{ mr: 2 }}
-                    />
-                  </a>
-                </Box>
-              </Card.Header>
-              <Card.Body>
-                {/* TODO: update/move to about? */}
-                <div dangerouslySetInnerHTML={{ __html: props.readme }}></div>
-              </Card.Body>
-            </Card>
+                    Brad Taniguchi
+                  </Link>
+                </h2>
+                <p>{props.user.bio}</p>
 
-            <Card gridColumn="span 2">
-              <Card.Header display="flex">
-                <Box flexGrow="100">Latest Activity</Box>
-                {/* TODO: add client-side filtering */}
-                {/* TODO: add support for RSS-feed */}
-                {/* <Box>
+                <section>
+                  <h4>Socials</h4>
+                  <ul>
+                    <li>
+                      <Link
+                        href={props.user.html_url}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="LinkedIn url"
+                      >
+                        <FaGithub /> bradtaniguchi
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="https://twitter.com/brad_taniguchi"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Twitter handle url"
+                      >
+                        <FaTwitter /> @brad_taniguchi
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="https://www.linkedin.com/in/bradley-taniguchi-62a052104"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="LinkedIn profile url"
+                      >
+                        <FaLinkedin /> LinkedIn
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        href="https://www.codewars.com/users/bradtaniguchi"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Codewars profile url"
+                      >
+                        <SiCodewars /> Codewars
+                        {/* TODO: add "open new tab" icon */}
+                      </Link>
+                    </li>
+                  </ul>
+                </section>
+              </aside>
+            </Card.Body>
+          </Card>
+        </Box>
+
+        <Box gridColumn="span 2">
+          <Box gridColumn="span 2">
+            <Box display="grid" gridGap={3}>
+              <Card gridColumn="span 2">
+                <Card.Header display="flex">README</Card.Header>
+                <Card.Body>
+                  <p>
+                    This website acts as my portfolio and blog. It is currently
+                    under construction and will be continually updated. This is
+                    actually the third version of my portfolio site and is used
+                    as a test-bed for developing things with new technologies.
+                    To learn more about how this project was built, checkout the{' '}
+                    <Link href="/about">about</Link> page.
+                  </p>
+                </Card.Body>
+              </Card>
+
+              <Card gridColumn="span 2">
+                <Card.Header display="flex">
+                  <Box flexGrow="100">Github README</Box>
+                  <Box>
+                    <a
+                      href={GITHUB_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Github profile URL"
+                    >
+                      <StyledOcticon
+                        icon={MarkGithubIcon}
+                        size={16}
+                        sx={{ mr: 2 }}
+                      />
+                    </a>
+                  </Box>
+                </Card.Header>
+                <Card.Body>
+                  {/* TODO: update/move to about? */}
+                  <div dangerouslySetInnerHTML={{ __html: props.readme }}></div>
+                </Card.Body>
+              </Card>
+
+              <Card gridColumn="span 2">
+                <Card.Header display="flex">
+                  <Box flexGrow="100">Latest Activity</Box>
+                  {/* TODO: add client-side filtering */}
+                  {/* TODO: add support for RSS-feed */}
+                  {/* <Box>
                   <RssIcon></RssIcon>
                 </Box> */}
-              </Card.Header>
-              <Card.Body>
-                <Activities activities={props.activities} />
-              </Card.Body>
-            </Card>
+                </Card.Header>
+                <Card.Body>
+                  <Activities activities={props.activities} />
+                </Card.Body>
+              </Card>
+            </Box>
           </Box>
         </Box>
       </Box>
-    </Box>
+    </ErrorBoundary>
   );
 }
 
