@@ -1,7 +1,7 @@
 import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
 import { MarkGithubIcon } from '@primer/octicons-react';
 import { Box, StyledOcticon } from '@primer/react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { SiCodewars } from 'react-icons/si';
