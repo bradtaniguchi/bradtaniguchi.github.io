@@ -32,8 +32,12 @@ export interface IndexProps {
 export default function Index(props: IndexProps) {
   return (
     <ErrorBoundary>
-      <Box display="grid" gridGap={3} gridTemplateColumns="1fr 1fr 1fr">
-        <Box>
+      <Box
+        display="grid"
+        gridGap={3}
+        gridTemplateColumns={['1fr', '1fr 1fr', '1fr 1fr 1fr']}
+      >
+        <Box gridColumn={['span 1', 'span 2', 'span 1']}>
           <Card>
             <Card.Body>
               <aside>

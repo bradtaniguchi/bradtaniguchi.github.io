@@ -153,7 +153,7 @@ export default function AppHeader(props: AppHeaderProps) {
         </Box>
       ))}
 
-      <Box>
+      <Box sx={{ margin: '0 8px' }}>
         {/* theme switcher */}
         {/* <Button>theme</Button> */}
         <IconButton
