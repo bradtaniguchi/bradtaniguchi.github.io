@@ -168,7 +168,7 @@
             },
             {
               "file": "apps/internal-client/components/core/app-header.tsx",
-              "hash": "3b68c8a339094b0f3dcfd0e113f6797889f3f820",
+              "hash": "40244c028f490f2b8ad0877eb1f03c7b4a3efa38",
               "deps": [
                 "common-react",
                 "npm:@primer/octicons-react",
@@ -334,7 +334,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "e2c943b19a9c3c66b6ce4c8823367bb4a86510d5",
+              "hash": "909d7cb79184ecfdf6279e2f0fca363966011dc2",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
