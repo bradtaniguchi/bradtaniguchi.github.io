@@ -53,13 +53,13 @@ function ThemedComponent({ Component, pageProps }: AppProps) {
   return (
     <>
       <AppHeader></AppHeader>
-      <main className="app">
+      <main>
         <Box
           sx={{
             flexGrow: 1,
             padding: '12px',
             overflow: 'auto',
-            height: 'calc(100vh - 53px)',
+            height: 'calc(100vh - 64px)',
           }}
         >
           <Component {...pageProps} />
