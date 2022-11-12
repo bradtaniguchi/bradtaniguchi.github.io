@@ -222,7 +222,7 @@
             },
             {
               "file": "apps/internal-client/components/project/static-project.tsx",
-              "hash": "d0b5cf290df463f1dc602ac8df41ebc16fa1d059",
+              "hash": "acbb797d88ca838c8a231d8b48b3647d3c29d701",
               "deps": [
                 "npm:@primer/react",
                 "npm:react",
@@ -290,7 +290,7 @@
             },
             {
               "file": "apps/internal-client/pages/_app.tsx",
-              "hash": "76207fa6935c96c6429c67cd8e694c8a4b595970",
+              "hash": "b46d5b0c2d2a69a22910c10dc4985c838be9cce0",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
