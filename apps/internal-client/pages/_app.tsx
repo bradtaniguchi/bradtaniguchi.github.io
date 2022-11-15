@@ -58,7 +58,7 @@ function ThemedComponent({ Component, pageProps }: AppProps) {
           sx={{
             flexGrow: 1,
             padding: '12px',
-            paddingBottom: '32px',
+            paddingBottom: '48px',
             overflow: 'auto',
             height: 'calc(100vh - 64px)',
           }}
