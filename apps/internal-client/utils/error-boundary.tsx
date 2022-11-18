@@ -8,6 +8,7 @@ import { LoggerProvider } from './logger';
  * This is a class component, as there is no direct equivalent in
  * functional components yet.
  *
+ * **note** this is being removed, as its logging unnecessarily
  * Taken from:
  * https://stackoverflow.com/a/70179187/5294333
  */
