@@ -59,10 +59,7 @@ export const StaticProject = memo(function StaticProject(
 
           {props.project.date && (
             <Box title={props.project.date}>
-              {DateTime.fromISO(props.project.date).toFormat(
-                // TODO: local format
-                'yyyy-MM-dd'
-              )}
+              {DateTime.fromISO(props.project.date).toFormat('yyyy-MM-dd')}
             </Box>
           )}
         </Box>

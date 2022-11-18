@@ -40,11 +40,7 @@ const GithubPublicActivityRepo = (props: GithubPublicActivityProps) => (
 const GithubPublicActivityTime = (props: GithubPublicActivityProps) => (
   <Box as="span" color="fg.muted">
     <span title={props.activity.created_at}>
-      on{' '}
-      {DateTime.fromISO(props.activity.created_at).toFormat(
-        // TODO: local format
-        'yyyy-MM-dd'
-      )}
+      on {DateTime.fromISO(props.activity.created_at).toFormat('yyyy-MM-dd')}
     </span>
   </Box>
 );
