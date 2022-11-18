@@ -338,7 +338,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "abdfbf80d2a9d7aac87b50d6ab872942955f6322",
+              "hash": "88aa948cb3fb4fd497b94a93f08c94d9a4d658ef",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
@@ -456,6 +456,62 @@
             {
               "file": "apps/internal-client/static/.gitkeep",
               "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+            },
+            {
+              "file": "apps/internal-client/static/blog/2021-05-29-blog.md",
+              "hash": "874f4e5c8f2a5ac4be49b97320d51a0e9a5c93bb"
+            },
+            {
+              "file": "apps/internal-client/static/blog/2021-07-07-blog.md",
+              "hash": "290d4ccda37eed7881d5933faf1edc98b9b4a9d4"
+            },
+            {
+              "file": "apps/internal-client/static/blog/2021-08-14-blog.md",
+              "hash": "085778ae73f9eea38e056d4575f31b4245961a10"
+            },
+            {
+              "file": "apps/internal-client/static/blog/2021-08-20-blog.md",
+              "hash": "0f9a0da5e272ac9a5a5bbd0e71065cab1d504522"
+            },
+            {
+              "file": "apps/internal-client/static/blog/2021-08-21-blog.md",
+              "hash": "744e7c1606b9ee5122bd03f1cb2d86132902ed22"
+            },
+            {
+              "file": "apps/internal-client/static/blog/2021-08-31-blog.md",
+              "hash": "cb87198783bafddce809651b0060aa3540b1c579"
+            },
+            {
+              "file": "apps/internal-client/static/blog/2021-09-02-blog.md",
+              "hash": "f4ccc3997decf536a645dd0d5fba594a2375bc32"
+            },
+            {
+              "file": "apps/internal-client/static/blog/2021-09-19-blog.md",
+              "hash": "b38d1a143c8c1e2daf8796d676861d6f6b25a3fd"
+            },
+            {
+              "file": "apps/internal-client/static/blog/dogfight-game-remake.md",
+              "hash": "078c7a870414d9d6d40cc9b528cdb67a6f253a00"
+            },
+            {
+              "file": "apps/internal-client/static/blog/new-blog-generation.md",
+              "hash": "7fbede5d39d235f0acc9860c8302f4b6268baffb"
+            },
+            {
+              "file": "apps/internal-client/static/blog/new-script.md",
+              "hash": "e2880953045f1b0362550be21b90344969995667"
+            },
+            {
+              "file": "apps/internal-client/static/blog/new-year-same-stuff.md",
+              "hash": "37728a6dae3100d5b1a68ccfbbf1e3d2c7957aaa"
+            },
+            {
+              "file": "apps/internal-client/static/blog/struggles-with-scully.md",
+              "hash": "fa461973216c5ed4ed43f04b3a4413dbc25e11aa"
+            },
+            {
+              "file": "apps/internal-client/static/blog/the-halloween-edition.md",
+              "hash": "acf3acfdf939483a07b418ca4df4f6ba11b58dce"
             },
             {
               "file": "apps/internal-client/static/projects/bomb-defuse-utils.md",
