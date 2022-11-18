@@ -290,7 +290,7 @@
             },
             {
               "file": "apps/internal-client/pages/_app.tsx",
-              "hash": "23d3ba1e6347232a6c4f8e16dc768c30b7daec7a",
+              "hash": "346d6988e8449ed1604844420e83e67439d2f0d0",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
@@ -326,11 +326,15 @@
             },
             {
               "file": "apps/internal-client/pages/about.tsx",
-              "hash": "3dd052e7d61817edc755e4ff251ecdbbe12e7bc4",
+              "hash": "2d2defc83691a41623f1d911b6521c521c2deb82",
               "deps": [
                 "common-react",
                 "npm:@primer/react"
               ]
+            },
+            {
+              "file": "apps/internal-client/pages/blog/index.tsx",
+              "hash": "8174c5e36947f4f5d070b032ebbd140e5071875b"
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
