@@ -21,8 +21,7 @@ const nextConfig = {
     path: '',
     domains: ['avatars.githubusercontent.com'],
   },
-  // TODO: Change on rename
-  assetPrefix: isProd ? '/bradtaniguchi-dev/' : '',
+  // assetPrefix: isProd ? '/bradtaniguchi-dev/' : '',
 };
 
 module.exports = withNx(
