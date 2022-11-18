@@ -29,7 +29,11 @@ export default function About() {
             About
           </Text>
         </Box>
-        TODO: add README content from actual project...
+        <p>
+          This project is a next.js based app, primarily made to learn more
+          about React, and improve SEO compared to the previous versions, built
+          on Angular and Angular.js respectively.
+        </p>
       </Box>
 
       <InternalConfig
