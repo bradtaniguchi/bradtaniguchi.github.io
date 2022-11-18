@@ -52,7 +52,7 @@ function ThemedComponent({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <AppHeader></AppHeader>
+      <AppHeader showBlog={true}></AppHeader>
       <main>
         <Box
           sx={{
