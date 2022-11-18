@@ -9,7 +9,6 @@ import { Activities } from '../components/activity/activities';
 import { Card } from '../components/core/card';
 import { GITHUB_URL } from '../constants/github-url';
 import { Activity } from '../models/activity';
-import { ErrorBoundary } from '../utils/error-boundary';
 import { getMarkdown } from '../utils/get-markdown';
 import { withHeaders } from '../utils/with-headers';
 
