@@ -148,7 +148,7 @@
             },
             {
               "file": "apps/internal-client/components/activity/github-public-activity.tsx",
-              "hash": "826003c5310515888b24d1dc7e65f2f2ab15a20f",
+              "hash": "f279d7e263d47eb56bec68d5f5b7cda8e7d89181",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
@@ -222,7 +222,7 @@
             },
             {
               "file": "apps/internal-client/components/project/static-project.tsx",
-              "hash": "acbb797d88ca838c8a231d8b48b3647d3c29d701",
+              "hash": "3124f5fce51948f53952414faa9ea6154fc9dd39",
               "deps": [
                 "npm:@primer/react",
                 "npm:react",
@@ -338,7 +338,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "909d7cb79184ecfdf6279e2f0fca363966011dc2",
+              "hash": "abdfbf80d2a9d7aac87b50d6ab872942955f6322",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
@@ -519,7 +519,7 @@
             },
             {
               "file": "apps/internal-client/utils/error-boundary.tsx",
-              "hash": "d675881492e43b54539454c39190968e34d5080d",
+              "hash": "4161c0a441f243000863aec46520b474df8a3526",
               "deps": [
                 "npm:react"
               ]
