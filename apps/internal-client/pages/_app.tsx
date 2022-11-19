@@ -39,6 +39,7 @@ function ThemedComponent({ Component, pageProps }: AppProps) {
         setColorMode(colorMode as ColorMode);
       }
       logger.log('[ThemedComponent] initial colorMode: ', colorMode);
+      document.documentElement.style.visibility = 'visible';
     });
   }, [logger, setColorMode, localForage]);
 

@@ -35,7 +35,7 @@ export default class CustomDocument extends Document<{
 
   render() {
     return (
-      <Html>
+      <Html style={{ visibility: 'hidden' }}>
         <Head>
           {this.props.styleTags}
           <GoogleAnalytics googleAnalyticsKey={this.props.googleAnalytics} />
