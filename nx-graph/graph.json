@@ -290,7 +290,7 @@
             },
             {
               "file": "apps/internal-client/pages/_app.tsx",
-              "hash": "346d6988e8449ed1604844420e83e67439d2f0d0",
+              "hash": "e13f8fde245161744c3f738a168cb06ecbadaecb",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
@@ -300,7 +300,7 @@
             },
             {
               "file": "apps/internal-client/pages/_document.tsx",
-              "hash": "63273119b9a0cb6289f0d46c47a8df51636878af",
+              "hash": "f8917c1bde1bb9bea1d63a7522baa5effab74160",
               "deps": [
                 "npm:react",
                 "npm:next",
