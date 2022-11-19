@@ -13,7 +13,11 @@ export default function About() {
   });
 
   return (
-    <Box display="grid" gridGap={3} gridTemplateColumns="1fr 1fr">
+    <Box
+      display="grid"
+      gridGap={3}
+      gridTemplateColumns={['1fr', '1fr', '1fr 1fr']}
+    >
       <Box
         borderColor="border.default"
         borderWidth={1}
