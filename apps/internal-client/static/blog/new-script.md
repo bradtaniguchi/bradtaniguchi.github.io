@@ -3,8 +3,7 @@ title: new-script-ng-13
 description: New script, and Angular 13
 published: true
 date: 2021-11-13T00:00:00.000Z
-slugs:
-  - new-script-ng-13
+slug: new-script-ng-13
 ---
 
 # new-script-ng-13

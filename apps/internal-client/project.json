@@ -76,6 +76,12 @@
         "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/validate-static-projects.ts"
       }
     },
+    "validate-blog-posts": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/validate-blog-posts.ts"
+      }
+    },
     "lighthouse": {
       "executor": "nx:run-commands",
       "options": {

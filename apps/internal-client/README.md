@@ -2,7 +2,6 @@
 
 This project is used to display data within a github-page app using nextjs.
 
-
 <!-- whitespace change to trigger build -->
 
 ## Building for static export
@@ -41,4 +40,13 @@ projects folder using front-matter. This primarily exists for testing.
 
 ```bash
 npx nx run internal-client:validate-static-projects --path=apps/internal-client/static/projects/
+```
+
+### validate-blog-posts
+
+This script is used to run validation checks on the static
+blog folder using front-matter. This primarily exists for testing.
+
+```bash
+npx nx run internal-client:validate-blog-posts --path=apps/internal-client/static/blog/
 ```

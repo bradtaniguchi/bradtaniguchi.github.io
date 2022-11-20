@@ -1,11 +1,14 @@
 {
   "workbench.iconTheme": "material-icon-theme",
   "cSpell.words": [
+    "asym",
     "autorun",
     "buildable",
+    "Clava",
     "codespaces",
     "Codewars",
     "dbaeumer",
+    "defn",
     "dompurify",
     "eamodio",
     "esbenp",
@@ -13,6 +16,7 @@
     "firsttris",
     "getsentry",
     "gtag",
+    "Higginbotham",
     "kohler",
     "lighthouseci",
     "lighthouserc",
@@ -21,11 +25,18 @@
     "mkdir",
     "nextjs",
     "Octicon",
+    "Outserhout",
+    "Pixelbook",
     "rimraf",
     "roadmap",
+    "scully",
     "svgr",
+    "tailwindcss",
     "testid",
+    "toggl",
+    "treosh",
     "typedoc",
+    "ultimatly",
     "zhuangtongfa"
   ]
 }

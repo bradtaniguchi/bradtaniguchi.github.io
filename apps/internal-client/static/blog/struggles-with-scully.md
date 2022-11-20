@@ -3,8 +3,7 @@ title: Struggles with scully
 description:
 published: true
 date: 2021-11-22T00:00:00.000Z
-slugs:
-  - struggles-with-scully
+slug: struggles-with-scully
 ---
 
 # Struggles with scully

@@ -3,8 +3,7 @@ title: new blog generation
 description: new way to name and generate blog posts
 published: true
 date: 2021-10-10T00:00:00.000Z
-slugs:
-  - new-blog-generation
+slug: new-blog-generation
 ---
 
 # new blog generation
