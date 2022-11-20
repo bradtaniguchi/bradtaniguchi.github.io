@@ -1,22 +1,21 @@
-import { Box } from '@primer/react';
-import { getMarkdownFiles } from '../../utils/get-markdown-files';
+import { CommonLogger } from '@bradtaniguchi-dev/common';
 import {
   GetStaticPathsResult,
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from 'next';
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 import { Card } from '../../components/core/card';
 import { PROJECTS_PATH } from '../../constants/projects-path';
 import { StaticProject } from '../../models/project';
 import { getMarkdown } from '../../utils/get-markdown';
+import { getMarkdownFiles } from '../../utils/get-markdown-files';
 import {
   getProjectMetaData,
   getProjectsMetaData,
   verifyProjectsMetaData,
 } from '../../utils/get-project-meta-data';
-import Link from 'next/link';
-import { FaArrowLeft } from 'react-icons/fa';
-import { CommonLogger } from '@bradtaniguchi-dev/common';
 
 export interface ProjectProps {
   project: StaticProject;

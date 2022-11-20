@@ -11,6 +11,15 @@ export interface StaticBlogPost {
    * The description of the project, shown as a summary
    */
   description: string;
+
+  /**
+   * List of tags for this post
+   */
+  tags: string[];
+  /**
+   * The date time this was "published", should be in ISO format
+   */
+  date: string;
 }
 
 export const getInvalidStaticBlogPostProps = (

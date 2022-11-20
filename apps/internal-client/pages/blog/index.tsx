@@ -7,20 +7,25 @@ import {
   verifyBlogPostMetaData,
 } from '../../utils/get-blog-post-meta-data';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
-
+import { StaticBlogPost as IStaticBlogPost } from '../../models/static-blog-post';
+import { StaticBlogPost } from '../../components/blog/static-blog-post';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BlogProps {}
+export interface BlogProps {
+  blogPosts: Array<Partial<IStaticBlogPost>>;
+}
 
 export default function Blog(props: BlogProps) {
   return (
     <Card>
       <Card.Header>Projects</Card.Header>
-      <Card.Body>
-        <p>
-          Blog is not available yet! I will be migrating over previous posts and
-          adding a few new ones over time.
-        </p>
-        <pre>{JSON.stringify(props, null, 2)}</pre>
+      <Card.Body p={0}>
+        {props.blogPosts.map((project) => (
+          <Card.Row p={3} key={project.slug}>
+            <StaticBlogPost
+              blog={project as unknown as IStaticBlogPost}
+            ></StaticBlogPost>
+          </Card.Row>
+        ))}
       </Card.Body>
     </Card>
   );
@@ -41,7 +46,7 @@ export async function getStaticProps(): Promise<
 
   return {
     props: {
-      projects: blogPostsMetaData,
+      blogPosts: blogPostsMetaData,
     },
   };
 }
