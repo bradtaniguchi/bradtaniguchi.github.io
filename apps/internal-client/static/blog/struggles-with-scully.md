@@ -1,6 +1,6 @@
 ---
 title: Struggles with scully
-description:
+description: why is everything so difficult?
 published: true
 date: 2021-11-22T00:00:00.000Z
 slug: struggles-with-scully
