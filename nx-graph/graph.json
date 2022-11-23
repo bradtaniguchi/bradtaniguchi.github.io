@@ -107,6 +107,12 @@
                 "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/validate-static-projects.ts"
               }
             },
+            "validate-blog-posts": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "npx ts-node --project=apps/internal-client/scripts/tsconfig.json apps/internal-client/scripts/validate-blog-posts.ts"
+              }
+            },
             "lighthouse": {
               "executor": "nx:run-commands",
               "options": {
@@ -155,6 +161,16 @@
                 "npm:luxon",
                 "npm:next",
                 "npm:react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/components/blog/static-blog-post.tsx",
+              "hash": "1d182a734ef91e1fd0f2102a2caa74c8d2bec32e",
+              "deps": [
+                "npm:@primer/react",
+                "npm:react",
+                "npm:luxon",
+                "npm:next"
               ]
             },
             {
@@ -238,6 +254,10 @@
               ]
             },
             {
+              "file": "apps/internal-client/constants/blog-path.ts",
+              "hash": "335f2b3d2869e28b84b2e4302afd912ea87db106"
+            },
+            {
               "file": "apps/internal-client/constants/github-url.ts",
               "hash": "5c52742da2d4c7ee086c607b20db74d81b315f05"
             },
@@ -275,6 +295,10 @@
                 "npm:@primer/react",
                 "npm:luxon"
               ]
+            },
+            {
+              "file": "apps/internal-client/models/static-blog-post.ts",
+              "hash": "c53afdd12fd3a96c5e26d0267e21bd75f2279afb"
             },
             {
               "file": "apps/internal-client/next-env.d.ts",
@@ -333,8 +357,21 @@
               ]
             },
             {
+              "file": "apps/internal-client/pages/blog/[slug].tsx",
+              "hash": "455f5283dd86fb89bc2e3e68df50e8b8988a740e",
+              "deps": [
+                "common",
+                "npm:next",
+                "npm:react-icons"
+              ]
+            },
+            {
               "file": "apps/internal-client/pages/blog/index.tsx",
-              "hash": "8174c5e36947f4f5d070b032ebbd140e5071875b"
+              "hash": "866d1fdb5ac28cc8e8dc597746f8121829b564ad",
+              "deps": [
+                "common",
+                "npm:next"
+              ]
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
@@ -348,24 +385,12 @@
               ]
             },
             {
-              "file": "apps/internal-client/pages/posts/[slug].tsx",
-              "hash": "0e6fca8c36aa04d271a55a541271fc6d005a8d34",
-              "deps": [
-                "npm:next"
-              ]
-            },
-            {
-              "file": "apps/internal-client/pages/posts/index.tsx",
-              "hash": "5cc78ad607bb2762bd24ce2e27ed10bc085d7112"
-            },
-            {
               "file": "apps/internal-client/pages/projects/[name].tsx",
-              "hash": "14759b66560c7abd357396aef90221b4036271e4",
+              "hash": "f626da8bf079a0b193ee33975931398879552083",
               "deps": [
-                "npm:@primer/react",
+                "common",
                 "npm:next",
-                "npm:react-icons",
-                "common"
+                "npm:react-icons"
               ]
             },
             {
@@ -393,7 +418,7 @@
             },
             {
               "file": "apps/internal-client/project.json",
-              "hash": "5137e1d55e78b182f6ba752a8c2c5c765008a5ed"
+              "hash": "8bc9b4bd367ea51a2f2c5d9a3bb810fe1da06166"
             },
             {
               "file": "apps/internal-client/public/.gitkeep",
@@ -413,7 +438,7 @@
             },
             {
               "file": "apps/internal-client/README.md",
-              "hash": "75f67b66fb701be5605aa099e10a305d27bc573c"
+              "hash": "6a5b866f93461d3e0ccd1c84f72ff33c8931e8b8"
             },
             {
               "file": "apps/internal-client/scripts/get-meta-data.ts",
@@ -428,8 +453,16 @@
               "hash": "8ca3c084ecc312b5673440d7b7912c98402f84c9"
             },
             {
+              "file": "apps/internal-client/scripts/validate-blog-posts.ts",
+              "hash": "c3177024bfac22bb6f322cde32f5551821b57867",
+              "deps": [
+                "npm:fs-extra",
+                "npm:yargs"
+              ]
+            },
+            {
               "file": "apps/internal-client/scripts/validate-static-projects.ts",
-              "hash": "d69a8d1bf1d948b188ded427fb2a4165e88f7b85",
+              "hash": "c13942507c009b3537c4785cf4ca4dc8efb6615a",
               "deps": [
                 "npm:fs-extra",
                 "npm:yargs"
@@ -458,60 +491,60 @@
               "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
             },
             {
-              "file": "apps/internal-client/static/blog/2021-05-29-blog.md",
-              "hash": "874f4e5c8f2a5ac4be49b97320d51a0e9a5c93bb"
-            },
-            {
-              "file": "apps/internal-client/static/blog/2021-07-07-blog.md",
-              "hash": "290d4ccda37eed7881d5933faf1edc98b9b4a9d4"
-            },
-            {
-              "file": "apps/internal-client/static/blog/2021-08-14-blog.md",
-              "hash": "085778ae73f9eea38e056d4575f31b4245961a10"
-            },
-            {
-              "file": "apps/internal-client/static/blog/2021-08-20-blog.md",
-              "hash": "0f9a0da5e272ac9a5a5bbd0e71065cab1d504522"
-            },
-            {
-              "file": "apps/internal-client/static/blog/2021-08-21-blog.md",
-              "hash": "744e7c1606b9ee5122bd03f1cb2d86132902ed22"
-            },
-            {
               "file": "apps/internal-client/static/blog/2021-08-31-blog.md",
-              "hash": "cb87198783bafddce809651b0060aa3540b1c579"
+              "hash": "b3fb007cef666aec4c0d6f1cb88daa114dd52372"
             },
             {
               "file": "apps/internal-client/static/blog/2021-09-02-blog.md",
-              "hash": "f4ccc3997decf536a645dd0d5fba594a2375bc32"
+              "hash": "dbc5be6186a6b12f89f0a17c6149cb239bc1b06e"
             },
             {
               "file": "apps/internal-client/static/blog/2021-09-19-blog.md",
-              "hash": "b38d1a143c8c1e2daf8796d676861d6f6b25a3fd"
+              "hash": "238e326d005a8c7f82a8552c65cc10d6093047dc"
             },
             {
-              "file": "apps/internal-client/static/blog/dogfight-game-remake.md",
-              "hash": "078c7a870414d9d6d40cc9b528cdb67a6f253a00"
+              "file": "apps/internal-client/static/blog/building-a-github-template-repo.md",
+              "hash": "0248a64b9323809058cb1d9f976fe29b8732649b"
+            },
+            {
+              "file": "apps/internal-client/static/blog/clojure-update-1.md",
+              "hash": "f3b0b744ecec8d31790e0d8985ebabcabc83d013"
+            },
+            {
+              "file": "apps/internal-client/static/blog/dogfight-game-remake-and-updates.md",
+              "hash": "6010c4997db92d4dd281fa6ebb53c4e122908d78"
+            },
+            {
+              "file": "apps/internal-client/static/blog/hello-world.md",
+              "hash": "83f261acef5aad9ae6cb3f399527e860c13970d9"
             },
             {
               "file": "apps/internal-client/static/blog/new-blog-generation.md",
-              "hash": "7fbede5d39d235f0acc9860c8302f4b6268baffb"
+              "hash": "41281d8d20ce93745e540bd28a39cece279a2c7c"
             },
             {
-              "file": "apps/internal-client/static/blog/new-script.md",
-              "hash": "e2880953045f1b0362550be21b90344969995667"
+              "file": "apps/internal-client/static/blog/new-script-ng-13.md",
+              "hash": "1745c7b4722df19fa92e02555169713676c56e5a"
             },
             {
               "file": "apps/internal-client/static/blog/new-year-same-stuff.md",
-              "hash": "37728a6dae3100d5b1a68ccfbbf1e3d2c7957aaa"
+              "hash": "f72e1c7dc115ecfe3c9893038cb3b29c250aa40f"
+            },
+            {
+              "file": "apps/internal-client/static/blog/re-learning-clojure.md",
+              "hash": "9ae7e649c24e69c163a37bb9dc0a07db47743e20"
             },
             {
               "file": "apps/internal-client/static/blog/struggles-with-scully.md",
-              "hash": "fa461973216c5ed4ed43f04b3a4413dbc25e11aa"
+              "hash": "2a0f84bcce5e7d85df0df3131c505044c0abffb9"
             },
             {
               "file": "apps/internal-client/static/blog/the-halloween-edition.md",
-              "hash": "acf3acfdf939483a07b418ca4df4f6ba11b58dce"
+              "hash": "3fcc48be063e204c6b0abe42d200b82fe988c12a"
+            },
+            {
+              "file": "apps/internal-client/static/blog/utf-8-vs-utf-16.md",
+              "hash": "9aec3fa5300f4c4399e173307b40f71de34c9a36"
             },
             {
               "file": "apps/internal-client/static/projects/bomb-defuse-utils.md",
@@ -581,6 +614,13 @@
               ]
             },
             {
+              "file": "apps/internal-client/utils/get-blog-post-meta-data.ts",
+              "hash": "56902425eb72c9995560200a0e77e20e2620eb5f",
+              "deps": [
+                "npm:front-matter"
+              ]
+            },
+            {
               "file": "apps/internal-client/utils/get-markdown-files.ts",
               "hash": "8012e6a16aabef2d780ef4f217e4c92c6c482641",
               "deps": [
@@ -610,6 +650,10 @@
                 "common-react",
                 "npm:@sentry/nextjs"
               ]
+            },
+            {
+              "file": "apps/internal-client/utils/props-and-validators.ts",
+              "hash": "67a419715f46384b9e2d22db3e52a1525b9cf41c"
             },
             {
               "file": "apps/internal-client/utils/theme-context.tsx",
