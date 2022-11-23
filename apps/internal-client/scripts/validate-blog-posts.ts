@@ -4,14 +4,12 @@ import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 const argv = yargs(hideBin(process.argv)).argv;
 import {
-  getProjectsMetaData,
-  verifyProjectsMetaData,
-} from '../utils/get-project-meta-data';
+  getBlogPostsMetaData,
+  verifyBlogPostMetaData,
+} from '../utils/get-blog-post-meta-data';
 import { getMarkdownFiles } from '../utils/get-markdown-files';
-import {
-  getInvalidStaticProjectProps,
-  isStaticProject,
-} from '../models/project';
+import { getInvalidStaticBlogPostProps } from '../models/static-blog-post';
+import { isStaticProject } from '../models/project';
 
 (async () => {
   try {
@@ -24,34 +22,34 @@ import {
 
     if (!pathStat.isDirectory()) throw new Error('Path is not a directory');
 
-    const projectPaths = await getMarkdownFiles(path);
+    const blogPostPaths = await getMarkdownFiles(path);
 
-    if (!projectPaths.length)
+    if (!blogPostPaths.length)
       throw new Error('No Projects found at path ' + path);
 
-    const projectsMetaData = await getProjectsMetaData(projectPaths);
+    const projectsMetaData = await getBlogPostsMetaData(blogPostPaths);
 
-    console.log('projects found ', {
+    console.log('blogs found ', {
       num: projectsMetaData.length,
       slugs: projectsMetaData.map(({ slug }) => slug),
     });
 
-    const invalidProjects = projectsMetaData.filter((projectsMetaData) =>
-      isStaticProject(projectsMetaData)
+    const invalidBlogPosts = projectsMetaData.filter((blogPostMetaData) =>
+      isStaticProject(blogPostMetaData)
     );
 
     console.log(
-      'invalid-projects: ',
-      invalidProjects.map((invalidProject) => ({
-        title: invalidProject.title,
-        invalidProps: getInvalidStaticProjectProps(invalidProject),
+      'invalid-blog-posts: ',
+      invalidBlogPosts.map((invalidBlogPost) => ({
+        title: invalidBlogPost.title,
+        invalidProps: getInvalidStaticBlogPostProps(invalidBlogPost),
       }))
     );
 
-    if (invalidProjects.length) throw new Error('Invalid projects found');
+    if (invalidBlogPosts.length) throw new Error('Invalid projects found');
 
     // check for duplicate slugs
-    verifyProjectsMetaData(projectsMetaData); // this throws internally
+    verifyBlogPostMetaData(projectsMetaData); // this throws internally
 
     process.exit(0);
   } catch (err) {

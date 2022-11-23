@@ -1,10 +1,9 @@
 ---
 title: Dogfight-game-remake-and-updates
-description:
+description: remaking a classic
 published: true
 date: 2022-03-05T00:00:00.000Z
-slugs:
-  - Dogfight-game-remake-and-updates
+slug: dogfight-game-remake-and-updates
 tags:
   - angular
   - nx

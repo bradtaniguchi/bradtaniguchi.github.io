@@ -3,8 +3,7 @@ title: UTF-8 vs UTF-16
 description: 'A lesson in copy-paste'
 published: true
 date: 2021-07-07T00:00:00.000Z
-slugs:
-  - utf-8-vs-utf-16
+slug: utf-8-vs-utf-16
 tags:
   - github-action
   - github
@@ -32,6 +31,7 @@ The process ended up taking multiple hours, included a walk to help clear my bra
 The problem started with me trying to be clever and use the [yaml configuration for lighthouse](https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md), rather than the traditional json format. Because of this, I used a starting JSON file example, and then an online converter to convert the JSON to YAML as **I was lazy at the time**.
 
 The end result was the following text (this was copied directly from the [source](https://github.com/bradtaniguchi/bradtaniguchi.github.io/blob/2ab3efef433969f2caaf9b09f91b8cc7294164b8/lighthouserc.yaml)):
+
 ```yaml
 ci:
   url:
@@ -40,9 +40,10 @@ ci:
     staticDistDir: './public/static'
 ```
 
-**note** this first version is actually incorrect compared to the final format, which correctly used the `staticDistDir` of `public/client-static`, but this would of given me a different more friendly error than what occured.
+**note** this first version is actually incorrect compared to the final format, which correctly used the `staticDistDir` of `public/client-static`, but this would of given me a different more friendly error than what occurred.
 
 From this YAML file, I deployed my to my CI/CD and where I was introduced to this friendly error message:
+
 ```
 Run treosh/lighthouse-ci-action@v2
 Action config
@@ -50,19 +51,19 @@ Action config
       ��c
          ^
 ```
+
 **note** this was copied directly from the [source](https://github.com/bradtaniguchi/bradtaniguchi.github.io/runs/3003815331?check_suite_focus=true)
 
-By this point I introduced only 2 new files, and made changes to my CI/CD workflow file. The issue had to be isolated to one of the 2 files, **or** the 2 files are working correctly and what is being loaded/tested by lighthouse is failing. 
+By this point I introduced only 2 new files, and made changes to my CI/CD workflow file. The issue had to be isolated to one of the 2 files, **or** the 2 files are working correctly and what is being loaded/tested by lighthouse is failing.
 
 **this is where I started to debug.... a lot, and where the trials began....**
 
 ## The trials
 
-I started debugging with the 2 files I added, the rc file and the budget file. Both looked like valid contents, except with every deployment I kept getting **the same error**. It took roughly 5-6 builds to get a different error, which was when I 100% removed all changes except the changes to the github-action workflow itself. At this point I took a walk to help clear my head from all the red `x`s. 
+I started debugging with the 2 files I added, the rc file and the budget file. Both looked like valid contents, except with every deployment I kept getting **the same error**. It took roughly 5-6 builds to get a different error, which was when I 100% removed all changes except the changes to the github-action workflow itself. At this point I took a walk to help clear my head from all the red `x`s.
 
 Knowing that the issue was isolated to the single file, I started getting a nagging feeling the lighthouserc.json file had an issue with it, maybe one I couldn't actually see. It was at this point I directly ran the lighthouse action in nodejs and got the same issue, except without having to wait for the CI/CD pipeline. It was then I realized.... VSCode pointed out the file format was in `UTF-16` rather than the usual `UTF-8`. I switched the file format, and lo and behold, the CI/CD failed a different way. I walked away and accepted that I essentially "fixed" the problem.
 
-
 ## The solution
-The issue was there was 2 invisible character introduced at the start of the time by the yaml-to-json converter. This apparently created the error message I saw in the lighthouse-ci action during serialization of the JSON file. I don't remember exactly what was the character(s), but will remember to check that small box in the corner showing the text encoding, as this sort of problem wasted too much of my time already, and I don't plan on letting it waste more in the future.
 
+The issue was there was 2 invisible character introduced at the start of the time by the yaml-to-json converter. This apparently created the error message I saw in the lighthouse-ci action during serialization of the JSON file. I don't remember exactly what was the character(s), but will remember to check that small box in the corner showing the text encoding, as this sort of problem wasted too much of my time already, and I don't plan on letting it waste more in the future.

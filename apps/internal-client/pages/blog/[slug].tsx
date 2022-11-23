@@ -1,4 +1,5 @@
 import { CommonLogger } from '@bradtaniguchi-dev/common';
+import { BLOG_PATH } from '../../constants/blog-path';
 import {
   GetStaticPathsResult,
   GetStaticPropsContext,
@@ -7,24 +8,21 @@ import {
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Card } from '../../components/core/card';
-import { PROJECTS_PATH } from '../../constants/projects-path';
-import { StaticProject } from '../../models/project';
+import { StaticBlogPost } from '../../models/static-blog-post';
+import {
+  getBlogPostMetaData,
+  getBlogPostsMetaData,
+  verifyBlogPostMetaData,
+} from '../../utils/get-blog-post-meta-data';
 import { getMarkdown } from '../../utils/get-markdown';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
-import {
-  getProjectMetaData,
-  getProjectsMetaData,
-  verifyProjectsMetaData,
-} from '../../utils/get-project-meta-data';
 
-export interface ProjectProps {
-  project: StaticProject;
+export interface BlogPostProps {
+  blogPost: StaticBlogPost;
   markdown: string;
 }
 
-export default function Project({ markdown, project }: ProjectProps) {
-  // TODO: Add logic to handle different types of projects
-  // currently only handling static ones.
+export default function BlogPost({ markdown, blogPost }: BlogPostProps) {
   return (
     <Card>
       <Card.Header
@@ -32,10 +30,10 @@ export default function Project({ markdown, project }: ProjectProps) {
         flexDirection="row"
         justifyContent="space-between"
       >
-        <span>{project.title}</span>
+        <span>{blogPost.title}</span>
 
         <span>
-          <Link href="/projects" aria-label="Back to Projects List">
+          <Link href="/blog" aria-label="Back to Blog List">
             <FaArrowLeft />
           </Link>
         </span>
@@ -52,17 +50,18 @@ export default function Project({ markdown, project }: ProjectProps) {
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
   const logger = new CommonLogger();
-  const projectPaths = await getMarkdownFiles(PROJECTS_PATH);
+  const projectPaths = await getMarkdownFiles(BLOG_PATH);
 
-  const projectsMetaData = await getProjectsMetaData(projectPaths);
+  const blogPostsMetaData = await getBlogPostsMetaData(projectPaths);
 
-  verifyProjectsMetaData(projectsMetaData);
+  verifyBlogPostMetaData(blogPostsMetaData);
 
-  logger.log('projects meta-data', projectsMetaData);
+  logger.log('blog meta-data', blogPostsMetaData);
+
   return {
-    paths: projectsMetaData.map(({ slug }) => ({
+    paths: blogPostsMetaData.map(({ slug }) => ({
       params: {
-        name: slug,
+        slug,
       },
     })),
     fallback: false,
@@ -71,18 +70,18 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 
 export async function getStaticProps({
   params,
-}: GetStaticPropsContext): Promise<GetStaticPropsResult<ProjectProps>> {
-  const { name } = params;
+}: GetStaticPropsContext): Promise<GetStaticPropsResult<BlogPostProps>> {
+  const { slug } = params;
 
-  const filePath = `${PROJECTS_PATH}${name}.md`;
-  const [project, markdown] = await Promise.all([
-    getProjectMetaData(filePath),
+  const filePath = `${BLOG_PATH}${slug}.md`;
+  const [blogPost, markdown] = await Promise.all([
+    getBlogPostMetaData(filePath),
     getMarkdown(filePath),
   ]);
 
   return {
     props: {
-      project,
+      blogPost,
       markdown,
     },
   };
