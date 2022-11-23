@@ -799,16 +799,31 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/use-config.spec.tsx",
-              "hash": "74a81f5919a6c4e049a79b22410c60226e6a56b2",
+              "hash": "1f9f49eb35a0106687d5d4d2b91ffb8ad3c00a39",
               "deps": [
-                "npm:@testing-library/react",
-                "npm:react"
+                "npm:@testing-library/react"
               ]
             },
             {
               "file": "libs/common-react/src/lib/hooks/use-config.ts",
               "hash": "efa4f7020ac3596a8f224848a666d7f1d252e30b",
               "deps": [
+                "npm:react"
+              ]
+            },
+            {
+              "file": "libs/common-react/src/lib/hooks/use-local-collection.spec.tsx",
+              "hash": "c18bad0a5afeba56d0ce90e46f38fc9b12b6eef2",
+              "deps": [
+                "npm:@testing-library/react",
+                "npm:@testing-library/jest-dom"
+              ]
+            },
+            {
+              "file": "libs/common-react/src/lib/hooks/use-local-collection.ts",
+              "hash": "26e87a33f4ad3b1d27f32bf6bcf7efd7c9c6e3bd",
+              "deps": [
+                "npm:fuse.js",
                 "npm:react"
               ]
             },
