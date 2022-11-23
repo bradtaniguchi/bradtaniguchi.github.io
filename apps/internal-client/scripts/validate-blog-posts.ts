@@ -9,6 +9,7 @@ import {
 } from '../utils/get-blog-post-meta-data';
 import { getMarkdownFiles } from '../utils/get-markdown-files';
 import { getInvalidStaticBlogPostProps } from '../models/static-blog-post';
+import { isStaticProject } from '../models/project';
 
 (async () => {
   try {
@@ -33,11 +34,9 @@ import { getInvalidStaticBlogPostProps } from '../models/static-blog-post';
       slugs: projectsMetaData.map(({ slug }) => slug),
     });
 
-    // const invalidBlogPosts = projectsMetaData.filter((blogPostMetaData) =>
-    //   isStaticProject(blogPostMetaData)
-    // );
-    // TODO:
-    const invalidBlogPosts = [];
+    const invalidBlogPosts = projectsMetaData.filter((blogPostMetaData) =>
+      isStaticProject(blogPostMetaData)
+    );
 
     console.log(
       'invalid-blog-posts: ',

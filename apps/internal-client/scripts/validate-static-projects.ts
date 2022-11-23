@@ -31,7 +31,10 @@ import {
 
     const projectsMetaData = await getProjectsMetaData(projectPaths);
 
-    console.log('projects found ', projectsMetaData.length);
+    console.log('projects found ', {
+      num: projectsMetaData.length,
+      slugs: projectsMetaData.map(({ slug }) => slug),
+    });
 
     const invalidProjects = projectsMetaData.filter((projectsMetaData) =>
       isStaticProject(projectsMetaData)
