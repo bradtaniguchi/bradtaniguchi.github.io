@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
 import { default as Fuse } from 'fuse.js';
+import { useEffect, useMemo, useState } from 'react';
 
 export type ValueOf<T> = T[keyof T];
 
@@ -50,9 +50,13 @@ export function useLocalCollection<Element>(params: {
   } = params;
 
   const [fuse, setFuse] = useState<Fuse<Element> | null>(null);
+  const [fuseLoadError, setFuseLoadError] = useState<unknown>(null);
 
+  /**
+   * Effect to manage the loading of the fuse library.
+   */
   useEffect(() => {
-    if (initialElements && initialElements.length) {
+    if (!fuse && initialElements && initialElements.length) {
       import('fuse.js')
         .then(
           ({ default: Fuse }) =>
@@ -61,21 +65,54 @@ export function useLocalCollection<Element>(params: {
         .then((fuse) => {
           setFuse(fuse);
         })
-        // TODO: add error state
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        .catch(() => {});
+        .catch((err) => {
+          setFuseLoadError(err);
+        });
     }
-  }, [initialElements, searchOptions]);
+  }, [fuse, initialElements, searchOptions]);
 
-  const elements = useMemo(() => {
-    const filteredElements = initialElements.filter((element) =>
+  /**
+   * Memoize the calculation to save on performance
+   */
+  const results = useMemo(() => {
+    let filteredElements: Array<Element>;
+
+    filteredElements = initialElements.filter((element) =>
       (filters || []).every(({ key, value }) => element[key] === value)
     );
 
+    if (fuse && search) {
+      fuse.setCollection(filteredElements);
+      filteredElements = fuse.search(search).map((result) => result.item);
+    }
+
+    if (sortBy && sortDir) {
+      filteredElements.sort((a, b) => {
+        if (a[sortBy] === b[sortBy]) return 0;
+        if (sortDir === 'asc') return a[sortBy] > b[sortBy] ? 1 : -1;
+        return a[sortBy] < b[sortBy] ? 1 : -1;
+      });
+    }
     return filteredElements;
-    // TODO: finalize
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialElements, filters, sortBy, sortDir, search, fuse]);
 
-  return { elements };
+  return {
+    /**
+     * The list of filtered results
+     */
+    results,
+    /**
+     * The error provided if fuse could not be loaded.
+     * If this is provided, then searching will not work.
+     */
+    fuseLoadError,
+    /**
+     * The number of results matching
+     */
+    numOfResults: results.length,
+    /**
+     * The difference between the inputted elements and the filtered results
+     */
+    diffResults: initialElements.length - results.length,
+  };
 }

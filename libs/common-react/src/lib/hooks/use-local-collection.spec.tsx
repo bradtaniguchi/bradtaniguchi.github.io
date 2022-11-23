@@ -1,5 +1,5 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
-import { CollectionFilter, useLocalCollection } from './use-local-collection';
+import { useLocalCollection } from './use-local-collection';
 // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom';
 
@@ -44,7 +44,7 @@ describe('useLocalCollection', () => {
       typeof useLocalCollection<Element>
     >[0]['sortDir'];
   }) {
-    const { elements } = useLocalCollection({
+    const { results, numOfResults, diffResults } = useLocalCollection({
       elements: props.initialElements,
       filters: props.initialFilters,
       search: props.initialSearch,
@@ -53,7 +53,11 @@ describe('useLocalCollection', () => {
       sortDir: props.initialSortDir,
     });
     return (
-      <div data-testid="elements">{JSON.stringify(elements, null, 2)}</div>
+      <div>
+        <div data-testid="results">{JSON.stringify(results, null, 2)}</div>
+        <div data-testid="numOfResults">{numOfResults}</div>
+        <div data-testid="diffResults">{diffResults}</div>
+      </div>
     );
   }
 
@@ -61,10 +65,29 @@ describe('useLocalCollection', () => {
    * Helper function to test against the expected elements rendered in the
    * UseLocalCollectionExample component.
    */
-  const expectElements = (expected: Array<Element>) =>
-    expect(screen.getByTestId('elements').textContent).toEqual(
+  const expectResults = (
+    expected: Array<Element>,
+    params?: {
+      numOfResults?: number;
+      diffResults?: number;
+    }
+  ) => {
+    expect(screen.getByTestId('results').textContent).toEqual(
       JSON.stringify(expected, null, 2)
     );
+
+    if (params?.numOfResults) {
+      expect(screen.getByTestId('numOfResults')).toHaveTextContent(
+        '' + params.numOfResults
+      );
+    }
+
+    if (params?.diffResults) {
+      expect(screen.getByTestId('diffResults')).toHaveTextContent(
+        '' + params.diffResults
+      );
+    }
+  };
 
   test('renders nothing', async () => {
     await act(async () => {
@@ -72,7 +95,7 @@ describe('useLocalCollection', () => {
     });
 
     await waitFor(() => {
-      expectElements([]);
+      expectResults([]);
     });
   });
 
@@ -82,7 +105,7 @@ describe('useLocalCollection', () => {
     });
 
     await waitFor(() => {
-      expectElements(initialElements);
+      expectResults(initialElements);
     });
   });
   test('filters work', async () => {
@@ -101,11 +124,90 @@ describe('useLocalCollection', () => {
     });
 
     await waitFor(() => {
-      expectElements([firstElement]);
+      expectResults([firstElement], {
+        diffResults: 2,
+        numOfResults: 1,
+      });
     });
   });
 
-  test.todo('sort asc works');
-  test.todo('sort dsc works');
-  test.todo('search works');
+  test('sort asc works', async () => {
+    await act(async () => {
+      render(
+        <UseLocalCollectionExample
+          initialElements={initialElements}
+          initialSortBy={'name'}
+          initialSortDir={'asc'}
+        />
+      );
+    });
+
+    await waitFor(() => {
+      expectResults([secondElement, firstElement, thirdElement]);
+    });
+  });
+
+  test('sort dsc works', async () => {
+    await act(async () => {
+      render(
+        <UseLocalCollectionExample
+          initialElements={initialElements}
+          initialSortBy={'name'}
+          initialSortDir={'dsc'}
+        />
+      );
+    });
+
+    await waitFor(() => {
+      expectResults([thirdElement, firstElement, secondElement]);
+    });
+  });
+
+  test('search works', async () => {
+    await act(async () => {
+      render(
+        <UseLocalCollectionExample
+          initialElements={initialElements}
+          initialSearch={'Ada'}
+          searchOptions={{
+            keys: ['name'],
+            // low threshold for testing
+            distance: 5,
+          }}
+        />
+      );
+    });
+
+    await waitFor(() => {
+      expectResults([secondElement]);
+    });
+  });
+
+  test('combining search+filtering+sort works', async () => {
+    await act(async () => {
+      render(
+        <UseLocalCollectionExample
+          initialElements={[...initialElements, { name: 'Ada', age: 100 }]}
+          initialFilters={[
+            {
+              key: 'age',
+              value: 25,
+            },
+          ]}
+          initialSearch={'Ada'}
+          searchOptions={{
+            keys: ['name'],
+            // low threshold for testing
+            distance: 5,
+          }}
+          initialSortBy={'name'}
+          initialSortDir={'dsc'}
+        />
+      );
+    });
+
+    await waitFor(() => {
+      expectResults([secondElement]);
+    });
+  });
 });
