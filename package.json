@@ -43,6 +43,7 @@
     "core-js": "^3.6.5",
     "dompurify": "^2.3.9",
     "front-matter": "^4.0.2",
+    "fuse.js": "^6.6.2",
     "jest-environment-jsdom": "^29.3.0",
     "jsdom": "^20.0.0",
     "localforage": "^1.10.0",

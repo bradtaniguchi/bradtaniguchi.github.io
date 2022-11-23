@@ -2,7 +2,6 @@ import { useConfig } from './use-config';
 import { render, screen, waitFor } from '@testing-library/react';
 import * as utils from '../utils';
 import { BaseConfig } from '../types/base-config';
-import * as React from 'react';
 
 describe('useConfig', () => {
   const baseConfig: BaseConfig = {
