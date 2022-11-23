@@ -1,12 +1,16 @@
 import { getInvalidProps } from '../utils/props-and-validators';
 
 export interface StaticBlogPost {
+  /**
+   * The slug for the blog post, shown in the URL.
+   */
   slug: string;
 
   /**
    * The title of the blog post
    */
   title: string;
+
   /**
    * The description of the project, shown as a summary
    */
@@ -16,6 +20,7 @@ export interface StaticBlogPost {
    * List of tags for this post
    */
   tags: string[];
+
   /**
    * The date time this was "published", should be in ISO format
    */

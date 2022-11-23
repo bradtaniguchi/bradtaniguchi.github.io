@@ -11,7 +11,7 @@ export interface StaticBlogPostProps {
 /**
  * Static blog UI component
  */
-export const StaticBlogPost = memo(function StaticProject(
+export const StaticBlogPost = memo(function StaticBlogPost(
   props: StaticBlogPostProps
 ) {
   return (
