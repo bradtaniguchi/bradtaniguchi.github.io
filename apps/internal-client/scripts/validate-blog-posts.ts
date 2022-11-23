@@ -40,7 +40,7 @@ import { getInvalidStaticBlogPostProps } from '../models/static-blog-post';
     const invalidBlogPosts = [];
 
     console.log(
-      'invalid-projects: ',
+      'invalid-blog-posts: ',
       invalidBlogPosts.map((invalidBlogPost) => ({
         title: invalidBlogPost.title,
         invalidProps: getInvalidStaticBlogPostProps(invalidBlogPost),
