@@ -1,10 +1,11 @@
 import fm from 'front-matter';
 import { readFile } from 'fs/promises';
+
 import {
-  isStaticProject,
-  getInvalidStaticProjectProps,
-} from '../models/project';
-import { StaticBlogPost } from '../models/static-blog-post';
+  getInvalidStaticBlogPostProps,
+  isStaticBlogPost,
+  StaticBlogPost,
+} from '../models/static-blog-post';
 
 /**
  * Returns a list of blog post meta-data from their markdown.
@@ -15,8 +16,8 @@ export const getBlogPostMetaData = async (
 ): Promise<StaticBlogPost> => {
   const rawFileContent = await readFile(path);
   const rawAttributes = fm(rawFileContent.toString()).attributes;
-  if (!isStaticProject(rawAttributes)) {
-    const invalidProps = getInvalidStaticProjectProps(rawAttributes);
+  if (!isStaticBlogPost(rawAttributes)) {
+    const invalidProps = getInvalidStaticBlogPostProps(rawAttributes);
     throw new Error(
       'Invalid project at path ' +
         path +

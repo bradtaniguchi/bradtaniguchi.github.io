@@ -17,7 +17,8 @@ export interface StaticBlogPost {
   description: string;
 
   /**
-   * List of tags for this post
+   * List of tags for this post.
+   * Unlike projects we don't care about color
    */
   tags: string[];
 
@@ -38,3 +39,11 @@ export const getInvalidStaticBlogPostProps = (
     ],
     data as StaticBlogPost
   );
+
+/**
+ * Type guard that returns if the given data is a valid
+ * static-blog-post.
+ */
+export const isStaticBlogPost = (data: unknown): data is StaticBlogPost => {
+  return !!data && getInvalidStaticBlogPostProps(data).length === 0;
+};
