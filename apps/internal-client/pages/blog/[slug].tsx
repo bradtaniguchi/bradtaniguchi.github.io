@@ -1,7 +1,21 @@
+import { CommonLogger } from '@bradtaniguchi-dev/common';
+import { BLOG_PATH } from '../../constants/blog-path';
+import {
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from 'next';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Card } from '../../components/core/card';
 import { StaticBlogPost } from '../../models/static-blog-post';
+import {
+  getBlogPostMetaData,
+  getBlogPostsMetaData,
+  verifyBlogPostMetaData,
+} from '../../utils/get-blog-post-meta-data';
+import { getMarkdown } from '../../utils/get-markdown';
+import { getMarkdownFiles } from '../../utils/get-markdown-files';
 
 export interface BlogPostProps {
   blogPost: StaticBlogPost;
@@ -19,7 +33,7 @@ export default function BlogPost({ markdown, blogPost }: BlogPostProps) {
         <span>{blogPost.title}</span>
 
         <span>
-          <Link href="/projects" aria-label="Back to Projects List">
+          <Link href="/blog" aria-label="Back to Blog List">
             <FaArrowLeft />
           </Link>
         </span>
@@ -32,4 +46,43 @@ export default function BlogPost({ markdown, blogPost }: BlogPostProps) {
       {/* TODO: add social media "shares" here */}
     </Card>
   );
+}
+
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  const logger = new CommonLogger();
+  const projectPaths = await getMarkdownFiles(BLOG_PATH);
+
+  const blogPostsMetaData = await getBlogPostsMetaData(projectPaths);
+
+  verifyBlogPostMetaData(blogPostsMetaData);
+
+  logger.log('blog meta-data', blogPostsMetaData);
+
+  return {
+    paths: blogPostsMetaData.map(({ slug }) => ({
+      params: {
+        slug,
+      },
+    })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({
+  params,
+}: GetStaticPropsContext): Promise<GetStaticPropsResult<BlogPostProps>> {
+  const { slug } = params;
+
+  const filePath = `${BLOG_PATH}${slug}.md`;
+  const [blogPost, markdown] = await Promise.all([
+    getBlogPostMetaData(filePath),
+    getMarkdown(filePath),
+  ]);
+
+  return {
+    props: {
+      blogPost,
+      markdown,
+    },
+  };
 }

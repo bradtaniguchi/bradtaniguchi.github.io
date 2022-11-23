@@ -74,7 +74,7 @@ export async function getStaticProps({
 }: GetStaticPropsContext): Promise<GetStaticPropsResult<ProjectProps>> {
   const { name } = params;
 
-  const filePath = `${PROJECTS_PATH}/${name}.md`;
+  const filePath = `${PROJECTS_PATH}${name}.md`;
   const [project, markdown] = await Promise.all([
     getProjectMetaData(filePath),
     getMarkdown(filePath),
