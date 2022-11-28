@@ -119,5 +119,5 @@ export const getInvalidStaticProjectProps = (
  * valid static-project.
  */
 export const isStaticProject = (data: unknown): data is StaticProject => {
-  return !!getInvalidStaticProjectProps(data).length;
+  return getInvalidStaticProjectProps(data).length === 0;
 };
