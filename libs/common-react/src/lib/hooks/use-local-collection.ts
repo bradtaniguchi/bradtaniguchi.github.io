@@ -30,6 +30,7 @@ export interface CollectionFilter<Key extends string | number | symbol, Value> {
  * @param params.filters array of filters to apply to returned data
  * @param params.sortBy they key to sort by
  * @param params.search string to search against the elements.
+ * @param params.limit number that can be passed to limit the number of results
  *
  */
 export function useLocalCollection<Element>(params: {
@@ -39,6 +40,7 @@ export function useLocalCollection<Element>(params: {
   sortDir?: 'asc' | 'dsc';
   search?: string;
   searchOptions?: Fuse.IFuseOptions<Element>;
+  limit?: number;
 }) {
   const {
     elements: initialElements,
@@ -47,6 +49,7 @@ export function useLocalCollection<Element>(params: {
     sortDir,
     search,
     searchOptions,
+    limit,
   } = params;
 
   const [fuse, setFuse] = useState<Fuse<Element> | null>(null);
@@ -72,7 +75,8 @@ export function useLocalCollection<Element>(params: {
   }, [fuse, initialElements, searchOptions]);
 
   /**
-   * Memoize the calculation to save on performance
+   * Memoize the calculation to save on performance.
+   * TODO: might move to multiple chained memo calls
    */
   const results = useMemo(() => {
     let filteredElements: Array<Element>;
@@ -93,8 +97,13 @@ export function useLocalCollection<Element>(params: {
         return a[sortBy] < b[sortBy] ? 1 : -1;
       });
     }
+
+    if (limit && typeof limit === 'number') {
+      filteredElements = filteredElements.slice(0, limit);
+    }
+
     return filteredElements;
-  }, [initialElements, filters, sortBy, sortDir, search, fuse]);
+  }, [initialElements, filters, sortBy, sortDir, search, limit, fuse]);
 
   return {
     /**
