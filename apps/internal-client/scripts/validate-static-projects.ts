@@ -36,8 +36,8 @@ import {
       slugs: projectsMetaData.map(({ slug }) => slug),
     });
 
-    const invalidProjects = projectsMetaData.filter((projectsMetaData) =>
-      isStaticProject(projectsMetaData)
+    const invalidProjects = projectsMetaData.filter(
+      (projectsMetaData) => !isStaticProject(projectsMetaData)
     );
 
     console.log(

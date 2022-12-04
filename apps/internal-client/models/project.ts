@@ -77,9 +77,11 @@ export const getInvalidStaticProjectProps = (
     [
       'date',
       () =>
-        castData.date &&
-        typeof castData.date === 'string' &&
-        DateTime.fromISO(castData.date).isValid,
+        (castData.date &&
+          typeof castData.date === 'string' &&
+          DateTime.fromISO(castData.date).isValid) ||
+        // this is cast at another level automatically
+        (castData.date as unknown as Date) instanceof Date,
     ],
     [
       'published',
@@ -119,5 +121,5 @@ export const getInvalidStaticProjectProps = (
  * valid static-project.
  */
 export const isStaticProject = (data: unknown): data is StaticProject => {
-  return !!getInvalidStaticProjectProps(data).length;
+  return getInvalidStaticProjectProps(data).length === 0;
 };
