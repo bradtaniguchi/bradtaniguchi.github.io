@@ -290,7 +290,7 @@
             },
             {
               "file": "apps/internal-client/models/project.ts",
-              "hash": "97e10a8135801832c6299614b7435171e83a1edc",
+              "hash": "86632ebdae75370da9cac3ade4e7fa5c925c5306",
               "deps": [
                 "npm:@primer/react",
                 "npm:luxon"
@@ -462,7 +462,7 @@
             },
             {
               "file": "apps/internal-client/scripts/validate-static-projects.ts",
-              "hash": "c13942507c009b3537c4785cf4ca4dc8efb6615a",
+              "hash": "10d89a844a7ca560b98c2576d4456c9634bc01cd",
               "deps": [
                 "npm:fs-extra",
                 "npm:yargs"
