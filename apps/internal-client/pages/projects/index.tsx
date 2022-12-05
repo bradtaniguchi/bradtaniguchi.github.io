@@ -1,5 +1,5 @@
 import { CommonLogger } from '@bradtaniguchi-dev/common';
-import { useLocalCollection } from '@bradtaniguchi-dev/common-react';
+import { useLocalCollection, useLogger } from '@bradtaniguchi-dev/common-react';
 import { Box } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
 import { useCallback, useMemo, useState } from 'react';
@@ -8,7 +8,7 @@ import { StaticProject } from '../../components/project/static-project';
 import {
   ListFilterProps,
   ListFilters,
-} from '../../components/projects/project-filters';
+} from '../../components/projects/list-filters';
 import { PROJECTS_PATH } from '../../constants/projects-path';
 import { StaticProject as IStaticProject } from '../../models/project';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
@@ -25,13 +25,23 @@ export interface ProjectsProps {
 }
 
 export default function Projects(props: ProjectsProps) {
+  const logger = useLogger();
+
   const [searchValue, setSearchValue] = useState<string>('');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const handleSearchChange: ListFilterProps['onSearchChange'] = useCallback(
     (searchValue) => {
       setSearchValue(searchValue);
     },
     []
+  );
+  const handleTagChange = useCallback(
+    (updatedSelectedTags: string[]) => {
+      logger.log('handleTagChange', { selectedTags, updatedSelectedTags });
+      setSelectedTags([...selectedTags, ...updatedSelectedTags]);
+    },
+    [logger, selectedTags]
   );
 
   const { results: projects } = useLocalCollection({
@@ -56,7 +66,12 @@ export default function Projects(props: ProjectsProps) {
         >
           <div>Projects</div>
           <div>
-            <ListFilters onSearchChange={handleSearchChange} />
+            <ListFilters
+              onSearchChange={handleSearchChange}
+              availableTags={['one', 'two', 'three']}
+              selectedTags={selectedTags}
+              onTagChange={handleTagChange}
+            />
           </div>
         </Box>
       </Card.Header>
