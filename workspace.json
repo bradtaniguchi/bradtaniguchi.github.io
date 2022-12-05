@@ -4,6 +4,7 @@
   "projects": {
     "common": "libs/common",
     "common-react": "libs/common-react",
+    "forem-api": "libs/forem-api",
     "internal-client": "apps/internal-client",
     "markdown": "libs/markdown",
     "storybook": "libs/storybook"
