@@ -1,1 +1,1 @@
-export * from './lib/forem-api';
+export * from './lib/utils';
