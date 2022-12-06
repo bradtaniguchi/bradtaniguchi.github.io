@@ -29,6 +29,12 @@
         "jestConfig": "libs/forem-api/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "get-articles": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx ts-node --project=libs/forem-api/tools/tsconfig.json libs/forem-api/tools/get-articles.ts"
+      }
     }
   },
   "tags": []

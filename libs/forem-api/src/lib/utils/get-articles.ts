@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 /**
  * Returns the list of published articles from dev.to
  *
