@@ -39,7 +39,7 @@ export default function Projects(props: ProjectsProps) {
   const handleTagChange = useCallback(
     (updatedSelectedTags: string[]) => {
       logger.log('handleTagChange', { selectedTags, updatedSelectedTags });
-      setSelectedTags([...selectedTags, ...updatedSelectedTags]);
+      setSelectedTags(updatedSelectedTags);
     },
     [logger, selectedTags]
   );

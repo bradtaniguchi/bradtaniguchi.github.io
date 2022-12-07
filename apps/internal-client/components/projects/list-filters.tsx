@@ -12,6 +12,9 @@ export interface ListFilterProps {
   onSearchChange?: (searchValue: string) => unknown;
   /**
    * Callback that is called when the tags are changed.
+   *
+   * Will provide the list of **all** the selected tags, so the parent
+   * can update its state.
    */
   onTagChange?: (selectedTags: string[]) => unknown;
   /**
@@ -52,7 +55,11 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
 
   // derived state
   const showTags = availableTags?.length > 0;
-
+  const availableTagItems =
+    availableTags?.map((text) => ({ key: text, text } as ItemInput)) ?? [];
+  const selectedTagItems = availableTagItems.filter((availableTagText) =>
+    selectedTags?.includes(availableTagText.text)
+  );
   // effects
   const [isReadyFn, cancel] = useDebounce(
     () => onSearchChange(debouncedValue),
@@ -120,20 +127,8 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
             onOpenChange={setTagsOpened}
             onFilterChange={handleTagFilterChange}
             onSelectedChange={handleTagSelectedChange}
-            items={
-              availableTags?.map(
-                (text) => ({ key: text, text } as ItemInput)
-              ) ?? []
-            }
-            selected={
-              selectedTags?.map(
-                (text) =>
-                  ({
-                    key: text,
-                    text,
-                  } as ItemInput)
-              ) ?? []
-            }
+            items={availableTagItems}
+            selected={selectedTagItems}
           />
         ) : null}
         <div>
