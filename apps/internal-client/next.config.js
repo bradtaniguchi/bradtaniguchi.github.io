@@ -17,11 +17,12 @@ const nextConfig = {
     svgr: false,
   },
   images: {
-    loader: 'akamai',
-    path: '/',
-    domains: ['avatars.githubusercontent.com'],
+    // disable optimization
+    unoptimized: true,
   },
   /**
+   * **Note** this will throw a warning about unknown property, but
+   * this is required for sentry to work it seems.
    * @type {import('@sentry/nextjs').SentryWebpackPluginOptions}
    */
   sentry: {

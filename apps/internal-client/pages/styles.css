@@ -6,6 +6,11 @@ body {
   overflow: hidden;
 }
 
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .image-wrapper img {
   border-radius: 8px;
 }
