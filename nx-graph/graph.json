@@ -247,6 +247,16 @@
               ]
             },
             {
+              "file": "apps/internal-client/components/projects/list-filters.tsx",
+              "hash": "619460e4d33f4fd81a34ada838161e1e5128001b",
+              "deps": [
+                "npm:@primer/octicons-react",
+                "npm:@primer/react",
+                "npm:react",
+                "npm:react-use"
+              ]
+            },
+            {
               "file": "apps/internal-client/components/spinner.tsx",
               "hash": "263a96f37d89099bf5be80d1c9f6479dfd4cfcf0",
               "deps": [
@@ -395,10 +405,12 @@
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "08cc546d301ae3143ea9c385b7eebfa9bb674322",
+              "hash": "f38b54c18103706dfd01e6435021e4d80862a407",
               "deps": [
-                "common",
-                "npm:next"
+                "common-react",
+                "npm:@primer/react",
+                "npm:next",
+                "npm:react"
               ]
             },
             {
@@ -832,7 +844,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/index.ts",
-              "hash": "67954b453c8cdcbc2d31c1e1f01cfc9b8e1681e3"
+              "hash": "1aab83de3dba0814a14c23945d5b0050e53f0eb0"
             },
             {
               "file": "libs/common-react/src/lib/hooks/theme-context-factory.ts",
@@ -856,6 +868,14 @@
               ]
             },
             {
+              "file": "libs/common-react/src/lib/hooks/use-fuse.ts",
+              "hash": "d0903db8aeef0e476cf93e4acc213aaccf04d079",
+              "deps": [
+                "npm:react",
+                "npm:fuse.js"
+              ]
+            },
+            {
               "file": "libs/common-react/src/lib/hooks/use-local-collection.spec.tsx",
               "hash": "c18bad0a5afeba56d0ce90e46f38fc9b12b6eef2",
               "deps": [
@@ -865,7 +885,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/use-local-collection.ts",
-              "hash": "26e87a33f4ad3b1d27f32bf6bcf7efd7c9c6e3bd",
+              "hash": "f454dd34f00f0204434c7d1c84a4381f6eb1865a",
               "deps": [
                 "npm:fuse.js",
                 "npm:react"
