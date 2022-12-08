@@ -18,10 +18,16 @@ const nextConfig = {
   },
   images: {
     loader: 'akamai',
-    path: '',
+    path: '/',
     domains: ['avatars.githubusercontent.com'],
   },
-  // assetPrefix: isProd ? '/bradtaniguchi-dev/' : '',
+  /**
+   * @type {import('@sentry/nextjs').SentryWebpackPluginOptions}
+   */
+  sentry: {
+    // suppress warning about source-maps, codebase is open sourced.
+    hideSourceMaps: false,
+  },
 };
 
 module.exports = withNx(
