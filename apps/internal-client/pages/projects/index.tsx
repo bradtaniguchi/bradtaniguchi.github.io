@@ -1,7 +1,7 @@
-import { CommonLogger } from '@bradtaniguchi-dev/common';
-import { useLocalCollection, useLogger } from '@bradtaniguchi-dev/common-react';
+import { useLocalCollection } from '@bradtaniguchi-dev/common-react';
 import { Box } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
+import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
 import { Card } from '../../components/core/card';
 import { StaticProject } from '../../components/project/static-project';
@@ -25,10 +25,13 @@ export interface ProjectsProps {
 }
 
 export default function Projects(props: ProjectsProps) {
-  const logger = useLogger();
+  const router = useRouter();
+
+  const defaultSearchValue = Array.isArray(router.query.q)
+    ? router.query.q.join(' ')
+    : router.query.q;
 
   const [searchValue, setSearchValue] = useState<string>('');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const handleSearchChange: ListFilterProps['onSearchChange'] = useCallback(
     (searchValue) => {
@@ -36,19 +39,13 @@ export default function Projects(props: ProjectsProps) {
     },
     []
   );
-  const handleTagChange = useCallback(
-    (updatedSelectedTags: string[]) => {
-      logger.log('handleTagChange', { selectedTags, updatedSelectedTags });
-      setSelectedTags(updatedSelectedTags);
-    },
-    [logger, selectedTags]
-  );
 
   const { results: projects } = useLocalCollection({
     elements: props.projects,
     searchOptions: useMemo(
       () => ({
-        keys: ['name', 'description'],
+        keys: ['name', 'description', 'tags'] as Array<keyof IStaticProject>,
+        distance: 0.8,
       }),
       []
     ),
@@ -67,10 +64,8 @@ export default function Projects(props: ProjectsProps) {
           <div>Projects</div>
           <div>
             <ListFilters
+              defaultSearchValue={defaultSearchValue}
               onSearchChange={handleSearchChange}
-              availableTags={['one', 'two', 'three']}
-              selectedTags={selectedTags}
-              onTagChange={handleTagChange}
             />
           </div>
         </Box>
@@ -91,11 +86,7 @@ export default function Projects(props: ProjectsProps) {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<ProjectsProps>
 > {
-  const logger = new CommonLogger();
-
   const projectPaths = await getMarkdownFiles(PROJECTS_PATH);
-
-  logger.log('projects-paths: ', projectPaths);
 
   const projectsMetaData = await getProjectsMetaData(projectPaths);
 

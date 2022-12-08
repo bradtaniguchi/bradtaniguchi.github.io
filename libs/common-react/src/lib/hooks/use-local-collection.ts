@@ -1,5 +1,6 @@
 import { default as Fuse } from 'fuse.js';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import { useFuse } from './use-fuse';
 
 export type ValueOf<T> = T[keyof T];
 
@@ -52,27 +53,10 @@ export function useLocalCollection<Element>(params: {
     limit,
   } = params;
 
-  const [fuse, setFuse] = useState<Fuse<Element> | null>(null);
-  const [fuseLoadError, setFuseLoadError] = useState<unknown>(null);
-
-  /**
-   * Effect to manage the loading of the fuse library.
-   */
-  useEffect(() => {
-    if (!fuse && initialElements && initialElements.length) {
-      import('fuse.js')
-        .then(
-          ({ default: Fuse }) =>
-            new Fuse<Element>(initialElements, searchOptions)
-        )
-        .then((fuse) => {
-          setFuse(fuse);
-        })
-        .catch((err) => {
-          setFuseLoadError(err);
-        });
-    }
-  }, [fuse, initialElements, searchOptions]);
+  const { fuse, fuseLoadError } = useFuse({
+    elements: initialElements,
+    searchOptions,
+  });
 
   /**
    * Memoize the calculation to save on performance.
