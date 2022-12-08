@@ -49,3 +49,18 @@ module.export = {
 
 This will make it appear within the gh-page automatically. Otherwise to run individual storybooks,
 see the project's docs.
+
+### Runtime issue
+
+There seems to be an issue with OpenSSL. Will result in running storybook to
+print out the following:
+
+```bash
+Error: error:0308010C:digital envelope routines::unsupported
+```
+
+Then run:
+
+```bash
+export NODE_OPTIONS=--openssl-legacy-provider
+```
