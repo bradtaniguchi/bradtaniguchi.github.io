@@ -31,7 +31,8 @@ export interface CollectionFilter<Key extends string | number | symbol, Value> {
  * @param params.filters array of filters to apply to returned data
  * @param params.sortBy they key to sort by
  * @param params.search string to search against the elements.
- * @param params.limit number that can be passed to limit the number of results
+ * @param params.limit number that can be passed to limit the number of total results
+ * being shown
  *
  */
 export function useLocalCollection<Element>(params: {

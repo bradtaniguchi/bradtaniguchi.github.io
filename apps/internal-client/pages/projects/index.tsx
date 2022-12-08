@@ -1,5 +1,5 @@
 import { useLocalCollection } from '@bradtaniguchi-dev/common-react';
-import { Box } from '@primer/react';
+import { Box, Button } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
@@ -32,6 +32,7 @@ export default function Projects(props: ProjectsProps) {
     : router.query.q;
 
   const [searchValue, setSearchValue] = useState<string>('');
+  const [useLimit, setUseLimit] = useState<boolean>(false);
 
   const handleSearchChange: ListFilterProps['onSearchChange'] = useCallback(
     (searchValue) => {
@@ -39,6 +40,8 @@ export default function Projects(props: ProjectsProps) {
     },
     []
   );
+
+  const handleShowMoreOnClick = () => setUseLimit(!useLimit);
 
   const { results: projects } = useLocalCollection({
     elements: props.projects,
@@ -50,6 +53,9 @@ export default function Projects(props: ProjectsProps) {
       []
     ),
     search: searchValue,
+
+    // only show the top 5 for now
+    limit: useLimit ? 5 : Infinity,
   });
 
   return (
@@ -78,6 +84,19 @@ export default function Projects(props: ProjectsProps) {
             ></StaticProject>
           </Card.Row>
         ))}
+        <Box sx={{ margin: '8px' }}>
+          <Button
+            sx={{
+              display: 'flex',
+              width: '100%',
+              flexDirection: 'row',
+              justifyContent: 'center',
+            }}
+            onClick={handleShowMoreOnClick}
+          >
+            <Box>{useLimit ? 'Show More' : 'Show Less'}</Box>
+          </Button>
+        </Box>
       </Card.Body>
     </Card>
   );
