@@ -1141,7 +1141,7 @@
             },
             {
               "file": "libs/storybook/README.md",
-              "hash": "c306e6e0eae27e2bfc81452ae718cc3303644c2f"
+              "hash": "65c8f417cde63355572b6b15b6a59deef8e61c49"
             },
             {
               "file": "libs/storybook/src/index.ts",
@@ -1156,7 +1156,7 @@
             },
             {
               "file": "libs/storybook/src/lib/storybook-landing.stories.tsx",
-              "hash": "f0e4fcd9eebf66279d7aa059a83424744511af53",
+              "hash": "b100572a7424a50877c0de75dcfc8676bf366470",
               "deps": [
                 "npm:@primer/react",
                 "npm:@storybook/react"
