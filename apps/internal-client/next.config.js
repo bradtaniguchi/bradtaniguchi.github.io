@@ -5,8 +5,6 @@
 const { withSentryConfig } = require('@sentry/nextjs');
 const withNx = require('@nrwl/next/plugins/with-nx');
 
-const isProd = process.env.NODE_ENV === 'production';
-
 /**
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
  **/
@@ -17,27 +15,38 @@ const nextConfig = {
     svgr: false,
   },
   images: {
-    loader: 'akamai',
-    path: '',
-    domains: ['avatars.githubusercontent.com'],
+    // disable optimization
+    unoptimized: true,
   },
-  // assetPrefix: isProd ? '/bradtaniguchi-dev/' : '',
+  /**
+   * **Note** this will throw a warning about unknown property, but
+   * this is required for sentry to work it seems.
+   * @type {import('@sentry/nextjs').SentryWebpackPluginOptions}
+   */
+  sentry: {
+    // suppress warning about source-maps, codebase is open sourced.
+    hideSourceMaps: false,
+  },
 };
 
-module.exports = withNx(
-  isProd
-    ? withSentryConfig(nextConfig, {
-        // Additional config options for the Sentry Webpack plugin. Keep in mind that
-        // the following options are set automatically, and overriding them is not
-        // recommended:
-        //   release, url, org, project, authToken, configFile, stripPrefix,
-        //   urlPrefix, include, ignore
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: true,
+});
 
-        silent: true, // Suppresses all logs
-        // For all available options, see:
-        // https://github.com/getsentry/sentry-webpack-plugin#options.
+module.exports = (() => {
+  const isProd = process.env.NODE_ENV === 'production';
+  const isAnalyze = process.env.ANALYZE == 'true';
+
+  if (isAnalyze) return withBundleAnalyzer(nextConfig);
+
+  if (isProd)
+    return withNx(
+      withSentryConfig(nextConfig, {
+        silent: true,
         authToken: process.env.SENTRY_AUTH_TOKEN,
         org: process.env.SENTRY_ORG,
       })
-    : nextConfig
-);
+    );
+
+  return withNx(nextConfig);
+})();

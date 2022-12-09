@@ -1,7 +1,7 @@
 import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
 import { MarkGithubIcon } from '@primer/octicons-react';
 import { Box, StyledOcticon } from '@primer/react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { SiCodewars } from 'react-icons/si';
@@ -43,7 +43,7 @@ export default function Index(props: IndexProps) {
                 <Image
                   width={260}
                   height={260}
-                  src={props.user.avatar_url}
+                  src="/img/github-avatar.jpg"
                   alt="Github profile picture"
                 />
               </div>

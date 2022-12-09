@@ -19,17 +19,7 @@ const Template: Story<StorybookLandingProps> = (args) => (
   <StorybookLanding {...args} />
 );
 
-export const WithProps = Template.bind({});
-WithProps.args = {
-  exampleProp: <div>Test Prop!</div>,
-};
-
-export const WithButton = Template.bind({});
-WithButton.args = {
-  onButtonClick: console.log,
-};
-
-export const WithOutButton = Template.bind({});
-WithOutButton.args = {
+export const Default = Template.bind({});
+Default.args = {
   onButtonClick: null as unknown as undefined,
 };

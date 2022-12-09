@@ -36,7 +36,10 @@ jobs:
       SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
       SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
       SENTRY_DEPLOYMENT_ENVIRONMENT: 'production'
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
       GOOGLE_ANALYTICS: ${{ secrets.GOOGLE_ANALYTICS }}
+      GH_PRIVATE_KEY: ${{ secrets.GH_PRIVATE_KEY }}
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/init-job

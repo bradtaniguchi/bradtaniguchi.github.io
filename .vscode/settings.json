@@ -1,12 +1,15 @@
 {
   "workbench.iconTheme": "material-icon-theme",
   "cSpell.words": [
+    "angularjs",
+    "asterank",
     "asym",
     "autorun",
     "buildable",
     "Clava",
     "codespaces",
     "Codewars",
+    "CSUDH",
     "dbaeumer",
     "defn",
     "dompurify",
@@ -38,6 +41,7 @@
     "treosh",
     "typedoc",
     "ultimatly",
+    "unoptimized",
     "zhuangtongfa"
   ]
 }

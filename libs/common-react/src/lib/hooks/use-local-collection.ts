@@ -1,5 +1,6 @@
 import { default as Fuse } from 'fuse.js';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import { useFuse } from './use-fuse';
 
 export type ValueOf<T> = T[keyof T];
 
@@ -30,6 +31,8 @@ export interface CollectionFilter<Key extends string | number | symbol, Value> {
  * @param params.filters array of filters to apply to returned data
  * @param params.sortBy they key to sort by
  * @param params.search string to search against the elements.
+ * @param params.limit number that can be passed to limit the number of total results
+ * being shown
  *
  */
 export function useLocalCollection<Element>(params: {
@@ -39,6 +42,7 @@ export function useLocalCollection<Element>(params: {
   sortDir?: 'asc' | 'dsc';
   search?: string;
   searchOptions?: Fuse.IFuseOptions<Element>;
+  limit?: number;
 }) {
   const {
     elements: initialElements,
@@ -47,32 +51,17 @@ export function useLocalCollection<Element>(params: {
     sortDir,
     search,
     searchOptions,
+    limit,
   } = params;
 
-  const [fuse, setFuse] = useState<Fuse<Element> | null>(null);
-  const [fuseLoadError, setFuseLoadError] = useState<unknown>(null);
+  const { fuse, fuseLoadError } = useFuse({
+    elements: initialElements,
+    searchOptions,
+  });
 
   /**
-   * Effect to manage the loading of the fuse library.
-   */
-  useEffect(() => {
-    if (!fuse && initialElements && initialElements.length) {
-      import('fuse.js')
-        .then(
-          ({ default: Fuse }) =>
-            new Fuse<Element>(initialElements, searchOptions)
-        )
-        .then((fuse) => {
-          setFuse(fuse);
-        })
-        .catch((err) => {
-          setFuseLoadError(err);
-        });
-    }
-  }, [fuse, initialElements, searchOptions]);
-
-  /**
-   * Memoize the calculation to save on performance
+   * Memoize the calculation to save on performance.
+   * TODO: might move to multiple chained memo calls
    */
   const results = useMemo(() => {
     let filteredElements: Array<Element>;
@@ -93,8 +82,13 @@ export function useLocalCollection<Element>(params: {
         return a[sortBy] < b[sortBy] ? 1 : -1;
       });
     }
+
+    if (limit && typeof limit === 'number') {
+      filteredElements = filteredElements.slice(0, limit);
+    }
+
     return filteredElements;
-  }, [initialElements, filters, sortBy, sortDir, search, fuse]);
+  }, [initialElements, filters, sortBy, sortDir, search, limit, fuse]);
 
   return {
     /**
