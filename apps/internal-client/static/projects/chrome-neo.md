@@ -16,7 +16,7 @@ tags:
   <img src="/img/chrome-neo.png" width=50% height=50% alt="Bomb Defuse Utils">
 </div>
 
-Chrome extension that uses the Asterank API.
+Chrome extension that uses the [Asterank API](https://www.asterank.com/api).
 
 Chrome Neo (Near Earth Object) extension. This extension utilizes the NeoWsService, API and Asterank API to access NASA's small body database. This extension provides a live feed of NEO, or Near-Earth-Objects for the current day, week, and month. You can also search NASA's small body database to get all available orbital parameters, as provided byt he Asterank API.
 
@@ -26,7 +26,6 @@ automated testing. At the time the project used a travis-ci pipeline, which is n
 
 This project is one of the projects that has been re-attempted a few times to replace this aging extension.
 
-Application code can be found at: https://github.com/bradtaniguchi/chrome-neo
+Application code can be found [here](https://github.com/bradtaniguchi/chrome-neo)
 
-It can be installed to chrome from here:
-https://chrome.google.com/webstore/detail/chrome-neo/hggldlbbkkpnclkimhegjccgeaibeceg
+It can be installed to chrome from [here](https://chrome.google.com/webstore/detail/chrome-neo/hggldlbbkkpnclkimhegjccgeaibeceg)
