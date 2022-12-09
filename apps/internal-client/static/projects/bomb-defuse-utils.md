@@ -10,7 +10,6 @@ tags:
 
 # Bomb Defuse Utils
 
-<!-- ![Bomb Defuse Utils](/img/bomb-defuse-utils.png) -->
 <div style="display:flex; flex-direction:row; justify-content: center">
   <img src="/img/bomb-defuse-utils.png" width=50% height=50% alt="Bomb Defuse Utils">
 </div>
