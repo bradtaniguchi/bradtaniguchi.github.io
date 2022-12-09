@@ -377,10 +377,13 @@
             },
             {
               "file": "apps/internal-client/pages/blog/index.tsx",
-              "hash": "866d1fdb5ac28cc8e8dc597746f8121829b564ad",
+              "hash": "274218f28bb8b2e66253f8ff06df998b2eccf0fd",
               "deps": [
                 "common",
-                "npm:next"
+                "common-react",
+                "npm:@primer/react",
+                "npm:next",
+                "npm:react"
               ]
             },
             {
@@ -405,7 +408,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "9e6f4c720d86275a7101fdeb9c4aeca19196a063",
+              "hash": "5fb46a89b5dbc1233c1acfcd9731e2d0245a8f2f",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
