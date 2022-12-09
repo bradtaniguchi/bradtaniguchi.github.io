@@ -20,7 +20,7 @@ import {
   useTheme,
 } from '@primer/react';
 import { useRouter } from 'next/router';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { AppHeaderSearch } from './app-header-search';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -48,6 +48,10 @@ export default function AppHeader(props: AppHeaderProps) {
   const router = useRouter();
   const logger = useLogger();
   const { colorMode, setColorMode } = useTheme();
+
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
+  const anchorRef = useRef();
 
   const themeToggleHandle = useCallback(() => {
     let nextColorMode: 'day' | 'night' | 'auto';
@@ -108,21 +112,21 @@ export default function AppHeader(props: AppHeaderProps) {
     [props.showBlog, props.showSnippets]
   );
 
-  const themeIcon = (() => {
+  const themeIcon = useMemo(() => {
     if (colorMode === 'night') {
       return SunIcon;
     } else {
       return MoonIcon;
     }
-  })();
+  }, [colorMode]);
 
-  const themeTitle = (() => {
+  const themeTitle = useMemo(() => {
     if (colorMode === 'night') {
       return 'Switch to day mode';
     } else {
       return 'Switch to night mode';
     }
-  })();
+  }, [colorMode]);
 
   return (
     <Header>
@@ -154,23 +158,27 @@ export default function AppHeader(props: AppHeaderProps) {
       ))}
 
       <Box sx={{ margin: '0 8px' }}>
-        {/* theme switcher */}
-        {/* <Button>theme</Button> */}
         <IconButton
           icon={themeIcon}
+          onClick={themeToggleHandle}
+          id="theme-toggle-button"
           title={themeTitle}
           aria-label={themeTitle}
-          onClick={themeToggleHandle}
         />
       </Box>
 
       <Box display={['block', 'none']}>
         <Header.Item>
-          <ActionMenu>
-            <ActionMenu.Anchor>
-              <IconButton icon={ThreeBarsIcon} aria-label="Menu" />
-            </ActionMenu.Anchor>
-
+          <IconButton
+            icon={ThreeBarsIcon}
+            id="menu-button"
+            aria-label="Menu Button"
+            aria-haspopup="true"
+            aria-expanded={menuOpen}
+            ref={anchorRef}
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
+          <ActionMenu anchorRef={anchorRef} open={menuOpen}>
             <ActionMenu.Overlay>
               <NavList>
                 {links.map(({ href, icon, name }) => (
