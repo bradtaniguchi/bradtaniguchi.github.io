@@ -43,7 +43,7 @@ export default function Index(props: IndexProps) {
                 <Image
                   width={260}
                   height={260}
-                  src="/github-avatar.jpg"
+                  src="/img/github-avatar.jpg"
                   alt="Github profile picture"
                 />
               </div>
