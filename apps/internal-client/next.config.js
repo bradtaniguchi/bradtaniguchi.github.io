@@ -31,9 +31,14 @@ const nextConfig = {
   },
 };
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: true,
+});
+
 module.exports = withNx(
-  isProd
-    ? withSentryConfig(nextConfig, {
+  (() => {
+    if (isProd)
+      return withSentryConfig(nextConfig, {
         // Additional config options for the Sentry Webpack plugin. Keep in mind that
         // the following options are set automatically, and overriding them is not
         // recommended:
@@ -45,6 +50,8 @@ module.exports = withNx(
         // https://github.com/getsentry/sentry-webpack-plugin#options.
         authToken: process.env.SENTRY_AUTH_TOKEN,
         org: process.env.SENTRY_ORG,
-      })
-    : nextConfig
+      });
+
+    return withBundleAnalyzer(nextConfig);
+  })()
 );
