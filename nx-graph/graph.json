@@ -316,10 +316,11 @@
             },
             {
               "file": "apps/internal-client/next.config.js",
-              "hash": "9003ce8087d5448beafac5269721e94e9400b85f",
+              "hash": "f8116402d0346791a11474e198e176b86dc6027e",
               "deps": [
                 "npm:@sentry/nextjs",
-                "npm:@nrwl/next"
+                "npm:@nrwl/next",
+                "npm:@next/bundle-analyzer"
               ]
             },
             {
@@ -457,7 +458,7 @@
             },
             {
               "file": "apps/internal-client/README.md",
-              "hash": "6a5b866f93461d3e0ccd1c84f72ff33c8931e8b8"
+              "hash": "b9427fa48a1cd24df5217f05d77ab764c990b296"
             },
             {
               "file": "apps/internal-client/scripts/get-meta-data.ts",
