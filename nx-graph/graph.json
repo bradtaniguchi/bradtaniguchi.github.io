@@ -316,7 +316,7 @@
             },
             {
               "file": "apps/internal-client/next.config.js",
-              "hash": "3c201017d109b030ff58aeb70f40a2845d08dd88",
+              "hash": "9003ce8087d5448beafac5269721e94e9400b85f",
               "deps": [
                 "npm:@sentry/nextjs",
                 "npm:@nrwl/next"
@@ -388,7 +388,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "88aa948cb3fb4fd497b94a93f08c94d9a4d658ef",
+              "hash": "b9dd440ad0cf3a7a7061c03e8abbec827dd458ce",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
@@ -429,7 +429,7 @@
             },
             {
               "file": "apps/internal-client/pages/styles.css",
-              "hash": "2cf71cc2a02c386178e8245417d76017ec3ee206"
+              "hash": "c6e0699813a17bb52cbf8b7d63276ac6a8542bf8"
             },
             {
               "file": "apps/internal-client/project.json",
@@ -446,6 +446,10 @@
             {
               "file": "apps/internal-client/public/config.json",
               "hash": "677e3cdebdf644bcfcb8f9416e5b8822b2c01bb0"
+            },
+            {
+              "file": "apps/internal-client/public/github-avatar.jpg",
+              "hash": "758f9890cff0f8c5526f8fbccf591419eba9ce1d"
             },
             {
               "file": "apps/internal-client/public/nx-graph/graph.json",
@@ -679,7 +683,7 @@
             },
             {
               "file": "apps/internal-client/utils/with-headers.ts",
-              "hash": "19d1616f4e9dea22a3fad301dd74d79ef9b8b6bb",
+              "hash": "31e838a0d976cf60c977bfb2acf2d9389817baca",
               "deps": [
                 "npm:@octokit/auth-token"
               ]
