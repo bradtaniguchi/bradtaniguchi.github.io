@@ -66,6 +66,7 @@
     "@babel/core": "7.12.13",
     "@babel/preset-typescript": "7.12.13",
     "@lhci/cli": "^0.9.0",
+    "@next/bundle-analyzer": "^13.0.6",
     "@nrwl/cli": "15.0.12",
     "@nrwl/eslint-plugin-nx": "15.0.12",
     "@nrwl/jest": "15.0.12",
