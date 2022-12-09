@@ -56,6 +56,8 @@ export default function Projects(props: ProjectsProps) {
       []
     ),
     search: searchValue,
+    sortBy: 'date',
+    sortDir: 'dsc',
     limit,
   });
 

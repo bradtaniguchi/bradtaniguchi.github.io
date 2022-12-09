@@ -54,6 +54,8 @@ export default function Blog(props: BlogProps) {
       []
     ),
     search: searchValue,
+    sortBy: 'date',
+    sortDir: 'dsc',
     limit,
   });
   return (
@@ -105,11 +107,7 @@ export default function Blog(props: BlogProps) {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<BlogProps>
 > {
-  const logger = new CommonLogger();
-
   const blogPaths = await getMarkdownFiles(BLOG_PATH);
-
-  logger.log('blog-paths: ', blogPaths);
 
   const blogPostsMetaData = await getBlogPostsMetaData(blogPaths);
 
