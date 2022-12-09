@@ -10,6 +10,7 @@ const withNx = require('@nrwl/next/plugins/with-nx');
  **/
 const nextConfig = {
   reactStrictMode: true,
+  productionBrowserSourceMaps: true,
   nx: {
     // Set this to true if you would like to to use SVGR
     // See: https://github.com/gregberge/svgr
