@@ -1,4 +1,3 @@
-import { CommonLogger } from '@bradtaniguchi-dev/common';
 import {
   GetStaticPathsResult,
   GetStaticPropsContext,
@@ -51,14 +50,12 @@ export default function Project({ markdown, project }: ProjectProps) {
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  const logger = new CommonLogger();
   const projectPaths = await getMarkdownFiles(PROJECTS_PATH);
 
   const projectsMetaData = await getProjectsMetaData(projectPaths);
 
   verifyProjectsMetaData(projectsMetaData);
 
-  logger.log('projects meta-data', projectsMetaData);
   return {
     paths: projectsMetaData.map(({ slug }) => ({
       params: {
