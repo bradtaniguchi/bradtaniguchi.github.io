@@ -32,7 +32,7 @@ export default function Projects(props: ProjectsProps) {
     : router.query.q;
 
   const [searchValue, setSearchValue] = useState<string>('');
-  const [useLimit, setUseLimit] = useState<boolean>(false);
+  const [limit, setLimit] = useState<number>(5);
 
   const handleSearchChange: ListFilterProps['onSearchChange'] = useCallback(
     (searchValue) => {
@@ -41,7 +41,10 @@ export default function Projects(props: ProjectsProps) {
     []
   );
 
-  const handleShowMoreOnClick = () => setUseLimit(!useLimit);
+  const handleShowMoreOnClick = () => setLimit(limit + 5);
+
+  // we only want to show this button if the limit is less than the total
+  const showShowMore = limit < props.projects.length;
 
   const { results: projects } = useLocalCollection({
     elements: props.projects,
@@ -53,9 +56,7 @@ export default function Projects(props: ProjectsProps) {
       []
     ),
     search: searchValue,
-
-    // only show the top 5 for now
-    limit: useLimit ? 5 : Infinity,
+    limit,
   });
 
   return (
@@ -84,19 +85,21 @@ export default function Projects(props: ProjectsProps) {
             ></StaticProject>
           </Card.Row>
         ))}
-        <Box sx={{ margin: '8px' }}>
-          <Button
-            sx={{
-              display: 'flex',
-              width: '100%',
-              flexDirection: 'row',
-              justifyContent: 'center',
-            }}
-            onClick={handleShowMoreOnClick}
-          >
-            <Box>{useLimit ? 'Show More' : 'Show Less'}</Box>
-          </Button>
-        </Box>
+        {showShowMore ? (
+          <Box sx={{ margin: '8px' }}>
+            <Button
+              sx={{
+                display: 'flex',
+                width: '100%',
+                flexDirection: 'row',
+                justifyContent: 'center',
+              }}
+              onClick={handleShowMoreOnClick}
+            >
+              <Box>{'Show More'}</Box>
+            </Button>
+          </Box>
+        ) : null}
       </Card.Body>
     </Card>
   );
