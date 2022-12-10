@@ -389,7 +389,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "b9dd440ad0cf3a7a7061c03e8abbec827dd458ce",
+              "hash": "bda7d207ec2ad3e766af8d001cda0dadd9615d87",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
@@ -448,8 +448,24 @@
               "hash": "677e3cdebdf644bcfcb8f9416e5b8822b2c01bb0"
             },
             {
-              "file": "apps/internal-client/public/github-avatar.jpg",
+              "file": "apps/internal-client/public/img/bomb-defuse-utils.png",
+              "hash": "6e90cf80c3735917b0dbe17ed64589cb15be3c8e"
+            },
+            {
+              "file": "apps/internal-client/public/img/chrome-neo.png",
+              "hash": "b378cfacd2f2157384bbb2c95b9ea463f1984411"
+            },
+            {
+              "file": "apps/internal-client/public/img/fcc-calculator.png",
+              "hash": "4e187721d696a02c9b7db22cfc3bdae3f760ca6a"
+            },
+            {
+              "file": "apps/internal-client/public/img/github-avatar.jpg",
               "hash": "758f9890cff0f8c5526f8fbccf591419eba9ce1d"
+            },
+            {
+              "file": "apps/internal-client/public/img/markdown-previewer.png",
+              "hash": "073d5aa7b2e1763a78ba9ef8888e809fbc45bb9d"
             },
             {
               "file": "apps/internal-client/public/nx-graph/graph.json",
@@ -567,35 +583,31 @@
             },
             {
               "file": "apps/internal-client/static/projects/bomb-defuse-utils.md",
-              "hash": "ebceeb8f02ab009eb1186e52ccdd82af761d9718"
-            },
-            {
-              "file": "apps/internal-client/static/projects/bradtaniguchi-github-io.md",
-              "hash": "d346c90c44fe5a0acb0f5858290d00047f6fade1"
+              "hash": "46d0d4009b846fefc7421d2885afcaa712fdb98a"
             },
             {
               "file": "apps/internal-client/static/projects/chrome-neo.md",
-              "hash": "e321b2ab76547a533978a16658fef53804519a59"
+              "hash": "b7789348372b2f2f59e9eacc9981f7f5435222cc"
             },
             {
               "file": "apps/internal-client/static/projects/codewars-node-api.md",
-              "hash": "b8c50de0557d65b4e558de47cf20dc38cea928a2"
+              "hash": "0203cce49ea7e9ab34f9f7e20056df5be8794fd9"
             },
             {
               "file": "apps/internal-client/static/projects/dynamic-app-builder.md",
-              "hash": "9f39cf882c293ee26e49139546f83861ac0d33c3"
+              "hash": "3ad915604820e181705dd158f0bd0af700d2b10f"
             },
             {
               "file": "apps/internal-client/static/projects/es6-timed-map.md",
-              "hash": "1dc95b53939524310ce7ff55cca9694cce141002"
+              "hash": "cc6bb38b0f1bbde409104c3c3e91eb86a143981e"
             },
             {
               "file": "apps/internal-client/static/projects/fcc-calculator.md",
-              "hash": "00c8d5615455524b07df4e3971acf65c66e9585d"
+              "hash": "9a6abe137192f2dff29e9c349aca1ca0c1514e48"
             },
             {
               "file": "apps/internal-client/static/projects/fcc-markdown-previewer.md",
-              "hash": "52bc6f13bd7e3fc3772add06a0251d007f0423a2"
+              "hash": "a41592ea9385e8ee8466c98efe2d9be8f3dad890"
             },
             {
               "file": "apps/internal-client/static/projects/free-code-camp-discord-bot.md",
