@@ -1,6 +1,6 @@
 import { Box, Button, Timeline } from '@primer/react';
 import { Activity } from '../../models/activity';
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { GithubPublicActivity } from './github-public-activity';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -13,9 +13,18 @@ export interface ActivitiesProps {
  * activity.
  */
 export const Activities = memo(function Activities(props: ActivitiesProps) {
+  const [mounted, setMounted] = useState(false);
+
   const [limit, setLimit] = useState<number>(5);
 
   const handleShowMoreOnClick = () => setLimit(limit + 5);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // test to verify this is the component causing hydration issues.
+  if (!mounted) return null;
 
   // we only want to show this button if the limit is less than the total
   const showShowMore = limit < props.activities.length;
