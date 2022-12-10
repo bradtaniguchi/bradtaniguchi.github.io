@@ -1,4 +1,4 @@
-import { useLocalForage, useLogger } from '@bradtaniguchi-dev/common-react';
+import { useLocalForage } from '@bradtaniguchi-dev/common-react';
 import {
   BaseStyles,
   Box,
@@ -22,7 +22,6 @@ const ThemeProviderFixed = ThemeProvider as any;
  */
 function ThemedComponent({ Component, pageProps }: AppProps) {
   const { colorMode, setColorMode } = useTheme();
-  const logger = useLogger();
   const localForage = useLocalForage(useMemo(() => ({}), []));
 
   useEffect(() => {
@@ -30,7 +29,6 @@ function ThemedComponent({ Component, pageProps }: AppProps) {
   }, [localForage, colorMode]);
 
   useEffect(() => {
-    logger.log('[ThemedComponent] getting initial');
     localForage.getItem(LOCAL_FORAGE_THEME_KEY).then((colorMode?: string) => {
       const colorModes = ['night', 'day', 'auto'] as const;
       type ColorMode = typeof colorModes[number];
@@ -38,10 +36,9 @@ function ThemedComponent({ Component, pageProps }: AppProps) {
       if (colorModes.includes(colorMode as ColorMode)) {
         setColorMode(colorMode as ColorMode);
       }
-      logger.log('[ThemedComponent] initial colorMode: ', colorMode);
       document.documentElement.style.visibility = 'visible';
     });
-  }, [logger, setColorMode, localForage]);
+  }, [setColorMode, localForage]);
 
   useEffect(() => {
     if (colorMode === 'night') {

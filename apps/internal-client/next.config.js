@@ -9,6 +9,7 @@ const withNx = require('@nrwl/next/plugins/with-nx');
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
+  reactStrictMode: true,
   nx: {
     // Set this to true if you would like to to use SVGR
     // See: https://github.com/gregberge/svgr
@@ -36,6 +37,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = (() => {
   const isProd = process.env.NODE_ENV === 'production';
   const isAnalyze = process.env.ANALYZE == 'true';
+  const isBare = process.env.BARE == 'true';
+
+  if (isBare) return nextConfig;
 
   if (isAnalyze) return withBundleAnalyzer(nextConfig);
 
