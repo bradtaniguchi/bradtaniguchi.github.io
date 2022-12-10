@@ -400,9 +400,8 @@
             },
             {
               "file": "apps/internal-client/pages/projects/[name].tsx",
-              "hash": "f626da8bf079a0b193ee33975931398879552083",
+              "hash": "c71186f90c25dddbd0096815f9d4af494a94147a",
               "deps": [
-                "common",
                 "npm:next",
                 "npm:react-icons"
               ]
