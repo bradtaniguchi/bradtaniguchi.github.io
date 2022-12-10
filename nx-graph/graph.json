@@ -146,7 +146,7 @@
             },
             {
               "file": "apps/internal-client/components/activity/activities.tsx",
-              "hash": "4e9291aa063682618bd4ab535bad29ded646e232",
+              "hash": "8df5e3b9990bded7ec5e3a5228de0eedbe16665b",
               "deps": [
                 "npm:@primer/react",
                 "npm:react"
@@ -472,7 +472,7 @@
             },
             {
               "file": "apps/internal-client/README.md",
-              "hash": "b9427fa48a1cd24df5217f05d77ab764c990b296"
+              "hash": "c52aa53556ff8d9e61d319e23117736681f7589b"
             },
             {
               "file": "apps/internal-client/scripts/get-meta-data.ts",
@@ -481,6 +481,10 @@
                 "npm:fs-extra",
                 "npm:yargs"
               ]
+            },
+            {
+              "file": "apps/internal-client/scripts/prod-build.sh",
+              "hash": "34c36021cb0f34d06d40bb2bb40c0fb27677bc66"
             },
             {
               "file": "apps/internal-client/scripts/tsconfig.json",
