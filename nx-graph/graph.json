@@ -146,10 +146,11 @@
             },
             {
               "file": "apps/internal-client/components/activity/activities.tsx",
-              "hash": "8df5e3b9990bded7ec5e3a5228de0eedbe16665b",
+              "hash": "c25cfa7b4f816b3b9d509b2f9ca99767f7cf6af6",
               "deps": [
                 "npm:@primer/react",
-                "npm:react"
+                "npm:react",
+                "common-react"
               ]
             },
             {
@@ -407,7 +408,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "fb0627551a54f563a9e5cf7d975f1f10db9941e1",
+              "hash": "45de64716a6dfaae84319005ae39c2882a74419a",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
@@ -866,7 +867,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/index.ts",
-              "hash": "1aab83de3dba0814a14c23945d5b0050e53f0eb0"
+              "hash": "c9de6b8cd0991b5fa0a11dc058cc3dcc994726ef"
             },
             {
               "file": "libs/common-react/src/lib/hooks/theme-context-factory.ts",
@@ -895,6 +896,13 @@
               "deps": [
                 "npm:react",
                 "npm:fuse.js"
+              ]
+            },
+            {
+              "file": "libs/common-react/src/lib/hooks/use-has-mounted.ts",
+              "hash": "8c5a640052c84272687efc331c9ed7e62dedebdf",
+              "deps": [
+                "npm:react"
               ]
             },
             {
