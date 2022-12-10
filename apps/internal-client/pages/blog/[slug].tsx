@@ -1,5 +1,3 @@
-import { CommonLogger } from '@bradtaniguchi-dev/common';
-import { BLOG_PATH } from '../../constants/blog-path';
 import {
   GetStaticPathsResult,
   GetStaticPropsContext,
@@ -8,6 +6,7 @@ import {
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Card } from '../../components/core/card';
+import { BLOG_PATH } from '../../constants/blog-path';
 import { StaticBlogPost } from '../../models/static-blog-post';
 import {
   getBlogPostMetaData,
@@ -49,14 +48,11 @@ export default function BlogPost({ markdown, blogPost }: BlogPostProps) {
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  const logger = new CommonLogger();
   const projectPaths = await getMarkdownFiles(BLOG_PATH);
 
   const blogPostsMetaData = await getBlogPostsMetaData(projectPaths);
 
   verifyBlogPostMetaData(blogPostsMetaData);
-
-  logger.log('blog meta-data', blogPostsMetaData);
 
   return {
     paths: blogPostsMetaData.map(({ slug }) => ({
