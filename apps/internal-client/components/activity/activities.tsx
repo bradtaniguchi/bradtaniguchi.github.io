@@ -1,6 +1,6 @@
 import { Box, Button, Timeline } from '@primer/react';
 import { Activity } from '../../models/activity';
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import { GithubPublicActivity } from './github-public-activity';
 import { useHasMounted } from '@bradtaniguchi-dev/common-react';
 

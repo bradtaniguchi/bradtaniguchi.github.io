@@ -115,9 +115,13 @@ export async function getStaticProps(): Promise<
 
   verifyProjectsMetaData(projectsMetaData);
 
+  const sortBy = 'date';
   return {
     props: {
-      projects: projectsMetaData,
+      projects: projectsMetaData.sort((a, b) => {
+        if (a[sortBy] === b[sortBy]) return 0;
+        return a[sortBy] < b[sortBy] ? 1 : -1;
+      }),
     },
   };
 }
