@@ -316,7 +316,7 @@
             },
             {
               "file": "apps/internal-client/next.config.js",
-              "hash": "335fd82a5d5e7afb9a8679875e0e0cea7084ceb1",
+              "hash": "dc0b64da0785c88bbcf4d2642a5b4f9c689a1a4c",
               "deps": [
                 "npm:@sentry/nextjs",
                 "npm:@nrwl/next",

@@ -1,0 +1,2 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[368],{4618:function(n,t,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/snippets",function(){return u(1418)}])},1418:function(n,t,u){"use strict";u.r(t),u.d(t,{default:function(){return e}});var i=u(2322);function e(){return(0,i.jsx)("div",{children:"List of snippets..."})}}},function(n){n.O(0,[774,888,179],function(){return n(n.s=4618)}),_N_E=n.O()}]);
+//# sourceMappingURL=snippets-d2ee010040dcb281.js.map
