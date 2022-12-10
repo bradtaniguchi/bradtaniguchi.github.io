@@ -369,9 +369,8 @@
             },
             {
               "file": "apps/internal-client/pages/blog/[slug].tsx",
-              "hash": "455f5283dd86fb89bc2e3e68df50e8b8988a740e",
+              "hash": "7761f0b29364735f16dca26c913f595d9ae1b0c9",
               "deps": [
-                "common",
                 "npm:next",
                 "npm:react-icons"
               ]
