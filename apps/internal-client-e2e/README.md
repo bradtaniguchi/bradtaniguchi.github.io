@@ -14,6 +14,12 @@ npx nx run internal-client-e2e:e2e
 This will automatically start the target project, and run tests against it.
 Because this can be slow, use the VSCode extension instead.
 
+## Running tests against production deployment
+
+```bash
+npx nx run internal-client-e2e:ci-prod
+```
+
 ## Note about running with VSCode extension.
 
 The extension by default will test against `localhost:4200`, so be sure

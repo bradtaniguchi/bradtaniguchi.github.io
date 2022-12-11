@@ -173,6 +173,19 @@ jobs:
         with:
           environment: production
 
+  prod-test:
+    timeout-minutes: 5
+    if: ${{ needs.gen-affected.outputs.AFFECTED != '' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs:
+      - gh-pages
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run internal-client-e2e:ci-prod
+        env:
+          E2E_BASE_URL: https://bradtaniguchi.dev/
+
   common:
     if: ${{ contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'common') }}
     runs-on: ubuntu-latest
