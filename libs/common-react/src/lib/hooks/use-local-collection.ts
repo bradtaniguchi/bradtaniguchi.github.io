@@ -33,6 +33,8 @@ export interface CollectionFilter<Key extends string | number | symbol, Value> {
  * @param params.search string to search against the elements.
  * @param params.limit number that can be passed to limit the number of total results
  * being shown
+ * @param params.enabled flag that can be used to opt out of everything this hook does,
+ * resulting in the passed elements being returned directly.
  *
  */
 export function useLocalCollection<Element>(params: {
@@ -43,6 +45,7 @@ export function useLocalCollection<Element>(params: {
   search?: string;
   searchOptions?: Fuse.IFuseOptions<Element>;
   limit?: number;
+  enabled?: boolean;
 }) {
   const {
     elements: initialElements,
@@ -52,6 +55,7 @@ export function useLocalCollection<Element>(params: {
     search,
     searchOptions,
     limit,
+    enabled,
   } = params;
 
   const { fuse, fuseLoadError } = useFuse({
@@ -65,6 +69,10 @@ export function useLocalCollection<Element>(params: {
    */
   const results = useMemo(() => {
     let filteredElements: Array<Element>;
+
+    if (!enabled) {
+      return initialElements;
+    }
 
     filteredElements = initialElements.filter((element) =>
       (filters || []).every(({ key, value }) => element[key] === value)
@@ -88,7 +96,7 @@ export function useLocalCollection<Element>(params: {
     }
 
     return filteredElements;
-  }, [initialElements, filters, sortBy, sortDir, search, limit, fuse]);
+  }, [initialElements, filters, sortBy, sortDir, search, limit, fuse, enabled]);
 
   return {
     /**
