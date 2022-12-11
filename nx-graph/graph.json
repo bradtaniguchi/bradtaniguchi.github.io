@@ -448,7 +448,7 @@
             },
             {
               "file": "apps/internal-client/pages/_app.tsx",
-              "hash": "83b24d876df8c62c16f680588f9be6273728dd46",
+              "hash": "ec2d81ee1d4505d6f8c71e59bd82df989de80ecf",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
