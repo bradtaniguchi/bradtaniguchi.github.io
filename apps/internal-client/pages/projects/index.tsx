@@ -2,7 +2,7 @@ import {
   useHasMounted,
   useLocalCollection,
 } from '@bradtaniguchi-dev/common-react';
-import { Box, Button } from '@primer/react';
+import { Box, Button, Spinner } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
@@ -51,7 +51,6 @@ export default function Projects(props: ProjectsProps) {
   const showShowMore = limit < props.projects.length;
 
   const { results: projects } = useLocalCollection({
-    enabled: mounted,
     elements: props.projects,
     searchOptions: useMemo(
       () => ({
@@ -64,6 +63,10 @@ export default function Projects(props: ProjectsProps) {
     sortBy: 'date',
     sortDir: 'dsc',
   });
+
+  // when in a server-environment, render a spinner for the quick duration
+  // between hydration and rendering
+  if (!mounted) return <Spinner />;
 
   return (
     <Card>
