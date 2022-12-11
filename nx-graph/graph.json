@@ -408,7 +408,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "40b07c4bd92d8d25cc38cf4682625998e567d786",
+              "hash": "9163968bcc06748521db954dbed0744429326427",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
@@ -915,7 +915,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/use-local-collection.ts",
-              "hash": "344e67e95b05de0aa0c2a6e507e47019fb28a46f",
+              "hash": "1052c643877dc04a6be76025f0aec5f2c96f75e4",
               "deps": [
                 "npm:fuse.js",
                 "npm:react"
