@@ -146,7 +146,7 @@
             },
             {
               "file": "apps/internal-client/components/activity/activities.tsx",
-              "hash": "c0fd25d0ed385d13fda1e3bdf86171663a998b6b",
+              "hash": "908cb58ef91f32c9165d3fee3786b83990076b1b",
               "deps": [
                 "npm:@primer/react",
                 "npm:react",
@@ -408,7 +408,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "1ef697d7aaeee3e657c47813a444126a4f744b28",
+              "hash": "40b07c4bd92d8d25cc38cf4682625998e567d786",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
