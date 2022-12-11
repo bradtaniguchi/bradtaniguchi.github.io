@@ -1,4 +1,4 @@
-import { Box, Button, Timeline } from '@primer/react';
+import { Box, Button, Spinner, Timeline } from '@primer/react';
 import { Activity } from '../../models/activity';
 import { memo, useState } from 'react';
 import { GithubPublicActivity } from './github-public-activity';
@@ -19,11 +19,12 @@ export const Activities = memo(function Activities(props: ActivitiesProps) {
 
   const handleShowMoreOnClick = () => setLimit(limit + 5);
 
-  // don't render this when on the server, only on the client.
-  if (!mounted) return null;
-
   // we only want to show this button if the limit is less than the total
   const showShowMore = limit < props.activities.length;
+
+  // when in a server-environment, render a spinner for the quick duration
+  // between hydration and rendering
+  if (!mounted) return <Spinner />;
 
   if (!props.activities.length) return <div>No Timeline available</div>;
 

@@ -1,5 +1,8 @@
-import { useLocalCollection } from '@bradtaniguchi-dev/common-react';
-import { Box } from '@primer/react';
+import {
+  useHasMounted,
+  useLocalCollection,
+} from '@bradtaniguchi-dev/common-react';
+import { Box, Button, Spinner } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
@@ -26,13 +29,14 @@ export interface ProjectsProps {
 
 export default function Projects(props: ProjectsProps) {
   const router = useRouter();
+  const mounted = useHasMounted();
 
   const defaultSearchValue = Array.isArray(router.query.q)
     ? router.query.q.join(' ')
     : router.query.q;
 
   const [searchValue, setSearchValue] = useState<string>('');
-  // const [limit, setLimit] = useState<number>(5);
+  const [limit, setLimit] = useState<number>(5);
 
   const handleSearchChange: ListFilterProps['onSearchChange'] = useCallback(
     (searchValue) => {
@@ -41,10 +45,10 @@ export default function Projects(props: ProjectsProps) {
     []
   );
 
-  // const handleShowMoreOnClick = () => setLimit(limit + 5);
+  const handleShowMoreOnClick = () => setLimit(limit + 5);
 
   // we only want to show this button if the limit is less than the total
-  // const showShowMore = limit < props.projects.length;
+  const showShowMore = limit < props.projects.length;
 
   const { results: projects } = useLocalCollection({
     elements: props.projects,
@@ -59,6 +63,10 @@ export default function Projects(props: ProjectsProps) {
     sortBy: 'date',
     sortDir: 'dsc',
   });
+
+  // when in a server-environment, render a spinner for the quick duration
+  // between hydration and rendering
+  if (!mounted) return <Spinner />;
 
   return (
     <Card>
@@ -86,7 +94,7 @@ export default function Projects(props: ProjectsProps) {
             ></StaticProject>
           </Card.Row>
         ))}
-        {/* {showShowMore ? (
+        {showShowMore ? (
           <Box sx={{ margin: '8px' }}>
             <Button
               sx={{
@@ -100,7 +108,7 @@ export default function Projects(props: ProjectsProps) {
               <Box>{'Show More'}</Box>
             </Button>
           </Box>
-        ) : null} */}
+        ) : null}
       </Card.Body>
     </Card>
   );
@@ -115,13 +123,9 @@ export async function getStaticProps(): Promise<
 
   verifyProjectsMetaData(projectsMetaData);
 
-  const sortBy = 'date';
   return {
     props: {
-      projects: projectsMetaData.sort((a, b) => {
-        if (a[sortBy] === b[sortBy]) return 0;
-        return a[sortBy] < b[sortBy] ? 1 : -1;
-      }),
+      projects: projectsMetaData,
     },
   };
 }
