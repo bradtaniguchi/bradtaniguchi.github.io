@@ -1,6 +1,8 @@
-import { CommonLogger } from '@bradtaniguchi-dev/common';
-import { useLocalCollection } from '@bradtaniguchi-dev/common-react';
-import { Box, Button } from '@primer/react';
+import {
+  useHasMounted,
+  useLocalCollection,
+} from '@bradtaniguchi-dev/common-react';
+import { Box, Button, Spinner } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
@@ -24,6 +26,7 @@ export interface BlogProps {
 
 export default function Blog(props: BlogProps) {
   const router = useRouter();
+  const mounted = useHasMounted();
 
   const defaultSearchValue = Array.isArray(router.query.q)
     ? router.query.q.join(' ')
@@ -58,6 +61,11 @@ export default function Blog(props: BlogProps) {
     sortDir: 'dsc',
     limit,
   });
+
+  // when in a server-environment, render a spinner for the quick duration
+  // between hydration and rendering
+  if (!mounted) return <Spinner />;
+
   return (
     <Card>
       <Card.Header>
