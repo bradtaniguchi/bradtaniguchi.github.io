@@ -17,6 +17,23 @@
         }
       }
     },
+    "ci-beta": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx http-server dist/apps/internal-client/exported",
+            "description": "Run http-server with exported files"
+          },
+          {
+            "command": "cd apps/internal-client-e2e && npx playwright test && echo '[finished-tests]' ",
+            "description": "run playwright tests"
+          }
+        ],
+        "parallel": true,
+        "readyWhen": "[finished-tests]"
+      }
+    },
     "ts-check": {
       "executor": "nx:run-commands",
       "options": {
