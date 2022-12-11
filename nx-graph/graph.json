@@ -378,9 +378,8 @@
             },
             {
               "file": "apps/internal-client/pages/blog/index.tsx",
-              "hash": "677f01b6d3e89f0aebbbfdf8befbfcf34ad11ac2",
+              "hash": "2ab24d18afafd837e5a31c05252f8dbbba1f2332",
               "deps": [
-                "common",
                 "common-react",
                 "npm:@primer/react",
                 "npm:next",
@@ -408,7 +407,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "9163968bcc06748521db954dbed0744429326427",
+              "hash": "40b07c4bd92d8d25cc38cf4682625998e567d786",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
@@ -915,7 +914,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/use-local-collection.ts",
-              "hash": "1052c643877dc04a6be76025f0aec5f2c96f75e4",
+              "hash": "344e67e95b05de0aa0c2a6e507e47019fb28a46f",
               "deps": [
                 "npm:fuse.js",
                 "npm:react"
@@ -1453,11 +1452,6 @@
         {
           "source": "internal-client",
           "target": "common-react",
-          "type": "static"
-        },
-        {
-          "source": "internal-client",
-          "target": "common",
           "type": "static"
         }
       ],
