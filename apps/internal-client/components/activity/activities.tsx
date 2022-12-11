@@ -1,8 +1,8 @@
-import { Box, Button, Spinner, Timeline } from '@primer/react';
-import { Activity } from '../../models/activity';
-import { memo, useState } from 'react';
-import { GithubPublicActivity } from './github-public-activity';
 import { useHasMounted } from '@bradtaniguchi-dev/common-react';
+import { Box, Button, Spinner, Timeline } from '@primer/react';
+import { memo, useState } from 'react';
+import { Activity } from '../../models/activity';
+import { GithubPublicActivity } from './github-public-activity';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ActivitiesProps {
@@ -30,7 +30,7 @@ export const Activities = memo(function Activities(props: ActivitiesProps) {
 
   return (
     <>
-      <Timeline>
+      <Timeline data-testid="timeline">
         {props.activities
           .map((activity) => (
             <GithubPublicActivity key={activity.id} activity={activity} />
@@ -46,9 +46,10 @@ export const Activities = memo(function Activities(props: ActivitiesProps) {
               flexDirection: 'row',
               justifyContent: 'center',
             }}
+            type="button"
             onClick={handleShowMoreOnClick}
           >
-            <Box>{'Show More'}</Box>
+            Show More
           </Button>
         </Box>
       ) : // TODO: add some kind of "continuation" design to

@@ -18,6 +18,7 @@ import {
   NavList,
   StyledOcticon,
   useTheme,
+  Text,
 } from '@primer/react';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useRef, useState } from 'react';
@@ -129,11 +130,13 @@ export default function AppHeader(props: AppHeaderProps) {
   }, [colorMode]);
 
   return (
-    <Header>
+    <Header as="header">
       <Header.Item>
         <Header.Link href="/">
           <StyledOcticon icon={PersonIcon} size={16} sx={{ mr: 2 }} />
-          <span>bradtaniguchi.dev</span>
+          <Text as="h1" fontSize={'inherit'}>
+            bradtaniguchi.dev
+          </Text>
         </Header.Link>
       </Header.Item>
 
@@ -146,16 +149,18 @@ export default function AppHeader(props: AppHeaderProps) {
         <Header.Item full></Header.Item>
       )}
 
-      {links.map(({ href, icon, name }) => (
-        <Box display={['none', 'block']} key={href}>
-          <Header.Item>
-            <Header.Link href={href}>
-              <StyledOcticon icon={icon} size={16} sx={{ mr: 2 }} />
-              <span>{name}</span>
-            </Header.Link>
-          </Header.Item>
-        </Box>
-      ))}
+      <Box as="nav">
+        {links.map(({ href, icon, name }) => (
+          <Box display={['none', 'inline-block']} key={href}>
+            <Header.Item>
+              <Header.Link href={href}>
+                <StyledOcticon icon={icon} size={16} sx={{ mr: 2 }} />
+                <span>{name}</span>
+              </Header.Link>
+            </Header.Item>
+          </Box>
+        ))}
+      </Box>
 
       <Box sx={{ margin: '0 8px' }}>
         <IconButton
