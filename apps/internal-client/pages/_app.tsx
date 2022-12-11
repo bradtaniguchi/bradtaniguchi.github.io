@@ -58,7 +58,7 @@ function ThemedComponent({ Component, pageProps }: AppProps) {
             padding: '12px',
             paddingBottom: '48px',
             overflow: 'auto',
-            height: 'calc(100vh - 64px)',
+            height: 'calc(100vh - 72px)',
           }}
         >
           <Component {...pageProps} />
