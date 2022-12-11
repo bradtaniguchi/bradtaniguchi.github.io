@@ -51,7 +51,7 @@ export default function Blog(props: BlogProps) {
     elements: props.posts,
     searchOptions: useMemo(
       () => ({
-        keys: ['name', 'description', 'tags'] as Array<keyof IStaticBlogPost>,
+        keys: ['title', 'description', 'tags'] as Array<keyof IStaticBlogPost>,
         distance: 0.8,
       }),
       []

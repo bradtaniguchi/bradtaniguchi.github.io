@@ -54,7 +54,7 @@ export default function Projects(props: ProjectsProps) {
     elements: props.projects,
     searchOptions: useMemo(
       () => ({
-        keys: ['name', 'description', 'tags'] as Array<keyof IStaticProject>,
+        keys: ['title', 'description', 'tags'] as Array<keyof IStaticProject>,
         distance: 0.8,
       }),
       []
