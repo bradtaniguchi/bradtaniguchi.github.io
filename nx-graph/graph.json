@@ -1,6 +1,128 @@
 {
   "graph": {
     "nodes": {
+      "internal-client-e2e": {
+        "name": "internal-client-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/internal-client-e2e",
+          "name": "internal-client-e2e",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/internal-client-e2e/src",
+          "projectType": "application",
+          "targets": {
+            "e2e": {
+              "executor": "@mands/nx-playwright:playwright-executor",
+              "options": {
+                "e2eFolder": "apps/internal-client-e2e",
+                "devServerTarget": "internal-client:serve",
+                "packageRunner": "npx"
+              },
+              "configurations": {
+                "production": {
+                  "devServerTarget": "internal-client:serve:production"
+                }
+              }
+            },
+            "ci-prod": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "npx playwright test",
+                "cwd": "apps/internal-client-e2e"
+              }
+            },
+            "ci-beta": {
+              "executor": "nx:run-commands",
+              "options": {
+                "commands": [
+                  {
+                    "command": "npx http-server dist/apps/internal-client/exported",
+                    "description": "Run http-server with exported files"
+                  },
+                  {
+                    "command": "cd apps/internal-client-e2e && npx playwright test && echo '[finished-tests]' ",
+                    "description": "run playwright tests"
+                  }
+                ],
+                "parallel": true,
+                "readyWhen": "[finished-tests]"
+              }
+            },
+            "ts-check": {
+              "executor": "nx:run-commands",
+              "options": {
+                "commands": [
+                  {
+                    "command": "tsc --build --force --verbose apps/internal-client-e2e/tsconfig.json"
+                  }
+                ]
+              }
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "apps/internal-client-e2e/**/*.{ts,tsx,js,jsx}"
+                ]
+              },
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ]
+            }
+          },
+          "tags": [],
+          "implicitDependencies": [
+            "internal-client"
+          ],
+          "files": [
+            {
+              "file": "apps/internal-client-e2e/.eslintrc.json",
+              "hash": "296b4bd55da354fdb536ddc8a5b309b577f5ee51"
+            },
+            {
+              "file": "apps/internal-client-e2e/playwright.config.ts",
+              "hash": "71ba23f6c2aa0bd1ec38ce08db93e32e72fbf89a",
+              "deps": [
+                "npm:@playwright/test"
+              ]
+            },
+            {
+              "file": "apps/internal-client-e2e/project.json",
+              "hash": "0415283f88674394e123d8e30fbb50e09a01b259"
+            },
+            {
+              "file": "apps/internal-client-e2e/README.md",
+              "hash": "f802ee2c45c5efa7fae5cf59ccb3bd0e9135941c"
+            },
+            {
+              "file": "apps/internal-client-e2e/src/core/header.spec.ts",
+              "hash": "b63259ef45532afabc51c06389fa1e5444ddff6b",
+              "deps": [
+                "npm:@playwright/test"
+              ]
+            },
+            {
+              "file": "apps/internal-client-e2e/src/pages/index.spec.ts",
+              "hash": "5e340c9b89745b03199d746cbfae0a17943d6dab",
+              "deps": [
+                "npm:@playwright/test"
+              ]
+            },
+            {
+              "file": "apps/internal-client-e2e/tsconfig.e2e.json",
+              "hash": "208869be646ac501ab4bc27d924e43a712120247"
+            },
+            {
+              "file": "apps/internal-client-e2e/tsconfig.json",
+              "hash": "08841a7f56c62d55340ad08451502304837254fd"
+            }
+          ]
+        }
+      },
       "internal-client": {
         "name": "internal-client",
         "type": "app",
@@ -146,11 +268,11 @@
             },
             {
               "file": "apps/internal-client/components/activity/activities.tsx",
-              "hash": "908cb58ef91f32c9165d3fee3786b83990076b1b",
+              "hash": "1f967169c40d5bdc889c4403379d9357045d68d7",
               "deps": [
+                "common-react",
                 "npm:@primer/react",
-                "npm:react",
-                "common-react"
+                "npm:react"
               ]
             },
             {
@@ -185,7 +307,7 @@
             },
             {
               "file": "apps/internal-client/components/core/app-header.tsx",
-              "hash": "64863534e896bce75fe22574d070aa1fde4a8e03",
+              "hash": "293915050befee89d08626a08adf172ffcd69a90",
               "deps": [
                 "common-react",
                 "npm:@primer/octicons-react",
@@ -1448,6 +1570,13 @@
       }
     },
     "dependencies": {
+      "internal-client-e2e": [
+        {
+          "source": "internal-client-e2e",
+          "target": "internal-client",
+          "type": "implicit"
+        }
+      ],
       "internal-client": [
         {
           "source": "internal-client",
