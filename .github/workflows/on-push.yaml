@@ -182,6 +182,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/init-job
+      - run: npx playwright install
       - run: npx nx run internal-client-e2e:ci-prod
         env:
           E2E_BASE_URL: https://bradtaniguchi.dev/
