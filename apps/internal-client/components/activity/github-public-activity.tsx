@@ -1,6 +1,6 @@
 import { MarkGithubIcon } from '@primer/octicons-react';
 import { Box, StyledOcticon, Timeline } from '@primer/react';
-import { DateTime } from 'luxon';
+import Dayjs from 'dayjs';
 import Link from 'next/link';
 import { memo, useContext } from 'react';
 import { GithubPublicActivity as GithubPublicActivityType } from '../../models/github-public-activity';
@@ -40,7 +40,7 @@ const GithubPublicActivityRepo = (props: GithubPublicActivityProps) => (
 const GithubPublicActivityTime = (props: GithubPublicActivityProps) => (
   <Box as="span" color="fg.muted">
     <span title={props.activity.created_at}>
-      on {DateTime.fromISO(props.activity.created_at).toFormat('yyyy-MM-dd')}
+      on {Dayjs(props.activity.created_at).format('YYYY-MM-DD')}
     </span>
   </Box>
 );

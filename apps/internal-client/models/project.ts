@@ -1,5 +1,5 @@
 import { LabelColorOptions } from '@primer/react/lib/Label';
-import { DateTime } from 'luxon';
+import Dayjs from 'dayjs';
 
 export type Project = StaticProject;
 
@@ -79,7 +79,7 @@ export const getInvalidStaticProjectProps = (
       () =>
         (castData.date &&
           typeof castData.date === 'string' &&
-          DateTime.fromISO(castData.date).isValid) ||
+          Dayjs(castData.date).isValid()) ||
         // this is cast at another level automatically
         (castData.date as unknown as Date) instanceof Date,
     ],
