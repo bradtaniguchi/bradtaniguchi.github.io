@@ -37,7 +37,8 @@ test('show-more expands the list of projects by 5', async ({ page }) => {
 
   await test.step('clicking showMore expands the list by 5', async () => {
     await showMore.click();
-    await page.locator('li').first().waitFor();
+    // lower timeout, as this should be quick, but we need to wait
+    await page.locator('li').nth(4).waitFor({ timeout: 1000 });
     const listItems = await page.locator('li').count();
     expect(listItems).toEqual(10);
   });
@@ -93,6 +94,8 @@ test('searching resets show-more', async ({ page }) => {
     const closeSearch = page.locator('button[aria-label="close search"]');
     await closeSearch.click();
 
+    // lower timeout, as this should be quick, but we need to wait
+    await page.locator('li').nth(4).waitFor({ timeout: 1000 });
     const listItems = await page.locator('li').count();
     expect(listItems).toEqual(5);
   });

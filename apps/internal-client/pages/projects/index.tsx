@@ -41,9 +41,14 @@ export default function Projects(props: ProjectsProps) {
   const handleSearchChange: ListFilterProps['onSearchChange'] = useCallback(
     (searchValue) => {
       setSearchValue(searchValue);
+      setLimit(5);
     },
     []
   );
+
+  const handleSearchClose = useCallback(() => {
+    setLimit(5);
+  }, []);
 
   const handleShowMoreOnClick = () => setLimit(limit + 5);
 
@@ -84,6 +89,7 @@ export default function Projects(props: ProjectsProps) {
             <ListFilters
               defaultSearchValue={defaultSearchValue}
               onSearchChange={handleSearchChange}
+              onClear={handleSearchClose}
             />
           </div>
         </Box>
