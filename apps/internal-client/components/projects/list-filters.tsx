@@ -84,7 +84,7 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
                 <TextInput.Action
                   onClick={handleSearchClose}
                   icon={XIcon}
-                  aria-label="Clear input"
+                  aria-label="close search"
                 />
               }
             />
