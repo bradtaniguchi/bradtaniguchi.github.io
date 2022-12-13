@@ -277,23 +277,23 @@
             },
             {
               "file": "apps/internal-client/components/activity/github-public-activity.tsx",
-              "hash": "f279d7e263d47eb56bec68d5f5b7cda8e7d89181",
+              "hash": "d27319e13e47e3c5af9689470b2f649644f3283e",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
-                "npm:luxon",
+                "npm:dayjs",
                 "npm:next",
                 "npm:react"
               ]
             },
             {
               "file": "apps/internal-client/components/blog/static-blog-post.tsx",
-              "hash": "1d182a734ef91e1fd0f2102a2caa74c8d2bec32e",
+              "hash": "2802ad4b83fd84e33ccecc16ad5b8211378d8559",
               "deps": [
                 "npm:@primer/react",
-                "npm:react",
-                "npm:luxon",
-                "npm:next"
+                "npm:dayjs",
+                "npm:next",
+                "npm:react"
               ]
             },
             {
@@ -361,12 +361,12 @@
             },
             {
               "file": "apps/internal-client/components/project/static-project.tsx",
-              "hash": "3124f5fce51948f53952414faa9ea6154fc9dd39",
+              "hash": "99d3d1592f3dae0bb5edd2b5f9025c70f0bd7713",
               "deps": [
                 "npm:@primer/react",
                 "npm:react",
-                "npm:luxon",
-                "npm:next"
+                "npm:next",
+                "npm:dayjs"
               ]
             },
             {
@@ -396,7 +396,7 @@
             },
             {
               "file": "apps/internal-client/constants/local-forage-theme-key.ts",
-              "hash": "82132f27efb583192039512dae089c78b29dd5e5"
+              "hash": "6ca0d87b5190f9bb5ba19899450f60af5e35ddad"
             },
             {
               "file": "apps/internal-client/constants/projects-path.ts",
@@ -423,10 +423,10 @@
             },
             {
               "file": "apps/internal-client/models/project.ts",
-              "hash": "86632ebdae75370da9cac3ade4e7fa5c925c5306",
+              "hash": "6af31f20be566bcff33599e62c4f629cfba16020",
               "deps": [
                 "npm:@primer/react",
-                "npm:luxon"
+                "npm:dayjs"
               ]
             },
             {
@@ -448,12 +448,12 @@
             },
             {
               "file": "apps/internal-client/pages/_app.tsx",
-              "hash": "ec2d81ee1d4505d6f8c71e59bd82df989de80ecf",
+              "hash": "a3875a6a3611c40a0fb12ced6b101553f40bd14f",
               "deps": [
-                "common-react",
                 "npm:@primer/react",
                 "npm:next",
-                "npm:react"
+                "npm:react",
+                "npm:react-use"
               ]
             },
             {
@@ -590,7 +590,7 @@
             },
             {
               "file": "apps/internal-client/public/nx-graph/graph.json",
-              "hash": "c5f027dc631c9c97b9542f93e1d522bd804d98fe"
+              "hash": "e7c7fe7c2d9761a6df3366debeff9c80d05a4d93"
             },
             {
               "file": "apps/internal-client/README.md",
@@ -988,7 +988,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/index.ts",
-              "hash": "c9de6b8cd0991b5fa0a11dc058cc3dcc994726ef"
+              "hash": "76ad61fe200a651564b9512965f2527f430640af"
             },
             {
               "file": "libs/common-react/src/lib/hooks/theme-context-factory.ts",
@@ -1039,14 +1039,6 @@
               "hash": "344e67e95b05de0aa0c2a6e507e47019fb28a46f",
               "deps": [
                 "npm:fuse.js",
-                "npm:react"
-              ]
-            },
-            {
-              "file": "libs/common-react/src/lib/hooks/use-local-forage.ts",
-              "hash": "145b7cabbc42d258f2690578ac911d889708d094",
-              "deps": [
-                "npm:localforage",
                 "npm:react"
               ]
             },
