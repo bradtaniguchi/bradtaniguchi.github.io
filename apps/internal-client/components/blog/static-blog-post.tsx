@@ -1,8 +1,8 @@
 import { Box, Label, Text } from '@primer/react';
-import { StaticBlogPost as IStaticBlogPost } from '../../models/static-blog-post';
-import { memo } from 'react';
-import { DateTime } from 'luxon';
+import Dayjs from 'dayjs';
 import Link from 'next/link';
+import { memo } from 'react';
+import { StaticBlogPost as IStaticBlogPost } from '../../models/static-blog-post';
 
 export interface StaticBlogPostProps {
   blog: IStaticBlogPost;
@@ -52,7 +52,7 @@ export const StaticBlogPost = memo(function StaticBlogPost(
 
           {props.blog.date && (
             <Box title={props.blog.date}>
-              {DateTime.fromISO(props.blog.date).toFormat('yyyy-MM-dd')}
+              {Dayjs(props.blog.date).format('YYYY-MM-DD')}
             </Box>
           )}
         </Box>

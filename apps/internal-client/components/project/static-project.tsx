@@ -1,8 +1,8 @@
 import { Box, Label, Text } from '@primer/react';
 import { StaticProject as IStaticProject } from '../../models/project';
 import { memo } from 'react';
-import { DateTime } from 'luxon';
 import Link from 'next/link';
+import Dayjs from 'dayjs';
 
 export interface StaticProjectProps {
   project: IStaticProject;
@@ -59,7 +59,8 @@ export const StaticProject = memo(function StaticProject(
 
           {props.project.date && (
             <Box title={props.project.date}>
-              {DateTime.fromISO(props.project.date).toFormat('yyyy-MM-dd')}
+              {/* {DateTime.fromISO(props.project.date).toFormat('yyyy-MM-dd')} */}
+              {Dayjs(props.project.date).format('YYYY-MM-DD')}
             </Box>
           )}
         </Box>
