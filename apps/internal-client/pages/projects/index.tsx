@@ -2,7 +2,7 @@ import {
   useHasMounted,
   useLocalCollection,
 } from '@bradtaniguchi-dev/common-react';
-import { Box, Button, Spinner } from '@primer/react';
+import { Box, Button, Spinner, Text } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
@@ -77,7 +77,9 @@ export default function Projects(props: ProjectsProps) {
           alignItems="center"
           justifyContent="space-between"
         >
-          <div>Projects</div>
+          <Text as="h2" fontSize={'inherit'} margin={0}>
+            Projects
+          </Text>
           <div>
             <ListFilters
               defaultSearchValue={defaultSearchValue}
@@ -87,13 +89,19 @@ export default function Projects(props: ProjectsProps) {
         </Box>
       </Card.Header>
       <Card.Body p={0}>
-        {projects.map((project) => (
-          <Card.Row p={3} key={project.slug}>
-            <StaticProject
-              project={project as unknown as IStaticProject}
-            ></StaticProject>
-          </Card.Row>
-        ))}
+        <ul>
+          {projects
+            .map((project) => (
+              <Card.Row p={3} key={project.slug}>
+                <li>
+                  <StaticProject
+                    project={project as unknown as IStaticProject}
+                  ></StaticProject>
+                </li>
+              </Card.Row>
+            ))
+            .slice(0, limit)}
+        </ul>
         {showShowMore ? (
           <Box sx={{ margin: '8px' }}>
             <Button

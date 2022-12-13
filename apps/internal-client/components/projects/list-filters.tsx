@@ -90,7 +90,7 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
             />
           ) : (
             <IconButton
-              aria-label="Search"
+              aria-label="show search"
               icon={SearchIcon}
               onClick={handleShowSearch}
             />
