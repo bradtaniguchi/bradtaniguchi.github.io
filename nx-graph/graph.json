@@ -100,7 +100,7 @@
             },
             {
               "file": "apps/internal-client-e2e/src/core/header.spec.ts",
-              "hash": "b63259ef45532afabc51c06389fa1e5444ddff6b",
+              "hash": "9c3c56c7eeff18001882057a47df8666af544a1a",
               "deps": [
                 "npm:@playwright/test"
               ]
@@ -321,7 +321,7 @@
             },
             {
               "file": "apps/internal-client/components/core/app-header.tsx",
-              "hash": "293915050befee89d08626a08adf172ffcd69a90",
+              "hash": "4ff8e3e9fa30cad458595e079fca192dccb74e2f",
               "deps": [
                 "common-react",
                 "npm:@primer/octicons-react",
