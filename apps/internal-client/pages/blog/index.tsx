@@ -44,9 +44,6 @@ export default function Blog(props: BlogProps) {
 
   const handleShowMoreOnClick = () => setLimit(limit + 5);
 
-  // we only want to show this button if the limit is less than the total
-  const showShowMore = limit < props.posts.length;
-
   const { results: posts } = useLocalCollection({
     elements: props.posts,
     searchOptions: useMemo(
@@ -59,8 +56,10 @@ export default function Blog(props: BlogProps) {
     search: searchValue,
     sortBy: 'date',
     sortDir: 'dsc',
-    limit,
   });
+
+  // we only want to show this button if the limit is less than the total
+  const showShowMore = limit < posts.length;
 
   // when in a server-environment, render a spinner for the quick duration
   // between hydration and rendering
@@ -88,15 +87,17 @@ export default function Blog(props: BlogProps) {
       </Card.Header>
       <Card.Body p={0}>
         <ul>
-          {posts.map((post) => (
-            <Card.Row p={3} key={post.slug}>
-              <li>
-                <StaticBlogPost
-                  blog={post as unknown as IStaticBlogPost}
-                ></StaticBlogPost>
-              </li>
-            </Card.Row>
-          ))}
+          {posts
+            .map((post) => (
+              <Card.Row p={3} key={post.slug}>
+                <li>
+                  <StaticBlogPost
+                    blog={post as unknown as IStaticBlogPost}
+                  ></StaticBlogPost>
+                </li>
+              </Card.Row>
+            ))
+            .slice(0, limit)}
         </ul>
         {showShowMore ? (
           <Box sx={{ margin: '8px' }}>

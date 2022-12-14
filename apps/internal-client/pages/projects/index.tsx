@@ -52,9 +52,6 @@ export default function Projects(props: ProjectsProps) {
 
   const handleShowMoreOnClick = () => setLimit(limit + 5);
 
-  // we only want to show this button if the limit is less than the total
-  const showShowMore = limit < props.projects.length;
-
   const { results: projects } = useLocalCollection({
     elements: props.projects,
     searchOptions: useMemo(
@@ -68,6 +65,9 @@ export default function Projects(props: ProjectsProps) {
     sortBy: 'date',
     sortDir: 'dsc',
   });
+
+  // we only want to show this button if the limit is less than the total
+  const showShowMore = limit < projects.length;
 
   // when in a server-environment, render a spinner for the quick duration
   // between hydration and rendering
