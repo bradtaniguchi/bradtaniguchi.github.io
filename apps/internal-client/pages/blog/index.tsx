@@ -2,7 +2,7 @@ import {
   useHasMounted,
   useLocalCollection,
 } from '@bradtaniguchi-dev/common-react';
-import { Box, Button, Spinner } from '@primer/react';
+import { Box, Button, Spinner, Text } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
@@ -75,7 +75,9 @@ export default function Blog(props: BlogProps) {
           alignItems="center"
           justifyContent="space-between"
         >
-          <div>Posts</div>
+          <Text as="h2" fontSize={'inherit'} margin={0}>
+            Posts
+          </Text>
           <div>
             <ListFilters
               defaultSearchValue={defaultSearchValue}
@@ -85,13 +87,17 @@ export default function Blog(props: BlogProps) {
         </Box>
       </Card.Header>
       <Card.Body p={0}>
-        {posts.map((post) => (
-          <Card.Row p={3} key={post.slug}>
-            <StaticBlogPost
-              blog={post as unknown as IStaticBlogPost}
-            ></StaticBlogPost>
-          </Card.Row>
-        ))}
+        <ul>
+          {posts.map((post) => (
+            <Card.Row p={3} key={post.slug}>
+              <li>
+                <StaticBlogPost
+                  blog={post as unknown as IStaticBlogPost}
+                ></StaticBlogPost>
+              </li>
+            </Card.Row>
+          ))}
+        </ul>
         {showShowMore ? (
           <Box sx={{ margin: '8px' }}>
             <Button
