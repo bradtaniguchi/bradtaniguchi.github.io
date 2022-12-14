@@ -106,8 +106,22 @@
               ]
             },
             {
+              "file": "apps/internal-client-e2e/src/pages/blogs.spec.ts",
+              "hash": "62915ce9b2e492e43a0507a10b2b96b2f37e5f7e",
+              "deps": [
+                "npm:@playwright/test"
+              ]
+            },
+            {
               "file": "apps/internal-client-e2e/src/pages/index.spec.ts",
               "hash": "5e340c9b89745b03199d746cbfae0a17943d6dab",
+              "deps": [
+                "npm:@playwright/test"
+              ]
+            },
+            {
+              "file": "apps/internal-client-e2e/src/pages/projects.spec.ts",
+              "hash": "0dc941865e1e5f3a31502ea55964f4fd8b3d1582",
               "deps": [
                 "npm:@playwright/test"
               ]
@@ -371,7 +385,7 @@
             },
             {
               "file": "apps/internal-client/components/projects/list-filters.tsx",
-              "hash": "619460e4d33f4fd81a34ada838161e1e5128001b",
+              "hash": "ba74a4a7f3b2ebab8bf8bf6452c00a2f3fd71ad2",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
@@ -500,7 +514,7 @@
             },
             {
               "file": "apps/internal-client/pages/blog/index.tsx",
-              "hash": "363d7769b8fccbf6f3d209788d1cca20d7aa5340",
+              "hash": "7856c4a236fd940029a2654807edd9a8f293d728",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
@@ -529,7 +543,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "abeec518b77263fbb28dcc4d814d1ea03a2034a9",
+              "hash": "119c9944aea94caad7f60e2cceeaeb89fb257e29",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
@@ -550,7 +564,7 @@
             },
             {
               "file": "apps/internal-client/pages/styles.css",
-              "hash": "c6e0699813a17bb52cbf8b7d63276ac6a8542bf8"
+              "hash": "27b67e5e20b6f0105313a6602fc3a004c4093b78"
             },
             {
               "file": "apps/internal-client/project.json",
