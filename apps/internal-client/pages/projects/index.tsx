@@ -119,7 +119,7 @@ export default function Projects(props: ProjectsProps) {
               }}
               onClick={handleShowMoreOnClick}
             >
-              <Box>{'Show More'}</Box>
+              Show More
             </Button>
           </Box>
         ) : null}

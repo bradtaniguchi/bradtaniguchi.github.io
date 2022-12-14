@@ -38,9 +38,14 @@ export default function Blog(props: BlogProps) {
   const handleSearchChange: ListFilterProps['onSearchChange'] = useCallback(
     (searchValue) => {
       setSearchValue(searchValue);
+      setLimit(5);
     },
     []
   );
+
+  const handleSearchClose = useCallback(() => {
+    setLimit(5);
+  }, []);
 
   const handleShowMoreOnClick = () => setLimit(limit + 5);
 
@@ -81,6 +86,7 @@ export default function Blog(props: BlogProps) {
             <ListFilters
               defaultSearchValue={defaultSearchValue}
               onSearchChange={handleSearchChange}
+              onClear={handleSearchClose}
             />
           </div>
         </Box>
@@ -110,7 +116,7 @@ export default function Blog(props: BlogProps) {
               }}
               onClick={handleShowMoreOnClick}
             >
-              <Box>{'Show More'}</Box>
+              Show More
             </Button>
           </Box>
         ) : null}
