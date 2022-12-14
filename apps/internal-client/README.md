@@ -72,3 +72,11 @@ blog folder using front-matter. This primarily exists for testing.
 ```bash
 npx nx run internal-client:validate-blog-posts --path=apps/internal-client/static/blog/
 ```
+
+### prod-build shell script
+
+This bash script will go through similar steps to setup the production build and then serve it via `http-server`.
+
+```bash
+./apps/internal-client/scripts/prod-build.sh
+```

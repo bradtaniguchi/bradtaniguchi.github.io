@@ -1,6 +1,8 @@
-import { CommonLogger } from '@bradtaniguchi-dev/common';
-import { useLocalCollection } from '@bradtaniguchi-dev/common-react';
-import { Box, Button } from '@primer/react';
+import {
+  useHasMounted,
+  useLocalCollection,
+} from '@bradtaniguchi-dev/common-react';
+import { Box, Button, Spinner, Text } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
@@ -24,6 +26,7 @@ export interface BlogProps {
 
 export default function Blog(props: BlogProps) {
   const router = useRouter();
+  const mounted = useHasMounted();
 
   const defaultSearchValue = Array.isArray(router.query.q)
     ? router.query.q.join(' ')
@@ -35,20 +38,22 @@ export default function Blog(props: BlogProps) {
   const handleSearchChange: ListFilterProps['onSearchChange'] = useCallback(
     (searchValue) => {
       setSearchValue(searchValue);
+      setLimit(5);
     },
     []
   );
 
-  const handleShowMoreOnClick = () => setLimit(limit + 5);
+  const handleSearchClose = useCallback(() => {
+    setLimit(5);
+  }, []);
 
-  // we only want to show this button if the limit is less than the total
-  const showShowMore = limit < props.posts.length;
+  const handleShowMoreOnClick = () => setLimit(limit + 5);
 
   const { results: posts } = useLocalCollection({
     elements: props.posts,
     searchOptions: useMemo(
       () => ({
-        keys: ['name', 'description', 'tags'] as Array<keyof IStaticBlogPost>,
+        keys: ['title', 'description', 'tags'] as Array<keyof IStaticBlogPost>,
         distance: 0.8,
       }),
       []
@@ -56,8 +61,15 @@ export default function Blog(props: BlogProps) {
     search: searchValue,
     sortBy: 'date',
     sortDir: 'dsc',
-    limit,
   });
+
+  // we only want to show this button if the limit is less than the total
+  const showShowMore = limit < posts.length;
+
+  // when in a server-environment, render a spinner for the quick duration
+  // between hydration and rendering
+  if (!mounted) return <Spinner />;
+
   return (
     <Card>
       <Card.Header>
@@ -67,23 +79,32 @@ export default function Blog(props: BlogProps) {
           alignItems="center"
           justifyContent="space-between"
         >
-          <div>Posts</div>
+          <Text as="h2" fontSize={'inherit'} margin={0}>
+            Posts
+          </Text>
           <div>
             <ListFilters
               defaultSearchValue={defaultSearchValue}
               onSearchChange={handleSearchChange}
+              onClear={handleSearchClose}
             />
           </div>
         </Box>
       </Card.Header>
       <Card.Body p={0}>
-        {posts.map((post) => (
-          <Card.Row p={3} key={post.slug}>
-            <StaticBlogPost
-              blog={post as unknown as IStaticBlogPost}
-            ></StaticBlogPost>
-          </Card.Row>
-        ))}
+        <ul>
+          {posts
+            .map((post) => (
+              <Card.Row p={3} key={post.slug}>
+                <li>
+                  <StaticBlogPost
+                    blog={post as unknown as IStaticBlogPost}
+                  ></StaticBlogPost>
+                </li>
+              </Card.Row>
+            ))
+            .slice(0, limit)}
+        </ul>
         {showShowMore ? (
           <Box sx={{ margin: '8px' }}>
             <Button
@@ -95,7 +116,7 @@ export default function Blog(props: BlogProps) {
               }}
               onClick={handleShowMoreOnClick}
             >
-              <Box>{'Show More'}</Box>
+              Show More
             </Button>
           </Box>
         ) : null}

@@ -1,0 +1,64 @@
+{
+  "name": "internal-client-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/internal-client-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@mands/nx-playwright:playwright-executor",
+      "options": {
+        "e2eFolder": "apps/internal-client-e2e",
+        "devServerTarget": "internal-client:serve",
+        "packageRunner": "npx"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "internal-client:serve:production"
+        }
+      }
+    },
+    "ci-prod": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx playwright test",
+        "cwd": "apps/internal-client-e2e"
+      }
+    },
+    "ci-beta": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx http-server dist/apps/internal-client/exported",
+            "description": "Run http-server with exported files"
+          },
+          {
+            "command": "cd apps/internal-client-e2e && npx playwright test && echo '[finished-tests]' ",
+            "description": "run playwright tests"
+          }
+        ],
+        "parallel": true,
+        "readyWhen": "[finished-tests]"
+      }
+    },
+    "ts-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "tsc --build --force --verbose apps/internal-client-e2e/tsconfig.json"
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/internal-client-e2e/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["internal-client"]
+}

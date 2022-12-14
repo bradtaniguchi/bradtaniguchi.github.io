@@ -15,6 +15,10 @@ export interface ListFilterProps {
    */
   onSearchChange?: (searchValue: string) => unknown;
   /**
+   * Callback that is called when the user closes/clears the search.
+   */
+  onClear?: () => unknown;
+  /**
    * Search debounce in milliseconds, will default to 100.
    */
   searchDebounce?: number;
@@ -29,7 +33,7 @@ export interface ListFilterProps {
  *
  */
 export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
-  const { searchDebounce, onSearchChange, defaultSearchValue } = props;
+  const { searchDebounce, onSearchChange, onClear, defaultSearchValue } = props;
 
   // state
   const [showSearch, setShowSearch] = useState<boolean>();
@@ -63,10 +67,11 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
     if (isReadyFn()) {
       setShowSearch(false);
       setDebouncedValue('');
+      if (typeof onClear === 'function') onClear();
     } else {
       cancel();
     }
-  }, [setShowSearch, setDebouncedValue, cancel, isReadyFn]);
+  }, [setShowSearch, setDebouncedValue, cancel, isReadyFn, onClear]);
 
   return (
     <>
@@ -84,13 +89,13 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
                 <TextInput.Action
                   onClick={handleSearchClose}
                   icon={XIcon}
-                  aria-label="Clear input"
+                  aria-label="close search"
                 />
               }
             />
           ) : (
             <IconButton
-              aria-label="Search"
+              aria-label="show search"
               icon={SearchIcon}
               onClick={handleShowSearch}
             />
