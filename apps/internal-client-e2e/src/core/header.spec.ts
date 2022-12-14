@@ -10,7 +10,7 @@ const tests: Record<string, (params: { page: Page }) => Promise<void>> = {
   'has header title and link': async ({ page }) => {
     await page.goto('/');
 
-    const headerLink = page.locator('header >> a[href="/"]');
+    const headerLink = page.locator('header >> a[href="/"] >> h1');
     const headerTitle = page.locator('header >> a >> h1');
 
     await test.step('are visible', async () => {
@@ -25,6 +25,11 @@ const tests: Record<string, (params: { page: Page }) => Promise<void>> = {
 
     await test.step('is visible', async () => {
       await expect(navMenu).toBeVisible();
+    });
+
+    await test.step('has home', async () => {
+      const homeLink = navMenu.locator('a[href="/"]');
+      await expect(homeLink).toBeVisible();
     });
 
     await test.step('has project', async () => {

@@ -9,6 +9,7 @@ import {
   ThreeBarsIcon,
   SunIcon,
   MoonIcon,
+  HomeIcon,
 } from '@primer/octicons-react';
 import {
   ActionMenu,
@@ -81,6 +82,11 @@ export default function AppHeader(props: AppHeaderProps) {
     name: string;
   }> = useMemo(
     () => [
+      {
+        href: '/',
+        icon: HomeIcon,
+        name: 'Home',
+      },
       {
         href: '/projects',
         icon: ProjectIcon,
