@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { DevToPost, DevToPostSchema } from '../models/post';
 
 /**
  * Returns the list of published articles from dev.to
@@ -17,8 +18,10 @@ export async function getArticles(params?: {
   state?: 'fresh' | 'rising' | 'all';
   top?: number;
   collection_Id?: number;
-}) {
-  return axios.get('https://dev.to/api/articles', {
+}): Promise<DevToPost> {
+  const res = await axios.get('https://dev.to/api/articles', {
     params,
   });
+
+  return DevToPostSchema.parseAsync(res.data);
 }
