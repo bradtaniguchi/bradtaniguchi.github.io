@@ -7,6 +7,11 @@ import { DevToPost } from '@bradtaniguchi-dev/forem-api';
  */
 export interface DevMigratedPost {
   /**
+   * The id to identify this post.
+   * Used for direct lookups for the post.
+   */
+  id: number;
+  /**
    * The slug for the blog post, shown in the URL.
    * is re-used for portfolio posts
    */
@@ -24,8 +29,10 @@ export interface DevMigratedPost {
 
   /**
    * Tags for this post.
+   * **note** this is always migrated, as the API seems to return
+   * a string or an array of strings in different situations for some reason.
    */
-  tags: DevToPost['tag_list'];
+  tags: string[];
 
   /**
    * The date this post was published at
@@ -42,10 +49,33 @@ export interface DevMigratedPost {
  * Migrates the given post from dev.to to the internal format.
  */
 export const migrateDevPost = (post: DevToPost): DevMigratedPost => ({
+  id: post.id,
   slug: post.slug,
   title: post.title,
   description: post.description,
-  tags: post.tag_list,
+  tags: Array.isArray(post.tag_list)
+    ? post.tag_list
+    : post.tag_list.split(',').map((tag) => tag.trim()),
   date: post.published_at,
   source: 'dev.to',
 });
+
+/**
+ * Type-guard for the MigratedDevPost type.
+ *
+ * TODO: could use zod again!
+ */
+export const isMigratedDevPost = (post: unknown): post is DevMigratedPost => {
+  if (!post) return false;
+  const { id, slug, title, description, tags, date, source } =
+    post as DevMigratedPost;
+  return (
+    typeof id === 'number' &&
+    typeof slug === 'string' &&
+    typeof title === 'string' &&
+    typeof description === 'string' &&
+    typeof tags === 'string' &&
+    typeof date === 'string' &&
+    source === 'dev.to'
+  );
+};

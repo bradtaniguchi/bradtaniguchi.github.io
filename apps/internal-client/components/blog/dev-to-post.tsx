@@ -1,5 +1,5 @@
 import { Box, Label, Text } from '@primer/react';
-import { DevMigratedPost } from 'apps/internal-client/models/dev-migrated-post';
+import { DevMigratedPost } from '../../models/dev-migrated-post';
 import Dayjs from 'dayjs';
 import Link from 'next/link';
 import { memo } from 'react';
@@ -14,7 +14,7 @@ export interface DevToPostProps {
 export const DevToPost = memo(function DevToPost(props: DevToPostProps) {
   return (
     <Link
-      href={`blog/${props.blog.slug}`}
+      href={`blog/dev/${props.blog.id}?slug=${props.blog.slug}`}
       style={{ textDecoration: 'inherit' }}
     >
       <Box

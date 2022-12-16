@@ -94,12 +94,13 @@ export const DevToPostSchema = z.object({
   /**
    * The list of tags for the article
    */
-  tag_list: z.array(z.string()),
+  tag_list: z.union([z.string(), z.array(z.string())]),
   /**
    * Comma separated list of tags for the article
-   * TODO: ???
+   * Note: this seems like it changes format based on if
+   * we use get-articles vs get-article.
    */
-  tags: z.string(),
+  tags: z.union([z.string(), z.array(z.string())]),
   /**
    * The user who made the post
    */
@@ -112,6 +113,16 @@ export const DevToPostSchema = z.object({
    * TODO: ???
    */
   flare_tag: DevToFlareTagSchema.optional(),
+  /**
+   * The body of the article in html format.
+   * Only is included in single request api.
+   */
+  body_html: z.string().optional(),
+  /**
+   * The body of the article in markdown format.
+   * Only is included in single request api.
+   */
+  body_markdown: z.string().optional(),
 });
 
 /**

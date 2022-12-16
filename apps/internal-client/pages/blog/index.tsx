@@ -6,6 +6,7 @@ import { getArticles } from '@bradtaniguchi-dev/forem-api';
 import { Box, Button, Spinner, Text } from '@primer/react';
 import {
   DevMigratedPost,
+  isMigratedDevPost,
   migrateDevPost,
 } from '../../models/dev-migrated-post';
 import { GetStaticPropsResult } from 'next';
@@ -104,15 +105,10 @@ export default function Blog(props: BlogProps) {
               <Card.Row p={3} key={post.slug}>
                 <li>
                   {(() => {
-                    // TODO: add type-guard
-                    if ((post as DevMigratedPost).source === 'dev.to')
-                      return <DevToPost blog={post as DevMigratedPost} />;
-
-                    return (
-                      <StaticBlogPost
-                        blog={post as IStaticBlogPost}
-                      ></StaticBlogPost>
-                    );
+                    if (isMigratedDevPost(post))
+                      return <DevToPost blog={post} />;
+                    // can support other types here.
+                    return <StaticBlogPost blog={post}></StaticBlogPost>;
                   })()}
                 </li>
               </Card.Row>

@@ -35,6 +35,12 @@
       "options": {
         "command": "npx ts-node --project=libs/forem-api/tools/tsconfig.json libs/forem-api/tools/get-articles.ts"
       }
+    },
+    "get-article": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx ts-node --project=libs/forem-api/tools/tsconfig.json libs/forem-api/tools/get-article.ts"
+      }
     }
   },
   "tags": []

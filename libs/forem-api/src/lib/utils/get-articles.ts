@@ -7,10 +7,16 @@ import { DevToPost, DevToPostSchema } from '../models/post';
  * Docs on API:
  * https://developers.forem.com/api/v1#tag/articles/operation/getArticles
  *
+ * TODO: Add support for caching, and auto-pagination.
+ *
  * @returns Array of articles for the given params.
  */
 export async function getArticles(params?: {
   page?: number;
+  /**
+   * Returns 30 by default, should be enough to start, but will need
+   * to be expanded on later.
+   */
   per_page?: number;
   tag_exclude?: string;
   tag?: string;

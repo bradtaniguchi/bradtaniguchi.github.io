@@ -1,4 +1,5 @@
 {
+  "typescript.preferences.importModuleSpecifier": "project-relative",
   "workbench.iconTheme": "material-icon-theme",
   "cSpell.words": [
     "angularjs",
