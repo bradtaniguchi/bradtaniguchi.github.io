@@ -301,6 +301,16 @@
               ]
             },
             {
+              "file": "apps/internal-client/components/blog/dev-to-post.tsx",
+              "hash": "8d484914336b20490b3b1f4e99383e1433caee35",
+              "deps": [
+                "npm:@primer/react",
+                "npm:dayjs",
+                "npm:next",
+                "npm:react"
+              ]
+            },
+            {
               "file": "apps/internal-client/components/blog/static-blog-post.tsx",
               "hash": "2802ad4b83fd84e33ccecc16ad5b8211378d8559",
               "deps": [
@@ -429,6 +439,13 @@
               "hash": "25d1f5d5096ef88a750bf99638b40926c62e4edd"
             },
             {
+              "file": "apps/internal-client/models/dev-migrated-post.ts",
+              "hash": "c035e5c11ac60163906df75af7b6ee847a61803d",
+              "deps": [
+                "forem-api"
+              ]
+            },
+            {
               "file": "apps/internal-client/models/github-public-activity.ts",
               "hash": "c62d00c5668417d5453d64a19353b463d93e293e",
               "deps": [
@@ -513,10 +530,21 @@
               ]
             },
             {
+              "file": "apps/internal-client/pages/blog/dev/[id].tsx",
+              "hash": "8f2446747475b6b71feec3cd44b19c00a398fa22",
+              "deps": [
+                "npm:react-icons",
+                "npm:next",
+                "forem-api",
+                "npm:@primer/react"
+              ]
+            },
+            {
               "file": "apps/internal-client/pages/blog/index.tsx",
-              "hash": "7856c4a236fd940029a2654807edd9a8f293d728",
+              "hash": "52877131fe78701e55f1732cc0f31049741d4e8e",
               "deps": [
                 "common-react",
+                "forem-api",
                 "npm:@primer/react",
                 "npm:next",
                 "npm:react"
@@ -1146,6 +1174,196 @@
           ]
         }
       },
+      "forem-api": {
+        "name": "forem-api",
+        "type": "lib",
+        "data": {
+          "root": "libs/forem-api",
+          "name": "forem-api",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/forem-api/src",
+          "projectType": "library",
+          "targets": {
+            "build": {
+              "executor": "@nrwl/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/forem-api",
+                "tsConfig": "libs/forem-api/tsconfig.lib.json",
+                "packageJson": "libs/forem-api/package.json",
+                "main": "libs/forem-api/src/index.ts",
+                "assets": [
+                  "libs/forem-api/*.md"
+                ]
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ]
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "libs/forem-api/**/*.ts"
+                ]
+              },
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ]
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/forem-api/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ]
+            },
+            "get-articles": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "npx ts-node --project=libs/forem-api/tools/tsconfig.json libs/forem-api/tools/get-articles.ts"
+              }
+            },
+            "get-article": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "npx ts-node --project=libs/forem-api/tools/tsconfig.json libs/forem-api/tools/get-article.ts"
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "libs/forem-api/.babelrc",
+              "hash": "cf7ddd99c615a064ac18eb3109eee4f394ab1faf"
+            },
+            {
+              "file": "libs/forem-api/.eslintrc.json",
+              "hash": "9d9c0db55bb1e91c5f2e7b64a02bc6bf69fc7cb5"
+            },
+            {
+              "file": "libs/forem-api/jest.config.ts",
+              "hash": "bbdb9f546269f3e88fafdd5250476c6d6a69f84f"
+            },
+            {
+              "file": "libs/forem-api/package.json",
+              "hash": "e67dad7c6df110a4334fc5f8382b94252698031c"
+            },
+            {
+              "file": "libs/forem-api/project.json",
+              "hash": "02367e865d72bae32fbfbba2aa8884f3c526df92"
+            },
+            {
+              "file": "libs/forem-api/README.md",
+              "hash": "45d4aea15b779dcc3331e8fa706aa350bf448c04"
+            },
+            {
+              "file": "libs/forem-api/src/index.ts",
+              "hash": "efb36b5cbe0761ecb2c5317b79268e110d295175"
+            },
+            {
+              "file": "libs/forem-api/src/lib/models/flare-tag.ts",
+              "hash": "6bf90d3d290fba2d8d87f124f06150b60ca3d2f1",
+              "deps": [
+                "npm:zod"
+              ]
+            },
+            {
+              "file": "libs/forem-api/src/lib/models/index.ts",
+              "hash": "e868fba002540cf76cd94ed77d66ec094baaf6e2"
+            },
+            {
+              "file": "libs/forem-api/src/lib/models/organization.ts",
+              "hash": "a4c3330cc6427ccbc33f14ca8bb215094de2767e",
+              "deps": [
+                "npm:zod"
+              ]
+            },
+            {
+              "file": "libs/forem-api/src/lib/models/post.ts",
+              "hash": "b8c7213023ef85d34adb64fcf52ea3ac24bd7cb3",
+              "deps": [
+                "npm:zod"
+              ]
+            },
+            {
+              "file": "libs/forem-api/src/lib/models/user.ts",
+              "hash": "d3d864809a932d862c94b0c83ff34737d117eedd",
+              "deps": [
+                "npm:zod"
+              ]
+            },
+            {
+              "file": "libs/forem-api/src/lib/utils/get-article.ts",
+              "hash": "70ccd5fdae4aad0930e87fe9a318f2dfd4dc5832",
+              "deps": [
+                "npm:axios"
+              ]
+            },
+            {
+              "file": "libs/forem-api/src/lib/utils/get-articles.ts",
+              "hash": "0398f1f4916f29ca70696838c56837e453397c37",
+              "deps": [
+                "npm:axios"
+              ]
+            },
+            {
+              "file": "libs/forem-api/src/lib/utils/index.ts",
+              "hash": "3004dabdd6e476369a4dd5d49e758ffc005d8eda"
+            },
+            {
+              "file": "libs/forem-api/tools/get-article.ts",
+              "hash": "3112f54cd4d97ed9813c315e97e1a9333732d230",
+              "deps": [
+                "npm:yargs",
+                "npm:zod"
+              ]
+            },
+            {
+              "file": "libs/forem-api/tools/get-articles.ts",
+              "hash": "5c1b4adb3f867142c2ad449264b88df5b94f8873",
+              "deps": [
+                "npm:yargs",
+                "npm:zod"
+              ]
+            },
+            {
+              "file": "libs/forem-api/tools/tsconfig.json",
+              "hash": "8aa57be74a5654febdbfb54cd4b17dbaa37c869c"
+            },
+            {
+              "file": "libs/forem-api/tsconfig.json",
+              "hash": "e258886ffc933cca0326ceb2ee4fde881378131b"
+            },
+            {
+              "file": "libs/forem-api/tsconfig.lib.json",
+              "hash": "0e2a172abd561482f8c5e4d9ad900e03a9e48260"
+            },
+            {
+              "file": "libs/forem-api/tsconfig.spec.json",
+              "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            }
+          ]
+        }
+      },
       "storybook": {
         "name": "storybook",
         "type": "lib",
@@ -1588,6 +1806,11 @@
           "source": "internal-client",
           "target": "common-react",
           "type": "static"
+        },
+        {
+          "source": "internal-client",
+          "target": "forem-api",
+          "type": "static"
         }
       ],
       "common-react": [
@@ -1597,6 +1820,7 @@
           "type": "static"
         }
       ],
+      "forem-api": [],
       "storybook": [],
       "markdown": [],
       "common": []
