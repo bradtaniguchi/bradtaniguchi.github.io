@@ -1,4 +1,5 @@
 {
+  "typescript.preferences.importModuleSpecifier": "project-relative",
   "workbench.iconTheme": "material-icon-theme",
   "cSpell.words": [
     "angularjs",
@@ -9,6 +10,7 @@
     "Clava",
     "codespaces",
     "Codewars",
+    "crossposted",
     "CSUDH",
     "dbaeumer",
     "defn",
@@ -18,6 +20,7 @@
     "esbenp",
     "eslintcache",
     "firsttris",
+    "forem",
     "getsentry",
     "gtag",
     "Higginbotham",
