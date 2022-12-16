@@ -114,4 +114,7 @@ export const DevToPostSchema = z.object({
   flare_tag: DevToFlareTagSchema.optional(),
 });
 
+/**
+ * Type for a DevToPost
+ */
 export type DevToPost = z.infer<typeof DevToPostSchema>;

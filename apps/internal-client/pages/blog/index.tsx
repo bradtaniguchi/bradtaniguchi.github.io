@@ -2,7 +2,12 @@ import {
   useHasMounted,
   useLocalCollection,
 } from '@bradtaniguchi-dev/common-react';
+import { getArticles } from '@bradtaniguchi-dev/forem-api';
 import { Box, Button, Spinner, Text } from '@primer/react';
+import {
+  DevMigratedPost,
+  migrateDevPost,
+} from '../../models/dev-migrated-post';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
@@ -19,9 +24,10 @@ import {
   verifyBlogPostMetaData,
 } from '../../utils/get-blog-post-meta-data';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
+import { DevToPost } from '../../components/blog/dev-to-post';
 
 export interface BlogProps {
-  posts: Array<Partial<IStaticBlogPost>>;
+  posts: Array<IStaticBlogPost | DevMigratedPost>;
 }
 
 export default function Blog(props: BlogProps) {
@@ -97,9 +103,17 @@ export default function Blog(props: BlogProps) {
             .map((post) => (
               <Card.Row p={3} key={post.slug}>
                 <li>
-                  <StaticBlogPost
-                    blog={post as unknown as IStaticBlogPost}
-                  ></StaticBlogPost>
+                  {(() => {
+                    // TODO: add type-guard
+                    if ((post as DevMigratedPost).source === 'dev.to')
+                      return <DevToPost blog={post as DevMigratedPost} />;
+
+                    return (
+                      <StaticBlogPost
+                        blog={post as IStaticBlogPost}
+                      ></StaticBlogPost>
+                    );
+                  })()}
                 </li>
               </Card.Row>
             ))
@@ -130,13 +144,28 @@ export async function getStaticProps(): Promise<
 > {
   const blogPaths = await getMarkdownFiles(BLOG_PATH);
 
-  const blogPostsMetaData = await getBlogPostsMetaData(blogPaths);
+  const [blogPostsMetaData, devToPosts] = await Promise.all([
+    getBlogPostsMetaData(blogPaths),
+    // get all blog posts from dev.to
+    getArticles({
+      username: 'bradtaniguchi',
+    }),
+  ]);
 
-  verifyBlogPostMetaData(blogPostsMetaData);
+  const allPosts: Array<IStaticBlogPost | DevMigratedPost> = [
+    ...blogPostsMetaData,
+    ...devToPosts.map(migrateDevPost),
+  ];
+
+  verifyBlogPostMetaData(allPosts);
 
   return {
     props: {
-      posts: blogPostsMetaData,
+      posts: allPosts,
     },
+    // set as high number to prevent extra hits against
+    // the forem api.
+    // 10k seconds
+    revalidate: 10_000,
   };
 }
