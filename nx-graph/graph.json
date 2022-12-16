@@ -1355,7 +1355,7 @@
             },
             {
               "file": "libs/forem-api/tsconfig.lib.json",
-              "hash": "0e2a172abd561482f8c5e4d9ad900e03a9e48260"
+              "hash": "0a6f2e3e5cf9edeec519044cc90fd68d8daa6691"
             },
             {
               "file": "libs/forem-api/tsconfig.spec.json",
