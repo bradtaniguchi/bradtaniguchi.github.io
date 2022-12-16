@@ -2,6 +2,7 @@ import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 const argv = yargs(hideBin(process.argv)).argv;
 import { getArticles } from '../src/lib/utils/get-articles';
+import { ZodError } from 'zod';
 
 /**
  * Script that can be used to get the articles from dev.to for
@@ -15,12 +16,18 @@ import { getArticles } from '../src/lib/utils/get-articles';
     if (typeof username !== 'string')
       throw new Error('--username is not a string');
 
-    const { data } = await getArticles({ username });
+    const articles = await getArticles({ username });
 
-    console.log(data);
+    console.log(articles);
 
     process.exit(0);
   } catch (err) {
+    if (err instanceof ZodError) {
+      console.error('zod parsing error:', err.issues);
+    } else {
+      console.error(err);
+    }
+
     process.exit(1);
   }
 })();

@@ -41,16 +41,16 @@ export const DevToPostSchema = z.object({
   /**
    * The number of comments received.
    */
-  comments_count: z.number().positive(),
+  comments_count: z.number(),
   /**
    * The number of reactions received.
    */
-  public_reactions_count: z.number().positive(),
+  public_reactions_count: z.number(),
   /**
    * URL of the cover image, this probably wont be loadable
    * from the local page, so don't try to use it.
    */
-  cover_image: z.string(),
+  cover_image: z.union([z.string().optional(), z.null()]),
   /**
    * URL of the social image, this probably wont be loadable
    * from the local page, so don't try to use it.
@@ -90,7 +90,7 @@ export const DevToPostSchema = z.object({
   /**
    * The number of minutes it takes to read the article
    */
-  reading_time_minutes: z.number().positive(),
+  reading_time_minutes: z.number(),
   /**
    * The list of tags for the article
    */
@@ -107,11 +107,11 @@ export const DevToPostSchema = z.object({
   /**
    * The organization who made the post
    */
-  organization: DevToOrganizationSchema,
+  organization: DevToOrganizationSchema.optional(),
   /**
    * TODO: ???
    */
-  flare_tag: DevToFlareTagSchema,
+  flare_tag: DevToFlareTagSchema.optional(),
 });
 
 export type DevToPost = z.infer<typeof DevToPostSchema>;

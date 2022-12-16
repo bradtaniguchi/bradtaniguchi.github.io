@@ -7,13 +7,9 @@ import { z } from 'zod';
  */
 export const DevToUserSchema = z.object({
   /**
-   * The type of data, usually user
-   */
-  type_of: z.enum(['user']),
-  /**
    * The unique id of the user, int32
    */
-  id: z.number(),
+  user_id: z.number(),
   /**
    * The username of the user
    */
