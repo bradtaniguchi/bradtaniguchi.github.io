@@ -1,34 +1,17 @@
-name: on-push
+name: on-manual-deploy
+
 on:
-  # run on push
-  push:
-    branches:
-      - '**'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'sha/ref to deploy'
+        required: true
+        default: 'main'
 
 jobs:
-  gen-affected:
-    timeout-minutes: 5
-    runs-on: ubuntu-latest
-    outputs:
-      AFFECTED: ${{ steps.gen-affected.outputs.AFFECTED }}
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          lfs: false
-          fetch-depth: 0
-      - uses: ./.github/actions/init-job
-      - id: gen-affected
-        run: |
-          AFFECTED=$(npm run get:affected --silent)
-          echo $AFFECTED
-          echo "::set-output name=AFFECTED::$AFFECTED"
-
   internal-client:
     timeout-minutes: 5
-    if: ${{ needs.gen-affected.outputs.AFFECTED != '' }}
     runs-on: ubuntu-latest
-    needs:
-      - gen-affected
     env:
       # configuration:
       # https://blog.sentry.io/2019/12/17/using-github-actions-to-create-sentry-releases
@@ -42,13 +25,10 @@ jobs:
       GH_PRIVATE_KEY: ${{ secrets.GH_PRIVATE_KEY }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.ref }}
       - uses: ./.github/actions/init-job
-      - run: npx nx run internal-client:lint
       - run: npx nx run internal-client:export
-      - run: npx nx run internal-client:lighthouse
-      # - run: npx nx run internal-client-e2e:ci
-      #   env:
-      #     E2E_BASE_URL: local
       # TODO: can this be removed?
       - run: npx rimraf dist/apps/internal-client/exported/bradtaniguchi-dev
       - uses: actions/upload-artifact@v2
@@ -57,18 +37,13 @@ jobs:
           path: dist/apps/internal-client/exported
           retention-days: 3
 
-  # Job that generates the storybook configuration for all projects that have it,
-  # where the `storybook`` library will be built and manage ALL the projects.
-  # together via composition. Or at least thats the plan.
-  # All of these together will be deployed within the gh-page job.
   internal-storybooks:
     timeout-minutes: 5
-    if: ${{ needs.gen-affected.outputs.AFFECTED != '' }}
     runs-on: ubuntu-latest
-    needs:
-      - gen-affected
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.ref }}
       - uses: ./.github/actions/init-job
       - run: npx nx run-many --target=build-storybook --all
       - run: mv dist/storybook/storybook/** dist/storybook/
@@ -82,12 +57,11 @@ jobs:
   # Deployed with the storybook project to gh-pages.
   internal-tools:
     timeout-minutes: 5
-    if: ${{ needs.gen-affected.outputs.AFFECTED != '' }}
     runs-on: ubuntu-latest
-    needs:
-      - gen-affected
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.ref }}
       - uses: ./.github/actions/init-job
       - run: npx nx graph --file=dist/nx-graph/index.html
       - run: npx nx graph --file=dist/nx-graph/graph.json
@@ -118,15 +92,15 @@ jobs:
   # of the static contents to the local github page.
   gh-pages:
     timeout-minutes: 5
-    if: ${{ needs.gen-affected.outputs.AFFECTED != '' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     needs:
-      - gen-affected
       - internal-client
       - internal-storybooks
       - internal-tools
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.ref }}
       - uses: ./.github/actions/init-job
       - run: mkdir dist
       - uses: actions/download-artifact@v2
@@ -172,40 +146,3 @@ jobs:
           # SENTRY_URL: https://sentry.io/
         with:
           environment: production
-
-  prod-test:
-    timeout-minutes: 5
-    if: ${{ needs.gen-affected.outputs.AFFECTED != '' && github.ref == 'refs/heads/main' }}
-    runs-on: ubuntu-latest
-    needs:
-      - gh-pages
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/init-job
-      - run: npx playwright install
-      - run: npx nx run internal-client-e2e:ci-prod
-        env:
-          E2E_BASE_URL: https://bradtaniguchi.dev/
-
-  common:
-    if: ${{ contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'common') }}
-    runs-on: ubuntu-latest
-    needs:
-      - gen-affected
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/init-job
-      - run: npx nx run common:lint
-      - run: npx nx run common:test
-
-  common-react:
-    if: ${{ contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'common-react') }}
-    runs-on: ubuntu-latest
-    needs:
-      - gen-affected
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/init-job
-      - run: npx nx run common-react:lint
-      - run: npx nx run common-react:test
-      - run: npx nx run common-react:build # TODO: verify
