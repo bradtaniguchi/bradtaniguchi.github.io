@@ -70,7 +70,7 @@ export const DevToPostSchema = z.object({
    * Time formatted as ISO date-time
    * ex: 2021-03-01T00:00:00Z
    */
-  edited_at: z.string().optional(),
+  edited_at: z.union([z.string().optional(), z.null()]),
   /**
    * TODO: ???
    */
