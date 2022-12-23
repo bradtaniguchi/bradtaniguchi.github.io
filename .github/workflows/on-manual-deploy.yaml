@@ -1,0 +1,148 @@
+name: on-manual-deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'sha/ref to deploy'
+        required: true
+        default: 'main'
+
+jobs:
+  internal-client:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    env:
+      # configuration:
+      # https://blog.sentry.io/2019/12/17/using-github-actions-to-create-sentry-releases
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+      SENTRY_DEPLOYMENT_ENVIRONMENT: 'production'
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+      GOOGLE_ANALYTICS: ${{ secrets.GOOGLE_ANALYTICS }}
+      GH_PRIVATE_KEY: ${{ secrets.GH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.ref }}
+      - uses: ./.github/actions/init-job
+      - run: npx nx run internal-client:export
+      # TODO: can this be removed?
+      - run: npx rimraf dist/apps/internal-client/exported/bradtaniguchi-dev
+      - uses: actions/upload-artifact@v2
+        with:
+          name: internal-client
+          path: dist/apps/internal-client/exported
+          retention-days: 3
+
+  internal-storybooks:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.ref }}
+      - uses: ./.github/actions/init-job
+      - run: npx nx run-many --target=build-storybook --all
+      - run: mv dist/storybook/storybook/** dist/storybook/
+      - uses: actions/upload-artifact@v2
+        with:
+          name: internal-storybooks
+          path: dist/storybook
+          retention-days: 3
+
+  # Job that generates things based on internal tooling.
+  # Deployed with the storybook project to gh-pages.
+  internal-tools:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.ref }}
+      - uses: ./.github/actions/init-job
+      - run: npx nx graph --file=dist/nx-graph/index.html
+      - run: npx nx graph --file=dist/nx-graph/graph.json
+      - uses: actions/upload-artifact@v2
+        with:
+          name: internal-nx-graph
+          path: dist/nx-graph
+          retention-days: 3
+      - run: npx nx run-many --target=typedoc --all
+      - uses: actions/upload-artifact@v2
+        with:
+          name: internal-docs
+          path: dist/docs
+          retention-days: 3
+      - run: npm run build:config
+      - uses: actions/upload-artifact@v2
+        with:
+          name: config
+          path: dist/config.json
+          retention-days: 3
+
+  # Job that deploys all the "internal" information that is generated within:
+  # internal-client
+  # internal-storybooks
+  # internal-tools
+  #
+  # If we are on the main branch, then this job will execute to gather and deploy all
+  # of the static contents to the local github page.
+  gh-pages:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    needs:
+      - internal-client
+      - internal-storybooks
+      - internal-tools
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.inputs.ref }}
+      - uses: ./.github/actions/init-job
+      - run: mkdir dist
+      - uses: actions/download-artifact@v2
+        with:
+          name: internal-client
+          # This gets moved to the top-level dist, as it will
+          # manage all the other contents.
+          path: dist
+      - uses: actions/download-artifact@v2
+        with:
+          name: internal-storybooks
+          # This gets changed to be plural for a cleaner URL
+          path: dist/storybooks
+      - uses: actions/download-artifact@v2
+        with:
+          name: internal-nx-graph
+          path: dist/nx-graph
+      - uses: actions/download-artifact@v2
+        with:
+          name: internal-docs
+          path: dist/docs
+      - uses: actions/download-artifact@v2
+        with:
+          name: config
+          # should make config.json available
+          path: dist
+      # DEBUG build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: gh-pages-dist
+          path: dist
+          retention-days: 1
+      - uses: JamesIves/github-pages-deploy-action@v4.3.3
+        if: github.ref == 'refs/heads/main'
+        with:
+          branch: gh-pages
+          folder: dist
+      - uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          # SENTRY_URL: https://sentry.io/
+        with:
+          environment: production
