@@ -1299,7 +1299,7 @@
             },
             {
               "file": "libs/forem-api/src/lib/models/post.ts",
-              "hash": "b8c7213023ef85d34adb64fcf52ea3ac24bd7cb3",
+              "hash": "748874d71c591135d2846552730b5167c178fb48",
               "deps": [
                 "npm:zod"
               ]
