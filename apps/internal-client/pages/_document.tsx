@@ -10,6 +10,7 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { GoogleAnalytics } from '@bradtaniguchi-dev/common-react';
+import { MetaTags } from '../components/core/meta-tags';
 
 export default class CustomDocument extends Document<{
   styleTags: ReactElement[];
@@ -39,6 +40,12 @@ export default class CustomDocument extends Document<{
         <Head>
           {this.props.styleTags}
           <GoogleAnalytics googleAnalyticsKey={this.props.googleAnalytics} />
+
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <MetaTags
+            description="Brad Taniguchi's portfolio/blog/website"
+            keywords={['git', 'react', 'github', 'bradtaniguchi']}
+          />
         </Head>
         <body>
           <Main />
