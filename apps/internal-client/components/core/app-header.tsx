@@ -10,6 +10,7 @@ import {
   SunIcon,
   MoonIcon,
   HomeIcon,
+  CodespacesIcon,
 } from '@primer/octicons-react';
 import {
   ActionMenu,
@@ -60,6 +61,8 @@ export default function AppHeader(props: AppHeaderProps) {
 
     if (colorMode === 'day') {
       nextColorMode = 'night';
+    } else if (colorMode === 'night') {
+      nextColorMode = 'auto';
     } else {
       nextColorMode = 'day';
     }
@@ -120,18 +123,22 @@ export default function AppHeader(props: AppHeaderProps) {
   );
 
   const themeIcon = useMemo(() => {
-    if (colorMode === 'night') {
-      return SunIcon;
-    } else {
+    if (colorMode === 'day') {
       return MoonIcon;
+    } else if (colorMode === 'night') {
+      return CodespacesIcon;
+    } else {
+      return SunIcon;
     }
   }, [colorMode]);
 
   const themeTitle = useMemo(() => {
-    if (colorMode === 'night') {
-      return 'Switch to day mode';
-    } else {
+    if (colorMode === 'day') {
       return 'Switch to night mode';
+    } else if (colorMode === 'night') {
+      return 'Switch to system theme';
+    } else {
+      return 'Switch to day mode';
     }
   }, [colorMode]);
 

@@ -41,7 +41,6 @@ export default class CustomDocument extends Document<{
           {this.props.styleTags}
           <GoogleAnalytics googleAnalyticsKey={this.props.googleAnalytics} />
 
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <MetaTags
             description="Brad Taniguchi's portfolio/blog/website"
             keywords={['git', 'react', 'github', 'bradtaniguchi']}

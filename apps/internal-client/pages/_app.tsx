@@ -46,7 +46,11 @@ function ThemedComponent({ Component, pageProps }: AppProps) {
   });
 
   useEffect(() => {
-    if (colorMode === 'night') {
+    const hasSystemDarkMode =
+      colorMode === 'auto' &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (colorMode === 'night' || hasSystemDarkMode) {
       document.body.style.backgroundColor = 'black';
     } else {
       document.body.style.backgroundColor = 'inherit';
