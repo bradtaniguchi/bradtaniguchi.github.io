@@ -70,12 +70,12 @@ export const isMigratedDevPost = (post: unknown): post is DevMigratedPost => {
   const { id, slug, title, description, tags, date, source } =
     post as DevMigratedPost;
   return (
-    typeof id === 'number' &&
-    typeof slug === 'string' &&
-    typeof title === 'string' &&
-    typeof description === 'string' &&
-    typeof tags === 'string' &&
-    typeof date === 'string' &&
-    source === 'dev.to'
+    (typeof id === 'number' &&
+      typeof slug === 'string' &&
+      typeof title === 'string' &&
+      typeof description === 'string' &&
+      // TODO: this doesn't check underlying tags
+      typeof tags === 'string') ||
+    (Array.isArray(tags) && typeof date === 'string' && source === 'dev.to')
   );
 };

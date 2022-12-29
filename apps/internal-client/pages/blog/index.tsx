@@ -2,16 +2,12 @@ import {
   useHasMounted,
   useLocalCollection,
 } from '@bradtaniguchi-dev/common-react';
-import { getArticles } from '@bradtaniguchi-dev/forem-api';
+import { getArticlesFromCache } from '@bradtaniguchi-dev/forem-api';
 import { Box, Button, Spinner, Text } from '@primer/react';
-import {
-  DevMigratedPost,
-  isMigratedDevPost,
-  migrateDevPost,
-} from '../../models/dev-migrated-post';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
 import { useCallback, useMemo, useState } from 'react';
+import { DevToPost } from '../../components/blog/dev-to-post';
 import { StaticBlogPost } from '../../components/blog/static-blog-post';
 import { Card } from '../../components/core/card';
 import {
@@ -19,13 +15,17 @@ import {
   ListFilters,
 } from '../../components/projects/list-filters';
 import { BLOG_PATH } from '../../constants/blog-path';
+import {
+  DevMigratedPost,
+  isMigratedDevPost,
+  migrateDevPost,
+} from '../../models/dev-migrated-post';
 import { StaticBlogPost as IStaticBlogPost } from '../../models/static-blog-post';
 import {
   getBlogPostsMetaData,
   verifyBlogPostMetaData,
 } from '../../utils/get-blog-post-meta-data';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
-import { DevToPost } from '../../components/blog/dev-to-post';
 
 export interface BlogProps {
   posts: Array<IStaticBlogPost | DevMigratedPost>;
@@ -143,7 +143,7 @@ export async function getStaticProps(): Promise<
   const [blogPostsMetaData, devToPosts] = await Promise.all([
     getBlogPostsMetaData(blogPaths),
     // get all blog posts from dev.to
-    getArticles({
+    getArticlesFromCache({
       username: 'bradtaniguchi',
     }),
   ]);
