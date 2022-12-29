@@ -24,7 +24,11 @@ export async function getArticle(
   if (!noCache && articleCache.has(id)) {
     const request = axios
       .get(`https://dev.to/api/articles/${id}`)
-      .then((res) => DevToPostSchema.parse(res.data));
+      // this is required to remove undefined properties naturally.
+      // otherwise nextjs complains about the data including undefined,
+      // rather than null.
+      .then((res) => JSON.parse(JSON.stringify(res.data)))
+      .then((data) => DevToPostSchema.parse(data));
 
     articleCache.set(id, request);
   }
