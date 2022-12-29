@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { DevToPost, DevToPostSchema } from '../models/post';
 
+/**
+ * File level-cache for all articles being requested for.
+ */
 const articleCache = new Map<number, Promise<DevToPost>>();
 
 /**
@@ -21,14 +24,10 @@ export async function getArticle(
 ): Promise<DevToPost> {
   const noCache = !!options?.noCache;
 
-  if (!noCache && articleCache.has(id)) {
+  if (!noCache || !articleCache.has(id)) {
     const request = axios
       .get(`https://dev.to/api/articles/${id}`)
-      // this is required to remove undefined properties naturally.
-      // otherwise nextjs complains about the data including undefined,
-      // rather than null.
-      .then((res) => JSON.parse(JSON.stringify(res.data)))
-      .then((data) => DevToPostSchema.parse(data));
+      .then((res) => DevToPostSchema.parse(res.data));
 
     articleCache.set(id, request);
   }
