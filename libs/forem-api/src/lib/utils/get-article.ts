@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { DevToPost, DevToPostSchema } from '../models/post';
 
+const articleCache = new Map<number, Promise<DevToPost>>();
+
 /**
  * Returns the article with the given ID.
  *
@@ -8,8 +10,24 @@ import { DevToPost, DevToPostSchema } from '../models/post';
  *
  * @returns Array of articles for the given params.
  */
-export async function getArticle(id: number): Promise<DevToPost> {
-  const res = await axios.get<DevToPost>(`https://dev.to/api/articles/${id}`);
+export async function getArticle(
+  id: number,
+  options?: {
+    /**
+     * Skip using cache for this request
+     */
+    noCache?: boolean;
+  }
+): Promise<DevToPost> {
+  const noCache = !!options?.noCache;
 
-  return DevToPostSchema.parse(res.data);
+  if (!noCache && articleCache.has(id)) {
+    const request = axios
+      .get(`https://dev.to/api/articles/${id}`)
+      .then((res) => DevToPostSchema.parse(res.data));
+
+    articleCache.set(id, request);
+  }
+
+  return articleCache.get(id) as Promise<DevToPost>;
 }
