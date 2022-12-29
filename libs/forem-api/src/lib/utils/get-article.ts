@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DevToPost } from '../models/post';
+import { DevToPost, DevToPostSchema } from '../models/post';
 
 /**
  * Returns the article with the given ID.
@@ -11,6 +11,5 @@ import { DevToPost } from '../models/post';
 export async function getArticle(id: number): Promise<DevToPost> {
   const res = await axios.get<DevToPost>(`https://dev.to/api/articles/${id}`);
 
-  // return DevToPostSchema.parse(res.data);
-  return res.data;
+  return DevToPostSchema.parse(res.data);
 }
