@@ -139,7 +139,7 @@ export default function Index(props: IndexProps) {
               {(() => {
                 const { latestPost } = props;
                 if (isMigratedDevPost(latestPost))
-                  return <DevToPost blog={latestPost} />;
+                  return <DevToPost blog={latestPost} displayMode="column" />;
                 return <StaticBlogPost blog={latestPost} />;
               })()}
             </section>
