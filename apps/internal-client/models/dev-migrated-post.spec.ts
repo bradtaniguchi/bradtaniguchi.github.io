@@ -21,10 +21,17 @@ describe('isMigratedDevPost', () => {
         title: 'Weird and interesting places to remote work from?',
         description:
           'Due to the increase in opportunities that provide remote work, I was wondering if anyone ever tried...',
-        tags: ['remote'],
+        // this is changed from the actual data for this test.
+        tags: 'remote',
         date: '2022-02-28T05:32:23Z',
         source: 'dev.to',
       })
     ).toEqual(true);
+  });
+
+  test('returns false', () => {
+    // basic sanity tests
+    expect(isMigratedDevPost({})).toEqual(false);
+    expect(isMigratedDevPost({ id: 1 })).toEqual(false);
   });
 });

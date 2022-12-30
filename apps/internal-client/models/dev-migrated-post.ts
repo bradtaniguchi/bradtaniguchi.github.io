@@ -1,4 +1,5 @@
 import { DevToPost } from '@bradtaniguchi-dev/forem-api';
+import * as z from 'zod';
 
 /**
  * Migrated version of what is returned from the dev API.
@@ -59,23 +60,31 @@ export const migrateDevPost = (post: DevToPost): DevMigratedPost => ({
   date: post.published_at,
   source: 'dev.to',
 });
+/**
+ * Zod based validation schema used to test if the given data
+ * is a migratedDevPost.
+ */
+export const migratedDevPostSchema = z.object({
+  id: z.number(),
+  slug: z.string(),
+  title: z.string(),
+  description: z.string(),
+  tags: z.union([z.array(z.string()), z.string()]),
+  date: z.string(),
+  source: z.literal('dev.to'),
+});
 
 /**
  * Type-guard for the MigratedDevPost type.
  *
- * TODO: could use zod again!
+ * Internally uses the `migratedDevPostSchema` to validate the given data.
  */
 export const isMigratedDevPost = (post: unknown): post is DevMigratedPost => {
   if (!post) return false;
-  const { id, slug, title, description, tags, date, source } =
-    post as DevMigratedPost;
-  return (
-    (typeof id === 'number' &&
-      typeof slug === 'string' &&
-      typeof title === 'string' &&
-      typeof description === 'string' &&
-      // TODO: this doesn't check underlying tags
-      typeof tags === 'string') ||
-    (Array.isArray(tags) && typeof date === 'string' && source === 'dev.to')
-  );
+  try {
+    migratedDevPostSchema.parse(post);
+    return true;
+  } catch (err) {
+    return false;
+  }
 };
