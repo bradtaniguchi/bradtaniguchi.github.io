@@ -51,7 +51,7 @@ export default function Index(props: IndexProps) {
         display="flex"
         gridColumn={['span 1', 'span 2', 'span 1']}
         flexDirection="column"
-        sx={{ gap: '2' }}
+        sx={{ gap: '3' }}
       >
         <Card>
           <Card.Body>
@@ -198,7 +198,7 @@ export default function Index(props: IndexProps) {
         </Card>
       </Box>
 
-      <Box gridColumn="span 2">
+      <Box gridColumn={['span 1', 'span 2', 'span 2']}>
         <Box gridColumn="span 2">
           <Box display="grid" gridGap={3}>
             <Card gridColumn="span 2">
