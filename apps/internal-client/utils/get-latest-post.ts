@@ -1,5 +1,12 @@
-import { DevMigratedPost } from '../models/dev-migrated-post';
+import { getArticlesFromCache } from '@bradtaniguchi-dev/forem-api';
+import { BLOG_PATH } from '../constants/blog-path';
+import { DevMigratedPost, migrateDevPost } from '../models/dev-migrated-post';
 import { StaticBlogPost } from '../models/static-blog-post';
+import {
+  getBlogPostsMetaData,
+  verifyBlogPostMetaData,
+} from './get-blog-post-meta-data';
+import { getMarkdownFiles } from './get-markdown-files';
 
 /**
  * Returns the latest blog post. This includes posts from dev.to and
@@ -8,13 +15,27 @@ import { StaticBlogPost } from '../models/static-blog-post';
 export async function getLatestPost(): Promise<
   StaticBlogPost | DevMigratedPost
 > {
-  // TODO:
-  return {
-    date: '2022-12-23',
-    description:
-      'test super long test description that is a test a test a testa testa testa test',
-    slug: 'test-slug',
-    tags: ['one', 'two'],
-    title: 'test title',
-  } as StaticBlogPost;
+  const blogPaths = await getMarkdownFiles(BLOG_PATH);
+
+  const [blogPostsMetaData, devToPosts] = await Promise.all([
+    getBlogPostsMetaData(blogPaths),
+    // get all blog posts from dev.to
+    getArticlesFromCache({
+      username: 'bradtaniguchi',
+    }),
+  ]);
+
+  const allPosts: Array<StaticBlogPost | DevMigratedPost> = [
+    ...blogPostsMetaData,
+    ...devToPosts.map(migrateDevPost),
+  ];
+
+  verifyBlogPostMetaData(allPosts);
+
+  const latestPost = allPosts.reduce((latest, post) => {
+    if (post.date > latest.date) return post;
+    return latest;
+  });
+
+  return latestPost;
 }
