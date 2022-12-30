@@ -37,7 +37,10 @@ export interface CollectionFilter<Key extends string | number | symbol, Value> {
  */
 export function useLocalCollection<Element>(params: {
   elements: Array<Element>;
-  filters?: Array<CollectionFilter<keyof Element, ValueOf<Element>>>;
+  filters?: Array<
+    | CollectionFilter<keyof Element, ValueOf<Element>>
+    | ((el: Element) => boolean)
+  >;
   sortBy?: keyof Element;
   sortDir?: 'asc' | 'dsc';
   search?: string;
@@ -67,7 +70,11 @@ export function useLocalCollection<Element>(params: {
     let filteredElements: Array<Element>;
 
     filteredElements = initialElements.filter((element) =>
-      (filters || []).every(({ key, value }) => element[key] === value)
+      (filters || []).every((filter) => {
+        if (typeof filter === 'function') return filter(element);
+        const { key, value } = filter;
+        return element[key] === value;
+      })
     );
 
     if (fuse && search) {

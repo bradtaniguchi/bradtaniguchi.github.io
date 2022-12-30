@@ -39,6 +39,10 @@ export default function Blog(props: BlogProps) {
     ? router.query.q.join(' ')
     : router.query.q;
 
+  const defaultTags = (
+    Array.isArray(router.query.tags) ? router.query.tags : [router.query.tags]
+  ).filter(Boolean);
+
   const [searchValue, setSearchValue] = useState<string>('');
   const [limit, setLimit] = useState<number>(5);
 
@@ -58,6 +62,17 @@ export default function Blog(props: BlogProps) {
 
   const { results: posts } = useLocalCollection({
     elements: props.posts,
+    filters: [
+      // only show posts that match the tag value if there is one
+      (post) =>
+        // TODO: this will change to a local-state value once the list filters
+        // component has a UI that can handle tag selection
+        defaultTags.length
+          ? defaultTags.some((defaultTag) =>
+              (post.tags || []).includes(defaultTag)
+            )
+          : true,
+    ],
     searchOptions: useMemo(
       () => ({
         keys: ['title', 'description', 'tags'] as Array<keyof IStaticBlogPost>,
