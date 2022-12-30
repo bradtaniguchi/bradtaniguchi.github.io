@@ -34,8 +34,8 @@ import { isStaticProject } from '../models/project';
       slugs: projectsMetaData.map(({ slug }) => slug),
     });
 
-    const invalidBlogPosts = projectsMetaData.filter((blogPostMetaData) =>
-      isStaticProject(blogPostMetaData)
+    const invalidBlogPosts = projectsMetaData.filter(
+      (blogPostMetaData) => !isStaticProject(blogPostMetaData)
     );
 
     console.log(
