@@ -2,12 +2,45 @@ import axios from 'axios';
 import { DevToPost, DevToPostSchema } from '../models/post';
 
 /**
+ * File level-cache for all articles being requested for.
+ */
+const articleCache = new Map<string, Promise<Array<DevToPost>>>();
+
+/**
+ * Returns the articles for the given username via a cache.
+ *
+ * This should be used if no pagination/settings are used. Otherwise
+ * use `getArticles` directly.
+ *
+ * **note** this currently only returns the first page of results.
+ */
+export async function getArticlesFromCache(params: {
+  /**
+   * The username we are to get articles for.
+   */
+  username: string;
+  /**
+   * Skip using cache for this request
+   */
+  noCache?: boolean;
+}): Promise<Array<DevToPost>> {
+  const noCache = !!params?.noCache;
+  const username = params.username.toLowerCase();
+
+  if (!noCache || !articleCache.has(username)) {
+    const request = getArticles({ username });
+
+    articleCache.set(username, request);
+  }
+
+  return articleCache.get(username) as Promise<Array<DevToPost>>;
+}
+
+/**
  * Returns the list of published articles from dev.to
  *
  * Docs on API:
  * https://developers.forem.com/api/v1#tag/articles/operation/getArticles
- *
- * TODO: Add support for caching, and auto-pagination.
  *
  * @returns Array of articles for the given params.
  */
