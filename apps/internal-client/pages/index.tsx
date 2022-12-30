@@ -1,10 +1,10 @@
 import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
-import { MarkGithubIcon } from '@primer/octicons-react';
+import { MarkGithubIcon, TabExternalIcon } from '@primer/octicons-react';
 import { Box, LinkButton, StyledOcticon } from '@primer/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { SiCodewars } from 'react-icons/si';
+import { SiCodewars, SiReplit } from 'react-icons/si';
 import { Activities } from '../components/activity/activities';
 import { DevToPost } from '../components/blog/dev-to-post';
 import { StaticBlogPost } from '../components/blog/static-blog-post';
@@ -51,7 +51,7 @@ export default function Index(props: IndexProps) {
         display="flex"
         gridColumn={['span 1', 'span 2', 'span 1']}
         flexDirection="column"
-        sx={{ gap: '3' }}
+        sx={{ gap: '2' }}
       >
         <Card>
           <Card.Body>
@@ -86,7 +86,15 @@ export default function Index(props: IndexProps) {
                       rel="noreferrer"
                       aria-label="LinkedIn url"
                     >
-                      <FaGithub /> bradtaniguchi
+                      <Box
+                        display="flex"
+                        flexDirection="row"
+                        alignItems="center"
+                        sx={{ gap: '2' }}
+                      >
+                        <FaGithub /> <div>bradtaniguchi</div>
+                        <TabExternalIcon />
+                      </Box>
                     </Link>
                   </li>
                   <li>
@@ -96,7 +104,16 @@ export default function Index(props: IndexProps) {
                       rel="noreferrer"
                       aria-label="Twitter handle url"
                     >
-                      <FaTwitter /> @brad_taniguchi
+                      <Box
+                        display="flex"
+                        flexDirection="row"
+                        alignItems="center"
+                        sx={{ gap: '2' }}
+                      >
+                        <FaTwitter />
+                        <div>@brad_taniguchi</div>
+                        <TabExternalIcon />
+                      </Box>
                     </Link>
                   </li>
                   <li>
@@ -106,7 +123,15 @@ export default function Index(props: IndexProps) {
                       rel="noreferrer"
                       aria-label="LinkedIn profile url"
                     >
-                      <FaLinkedin /> LinkedIn
+                      <Box
+                        display="flex"
+                        flexDirection="row"
+                        alignItems="center"
+                        sx={{ gap: '2' }}
+                      >
+                        <FaLinkedin /> <div>LinkedIn</div>
+                        <TabExternalIcon />
+                      </Box>
                     </Link>
                   </li>
 
@@ -117,8 +142,34 @@ export default function Index(props: IndexProps) {
                       rel="noreferrer"
                       aria-label="Codewars profile url"
                     >
-                      <SiCodewars /> Codewars
-                      {/* TODO: add "open new tab" icon */}
+                      <Box
+                        display="flex"
+                        flexDirection="row"
+                        alignItems="center"
+                        sx={{ gap: '2' }}
+                      >
+                        <SiCodewars /> <div>Codewars</div>
+                        <TabExternalIcon />
+                      </Box>
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      href="https://replit.com/@bradtaniguchi"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Replit profile url"
+                    >
+                      <Box
+                        display="flex"
+                        flexDirection="row"
+                        alignItems="center"
+                        sx={{ gap: '2' }}
+                      >
+                        <SiReplit /> <div>Replit</div>
+                        <TabExternalIcon />
+                      </Box>
                     </Link>
                   </li>
                 </ul>
