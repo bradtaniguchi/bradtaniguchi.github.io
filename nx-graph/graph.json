@@ -669,7 +669,7 @@
             },
             {
               "file": "apps/internal-client/scripts/validate-blog-posts.ts",
-              "hash": "c3177024bfac22bb6f322cde32f5551821b57867",
+              "hash": "912c98d42b0d7ec24d97a13ae1ead7c5bd066122",
               "deps": [
                 "npm:fs-extra",
                 "npm:yargs"
