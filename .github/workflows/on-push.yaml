@@ -44,6 +44,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/init-job
       - run: npx nx run internal-client:lint
+      - run: npx nx run internal-client:validate-blog-posts --path=apps/internal-client/static/blog/
+      - run: npx nx run internal-client:validate-static-projects --path=apps/internal-client/static/projects/
       - run: npx nx run internal-client:export
       - run: npx nx run internal-client:lighthouse
       # - run: npx nx run internal-client-e2e:ci
