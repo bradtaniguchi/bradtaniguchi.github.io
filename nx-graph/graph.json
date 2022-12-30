@@ -443,10 +443,15 @@
               "hash": "25d1f5d5096ef88a750bf99638b40926c62e4edd"
             },
             {
+              "file": "apps/internal-client/models/dev-migrated-post.spec.ts",
+              "hash": "5ca7cc95e64f85181fa59b6ee052608686b74c76"
+            },
+            {
               "file": "apps/internal-client/models/dev-migrated-post.ts",
-              "hash": "c035e5c11ac60163906df75af7b6ee847a61803d",
+              "hash": "c1ae242c6711cf0bf80a5e910eb7f249877e177e",
               "deps": [
-                "forem-api"
+                "forem-api",
+                "npm:zod"
               ]
             },
             {
@@ -535,7 +540,7 @@
             },
             {
               "file": "apps/internal-client/pages/blog/dev/[id].tsx",
-              "hash": "8f2446747475b6b71feec3cd44b19c00a398fa22",
+              "hash": "53cbff304de591f0832085e89450f21d285e109e",
               "deps": [
                 "npm:react-icons",
                 "npm:next",
@@ -545,7 +550,7 @@
             },
             {
               "file": "apps/internal-client/pages/blog/index.tsx",
-              "hash": "52877131fe78701e55f1732cc0f31049741d4e8e",
+              "hash": "e665370c5a250cbb9c9601d90119fee373520e97",
               "deps": [
                 "common-react",
                 "forem-api",
@@ -1277,7 +1282,7 @@
             },
             {
               "file": "libs/forem-api/README.md",
-              "hash": "45d4aea15b779dcc3331e8fa706aa350bf448c04"
+              "hash": "9ec8646d04a202d63d7866a3880ec7b0bd014964"
             },
             {
               "file": "libs/forem-api/src/index.ts",
@@ -1303,7 +1308,7 @@
             },
             {
               "file": "libs/forem-api/src/lib/models/post.ts",
-              "hash": "748874d71c591135d2846552730b5167c178fb48",
+              "hash": "df10d03c9c698fdd3f10a83539ed88371655ad0c",
               "deps": [
                 "npm:zod"
               ]
@@ -1317,14 +1322,14 @@
             },
             {
               "file": "libs/forem-api/src/lib/utils/get-article.ts",
-              "hash": "70ccd5fdae4aad0930e87fe9a318f2dfd4dc5832",
+              "hash": "09ce273fd813fc248f825dff0975f3e178fa4f87",
               "deps": [
                 "npm:axios"
               ]
             },
             {
               "file": "libs/forem-api/src/lib/utils/get-articles.ts",
-              "hash": "0398f1f4916f29ca70696838c56837e453397c37",
+              "hash": "c38b4c218cb81317a35bee7d94cc6f3ce3d2390e",
               "deps": [
                 "npm:axios"
               ]
@@ -1343,7 +1348,7 @@
             },
             {
               "file": "libs/forem-api/tools/get-articles.ts",
-              "hash": "5c1b4adb3f867142c2ad449264b88df5b94f8873",
+              "hash": "307e5ac5a66940cd72854fae538fbee4dd677ee8",
               "deps": [
                 "npm:yargs",
                 "npm:zod"
