@@ -1,14 +1,22 @@
 import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
 import { MarkGithubIcon } from '@primer/octicons-react';
-import { Box, StyledOcticon } from '@primer/react';
+import { Box, LinkButton, StyledOcticon } from '@primer/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { SiCodewars } from 'react-icons/si';
 import { Activities } from '../components/activity/activities';
+import { DevToPost } from '../components/blog/dev-to-post';
+import { StaticBlogPost } from '../components/blog/static-blog-post';
 import { Card } from '../components/core/card';
 import { GITHUB_URL } from '../constants/github-url';
 import { Activity } from '../models/activity';
+import {
+  DevMigratedPost,
+  isMigratedDevPost,
+} from '../models/dev-migrated-post';
+import { StaticBlogPost as IStaticBlogPost } from '../models/static-blog-post';
+import { getLatestPost } from '../utils/get-latest-post';
 import { getMarkdown } from '../utils/get-markdown';
 import { withHeaders } from '../utils/with-headers';
 
@@ -26,6 +34,10 @@ export interface IndexProps {
    * The github user data loaded from the API
    */
   user: RestEndpointMethodTypes['users']['getByUsername']['response']['data'];
+  /**
+   * The latest blog post
+   */
+  latestPost: IStaticBlogPost | DevMigratedPost;
 }
 
 export default function Index(props: IndexProps) {
@@ -35,7 +47,12 @@ export default function Index(props: IndexProps) {
       gridGap={3}
       gridTemplateColumns={['1fr', '1fr 1fr', '1fr 1fr 1fr']}
     >
-      <Box gridColumn={['span 1', 'span 2', 'span 1']}>
+      <Box
+        display="flex"
+        gridColumn={['span 1', 'span 2', 'span 1']}
+        flexDirection="column"
+        sx={{ gap: '3' }}
+      >
         <Card>
           <Card.Body>
             <aside>
@@ -109,6 +126,25 @@ export default function Index(props: IndexProps) {
             </aside>
           </Card.Body>
         </Card>
+
+        <Card>
+          <Card.Header display="flex">
+            <Box flexGrow="100">Latest Blog Post</Box>
+            <Box>
+              <LinkButton href="/blog">All Posts</LinkButton>
+            </Box>
+          </Card.Header>
+          <Card.Body>
+            <section>
+              {(() => {
+                const { latestPost } = props;
+                if (isMigratedDevPost(latestPost))
+                  return <DevToPost blog={latestPost} displayMode="column" />;
+                return <StaticBlogPost blog={latestPost} />;
+              })()}
+            </section>
+          </Card.Body>
+        </Card>
       </Box>
 
       <Box gridColumn="span 2">
@@ -147,7 +183,6 @@ export default function Index(props: IndexProps) {
                 </Box>
               </Card.Header>
               <Card.Body>
-                {/* TODO: update/move to about? */}
                 <div dangerouslySetInnerHTML={{ __html: props.readme }}></div>
               </Card.Body>
             </Card>
@@ -177,39 +212,43 @@ export async function getStaticProps(): Promise<{
 }> {
   const octokit = new Octokit();
 
-  const [readme, { data: user }, githubActivities] = await Promise.all([
-    getMarkdown('README.md'),
-    octokit.users.getByUsername({
-      headers: withHeaders(),
-      username: 'bradtaniguchi',
-    }),
-    octokit.activity
-      .listPublicEventsForUser({
+  const [readme, { data: user }, githubActivities, latestPost] =
+    await Promise.all([
+      getMarkdown('README.md'),
+      octokit.users.getByUsername({
         headers: withHeaders(),
         username: 'bradtaniguchi',
-      })
-      .then(({ data }) =>
-        data
-          .map(({ id, type, actor, repo, created_at, payload }) => ({
-            // explicitly provide properties to save on some data sending over to the
-            // client
-            id,
-            type,
-            actor,
-            repo,
-            created_at,
-            payload,
-            internalType: 'github-public-activity' as const,
-          }))
-          .sort((a, b) => (a.created_at > b.created_at ? -1 : 1))
-      ),
-  ]);
+      }),
+      octokit.activity
+        .listPublicEventsForUser({
+          headers: withHeaders(),
+          username: 'bradtaniguchi',
+        })
+        .then(({ data }) =>
+          data
+            .map(({ id, type, actor, repo, created_at, payload }) => ({
+              // explicitly provide properties to save on some data sending over to the
+              // client
+              id,
+              type,
+              actor,
+              repo,
+              created_at,
+              payload,
+              internalType: 'github-public-activity' as const,
+            }))
+            .sort((a, b) => (a.created_at > b.created_at ? -1 : 1))
+        ),
+
+      getLatestPost(),
+    ]);
 
   return {
     props: {
       readme,
       activities: [...githubActivities],
       user,
+      latestPost,
     },
   };
 }
