@@ -1,6 +1,6 @@
 import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
 import { MarkGithubIcon } from '@primer/octicons-react';
-import { Box, StyledOcticon } from '@primer/react';
+import { Box, LinkButton, StyledOcticon } from '@primer/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
@@ -128,7 +128,12 @@ export default function Index(props: IndexProps) {
         </Card>
 
         <Card>
-          <Card.Header>Latest Blog Post</Card.Header>
+          <Card.Header display="flex">
+            <Box flexGrow="100">Latest Blog Post</Box>
+            <Box>
+              <LinkButton href="/blog">All Posts</LinkButton>
+            </Box>
+          </Card.Header>
           <Card.Body>
             <section>
               {(() => {
