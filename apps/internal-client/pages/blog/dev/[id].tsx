@@ -9,7 +9,7 @@ import {
 import {
   DevToPost,
   getArticle,
-  getArticles,
+  getArticlesFromCache,
 } from '@bradtaniguchi-dev/forem-api';
 import { Box, LinkButton, Text } from '@primer/react';
 
@@ -60,7 +60,7 @@ export default function DevToBlogPost({ blogPost }: DevToBlogPostProps) {
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  const devToPosts = await getArticles({
+  const devToPosts = await getArticlesFromCache({
     username: 'bradtaniguchi',
   });
 

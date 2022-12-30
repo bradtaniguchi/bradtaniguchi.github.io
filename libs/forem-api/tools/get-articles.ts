@@ -15,7 +15,6 @@ import { ZodError } from 'zod';
     if (!username) throw new Error('Missing --username arg, please provide it');
     if (typeof username !== 'string')
       throw new Error('--username is not a string');
-
     const articles = await getArticles({ username });
 
     console.log(articles);

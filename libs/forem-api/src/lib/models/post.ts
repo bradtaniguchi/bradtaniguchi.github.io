@@ -50,7 +50,7 @@ export const DevToPostSchema = z.object({
    * URL of the cover image, this probably wont be loadable
    * from the local page, so don't try to use it.
    */
-  cover_image: z.union([z.string().optional(), z.null()]),
+  cover_image: z.union([z.string(), z.null()]),
   /**
    * URL of the social image, this probably wont be loadable
    * from the local page, so don't try to use it.
@@ -70,7 +70,7 @@ export const DevToPostSchema = z.object({
    * Time formatted as ISO date-time
    * ex: 2021-03-01T00:00:00Z
    */
-  edited_at: z.union([z.string().optional(), z.null()]),
+  edited_at: z.union([z.string(), z.null()]),
   /**
    * TODO: ???
    */
