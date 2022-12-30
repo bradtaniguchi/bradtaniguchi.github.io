@@ -27,13 +27,13 @@ export const DevToPost = memo(function DevToPost(props: DevToPostProps) {
     >
       <Box
         display="flex"
-        flexDirection={displayMode}
+        flexDirection={['column', 'column', displayMode]}
         alignItems="center"
         justifyContent="space-between"
       >
         <Box
           display="flex"
-          flexDirection={displayMode}
+          flexDirection={['column', 'column', displayMode]}
           alignItems="center"
           sx={{ gap: '8px' }}
         >
@@ -45,13 +45,13 @@ export const DevToPost = memo(function DevToPost(props: DevToPostProps) {
 
         <Box
           display="flex"
-          flexDirection={displayMode}
+          flexDirection={['column', 'column', displayMode]}
           alignItems="center"
           sx={{ gap: '4px' }}
         >
           <Box
             display="flex"
-            flexDirection={['column', 'row']}
+            flexDirection="row"
             alignItems="center"
             sx={{ gap: '4px' }}
           >
