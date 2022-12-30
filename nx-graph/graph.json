@@ -301,8 +301,12 @@
               ]
             },
             {
+              "file": "apps/internal-client/components/blog/blog-post-display-mode.tsx",
+              "hash": "36d5f53f975f04384b1f42e093db60fbcc896946"
+            },
+            {
               "file": "apps/internal-client/components/blog/dev-to-post.tsx",
-              "hash": "8d484914336b20490b3b1f4e99383e1433caee35",
+              "hash": "a731591c66a928fbf20140c2a1c8a51f3d470a22",
               "deps": [
                 "npm:@primer/react",
                 "npm:dayjs",
@@ -312,7 +316,7 @@
             },
             {
               "file": "apps/internal-client/components/blog/static-blog-post.tsx",
-              "hash": "2802ad4b83fd84e33ccecc16ad5b8211378d8559",
+              "hash": "b781a3b488a380df86388d8fbcba2441ed5e5a40",
               "deps": [
                 "npm:@primer/react",
                 "npm:dayjs",
@@ -561,7 +565,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "de4b77027caf276e294be9dd7e0ed2c32f50d201",
+              "hash": "a37d19abb91be18b6815fa4d253acc1ca6922a5b",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
@@ -825,6 +829,13 @@
               "hash": "56902425eb72c9995560200a0e77e20e2620eb5f",
               "deps": [
                 "npm:front-matter"
+              ]
+            },
+            {
+              "file": "apps/internal-client/utils/get-latest-post.ts",
+              "hash": "1d572caec6023da49191f24c8dda31bd9af1a7a0",
+              "deps": [
+                "forem-api"
               ]
             },
             {
