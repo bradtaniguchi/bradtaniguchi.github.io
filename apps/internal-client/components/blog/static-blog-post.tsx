@@ -3,9 +3,15 @@ import Dayjs from 'dayjs';
 import Link from 'next/link';
 import { memo } from 'react';
 import { StaticBlogPost as IStaticBlogPost } from '../../models/static-blog-post';
+import { BlogPostDisplayMode } from './blog-post-display-mode';
 
 export interface StaticBlogPostProps {
   blog: IStaticBlogPost;
+  /**
+   * The display mode to show the card with.
+   * Defaults to row.
+   */
+  displayMode?: BlogPostDisplayMode;
 }
 
 /**
@@ -14,6 +20,8 @@ export interface StaticBlogPostProps {
 export const StaticBlogPost = memo(function StaticBlogPost(
   props: StaticBlogPostProps
 ) {
+  const displayMode = props.displayMode || 'row';
+
   return (
     <Link
       href={`blog/${props.blog.slug}`}
@@ -21,25 +29,31 @@ export const StaticBlogPost = memo(function StaticBlogPost(
     >
       <Box
         display="flex"
-        flexDirection="row"
+        flexDirection={['column', 'column', displayMode]}
         alignItems="center"
         justifyContent="space-between"
       >
         <Box
           display="flex"
-          flexDirection="row"
+          flexDirection={['column', 'column', displayMode]}
           alignItems="center"
           sx={{ gap: '8px' }}
         >
-          <Text as="h4">{props.blog.title}</Text>
+          <Text as="h4" margin={0}>
+            {props.blog.title}
+          </Text>
           <Text as="p">{props.blog.description}</Text>
         </Box>
 
-        <Box display="flex" flexDirection="row" sx={{ gap: '4px' }}>
-          {/* Project Tags */}
+        <Box
+          display="flex"
+          flexDirection={['column', 'column', displayMode]}
+          alignItems="center"
+          sx={{ gap: '4px' }}
+        >
           <Box
             display="flex"
-            flexDirection={['column', 'row']}
+            flexDirection="row"
             alignItems="center"
             sx={{ gap: '4px' }}
           >
