@@ -61,34 +61,42 @@ export default function Blog(props: BlogProps) {
 
   const handleShowMoreOnClick = () => setLimit(limit + 5);
 
+  /**
+   * Tag filter custom hook.
+   */
   const { selectableTags, selectedTags, setSelectedTags } = useTagFilter({
     elements: props.posts,
   });
 
-  const handleTagChange = useCallback(
-    (tags: string[]) => {
-      setSelectedTags(tags);
-    },
-    [setSelectedTags]
-  );
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('selected-tags: ', selectedTags);
+  /**
+   * Filters for the useLocalCollection.
+   * These keep track of the selectedTags from the useTagFilter custom hook.
+   */
+  const filters = useMemo(() => {
+    return [
+      // only show posts that match the tag value if there is one
+      (post: IStaticBlogPost | DevMigratedPost) =>
+        selectedTags.length
+          ? selectedTags.some((tag) => (post.tags || []).includes(tag))
+          : true,
+    ];
   }, [selectedTags]);
 
+  /**
+   * Runtime effect that is ran initially when the defaultTags are calculated.
+   * This needs to be ran here as the useTagFilter custom hook is not available
+   * on the server-side during render.
+   */
+  useEffect(() => {
+    if (defaultTags && defaultTags.length) setSelectedTags(defaultTags);
+  }, [defaultTags, setSelectedTags]);
+
+  /**
+   * Custom hook to manage a collection of posts. Handles filtering, and auto-sorting
+   */
   const { results: posts } = useLocalCollection({
     elements: props.posts,
-    filters: [
-      // only show posts that match the tag value if there is one
-      (post) =>
-        // TODO: this will change to a local-state value once the list filters
-        // component has a UI that can handle tag selection
-        defaultTags.length
-          ? defaultTags.some((defaultTag) =>
-              (post.tags || []).includes(defaultTag)
-            )
-          : true,
-    ],
+    filters,
     searchOptions: useMemo(
       () => ({
         keys: ['title', 'description', 'tags'] as Array<keyof IStaticBlogPost>,
@@ -127,7 +135,7 @@ export default function Blog(props: BlogProps) {
               selectedTags={selectedTags}
               onSearchChange={handleSearchChange}
               onSearchClear={handleSearchClose}
-              onTagChange={handleTagChange}
+              onTagChange={setSelectedTags}
             />
           </div>
         </Box>
