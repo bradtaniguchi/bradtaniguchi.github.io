@@ -92,15 +92,15 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
       if (typeof onTagChange !== 'function') return;
       const tag = e.currentTarget.value;
       const isSelected = (selectedTags || []).includes(tag);
-      if (isSelected) {
-        onTagChange((selectedTags || []).filter((t) => t !== tag));
-      }
+      if (isSelected)
+        return onTagChange((selectedTags || []).filter((t) => t !== tag));
       onTagChange([...(selectedTags || []), tag]);
     },
     [onTagChange, selectedTags]
   );
   const handleShowTagFilterClose = useCallback(() => {
     setShowTags(false);
+    // clear selected filters
   }, []);
   const handleSearchChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (e) => setDebouncedValue(e.target.value),
@@ -123,26 +123,35 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
         display="flex"
         flexDirection="row"
         alignItems="center"
-        sx={{ gap: 2 }}
+        sx={{ gap: 2, marginLeft: '8px' }}
       >
         {!hideTagFilter && (
           <div>
             {showTags ? (
-              <Box display="flex" sx={{ gap: 1 }} alignItems="center">
+              <Box
+                display="flex"
+                sx={{ gap: 1 }}
+                alignItems="center"
+                flexWrap="wrap"
+              >
                 {(selectableTags || []).map((selectableTag) => (
-                  <Label
-                    as="button"
-                    variant={
-                      (selectedTags || []).includes(selectableTag)
-                        ? 'success'
-                        : 'accent'
-                    }
+                  <button
                     key={selectableTag}
                     onClick={handleClickTag}
                     value={selectableTag}
+                    type="button"
+                    aria-label={`toggle tag ${selectableTag}`}
                   >
-                    {selectableTag}
-                  </Label>
+                    <Label
+                      variant={
+                        (selectedTags || []).includes(selectableTag)
+                          ? 'success'
+                          : 'accent'
+                      }
+                    >
+                      {selectableTag}
+                    </Label>
+                  </button>
                 ))}
                 <IconButton
                   aria-label="hide tags"
@@ -151,11 +160,29 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
                 />
               </Box>
             ) : (
-              <IconButton
-                aria-label="show tags"
-                icon={FilterIcon}
-                onClick={handleShowTagFilter}
-              />
+              <Box
+                display="flex"
+                sx={{ gap: 1 }}
+                alignItems="center"
+                flexWrap="wrap"
+              >
+                {(selectedTags || []).map((selectedTag) => (
+                  <button
+                    key={selectedTag}
+                    onClick={handleClickTag}
+                    value={selectedTag}
+                    type="button"
+                    aria-label={`disable tag ${selectedTag}`}
+                  >
+                    <Label variant="success">{selectedTag}</Label>
+                  </button>
+                ))}
+                <IconButton
+                  aria-label="show tags"
+                  icon={FilterIcon}
+                  onClick={handleShowTagFilter}
+                />
+              </Box>
             )}
           </div>
         )}

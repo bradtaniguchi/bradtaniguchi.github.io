@@ -16,9 +16,13 @@ export function useTagFilter<Element extends { tags: string[] }>(params: {
     () =>
       Array.from(
         new Set(
-          elements.reduce((acc, el) => {
-            return [...acc, ...el.tags];
-          }, [] as string[])
+          elements.reduce(
+            (acc, el) =>
+              el && el.tags && Array.isArray(el.tags) && el.tags.length
+                ? [...acc, ...el.tags]
+                : acc,
+            [] as string[]
+          )
         )
       ).sort((a, b) => a.localeCompare(b)),
     [elements]
@@ -28,7 +32,7 @@ export function useTagFilter<Element extends { tags: string[] }>(params: {
 
   // returned callbacks
   const setSelectedTagsWithoutDuplicates = useCallback(
-    (tags: string[]) => setSelectedTags(Array.from(new Set(...tags))),
+    (tags: string[]) => setSelectedTags(Array.from(new Set(tags))),
     []
   );
   const selectTag = useCallback(

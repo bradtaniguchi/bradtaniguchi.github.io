@@ -1,12 +1,13 @@
 import {
   useHasMounted,
   useLocalCollection,
+  useTagFilter,
 } from '@bradtaniguchi-dev/common-react';
 import { getArticlesFromCache } from '@bradtaniguchi-dev/forem-api';
 import { Box, Button, Spinner, Text } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DevToPost } from '../../components/blog/dev-to-post';
 import { StaticBlogPost } from '../../components/blog/static-blog-post';
 import { Card } from '../../components/core/card';
@@ -58,13 +59,22 @@ export default function Blog(props: BlogProps) {
     setLimit(5);
   }, []);
 
-  const handleTagChange = useCallback((tags: string[]) => {
-    // eslint-disable-next-line no-console
-    console.log('tags', tags);
-    // TODO: implement in custom hook
-  }, []);
-
   const handleShowMoreOnClick = () => setLimit(limit + 5);
+
+  const { selectableTags, selectedTags, setSelectedTags } = useTagFilter({
+    elements: props.posts,
+  });
+
+  const handleTagChange = useCallback(
+    (tags: string[]) => {
+      setSelectedTags(tags);
+    },
+    [setSelectedTags]
+  );
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log('selected-tags: ', selectedTags);
+  }, [selectedTags]);
 
   const { results: posts } = useLocalCollection({
     elements: props.posts,
@@ -113,10 +123,11 @@ export default function Blog(props: BlogProps) {
           <div>
             <ListFilters
               defaultSearchValue={defaultSearchValue}
+              selectableTags={selectableTags}
+              selectedTags={selectedTags}
               onSearchChange={handleSearchChange}
               onSearchClear={handleSearchClose}
               onTagChange={handleTagChange}
-              selectableTags={['one', 'two']}
             />
           </div>
         </Box>
