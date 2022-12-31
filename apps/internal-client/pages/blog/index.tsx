@@ -58,6 +58,12 @@ export default function Blog(props: BlogProps) {
     setLimit(5);
   }, []);
 
+  const handleTagChange = useCallback((tags: string[]) => {
+    // eslint-disable-next-line no-console
+    console.log('tags', tags);
+    // TODO: implement in custom hook
+  }, []);
+
   const handleShowMoreOnClick = () => setLimit(limit + 5);
 
   const { results: posts } = useLocalCollection({
@@ -108,7 +114,9 @@ export default function Blog(props: BlogProps) {
             <ListFilters
               defaultSearchValue={defaultSearchValue}
               onSearchChange={handleSearchChange}
-              onClear={handleSearchClose}
+              onSearchClear={handleSearchClose}
+              onTagChange={handleTagChange}
+              selectableTags={['one', 'two']}
             />
           </div>
         </Box>

@@ -89,7 +89,7 @@ export default function Projects(props: ProjectsProps) {
             <ListFilters
               defaultSearchValue={defaultSearchValue}
               onSearchChange={handleSearchChange}
-              onClear={handleSearchClose}
+              onSearchClear={handleSearchClose}
             />
           </div>
         </Box>
