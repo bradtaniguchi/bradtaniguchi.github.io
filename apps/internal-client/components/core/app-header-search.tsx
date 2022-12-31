@@ -21,7 +21,7 @@ export const AppHeaderSearch = memo(function AppHeaderSearch(
       <TextInput
         block
         type="search"
-        trailingVisual={props.mode === 'full' ? SearchIcon : null}
+        trailingVisual={props.mode === 'full' ? SearchIcon : undefined}
         trailingAction={
           props.mode === 'icon' ? (
             <IconButton
@@ -29,7 +29,7 @@ export const AppHeaderSearch = memo(function AppHeaderSearch(
               icon={XCircleIcon}
               onClick={onCloseSearchHandler}
             />
-          ) : null
+          ) : undefined
         }
         aria-label="Search"
         name="Search"

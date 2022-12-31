@@ -40,19 +40,23 @@ export default function About() {
         </p>
       </Box>
 
-      <InternalConfig
-        config={config}
-        configError={configError}
-        configLoading={configLoading}
-      ></InternalConfig>
+      {config && (
+        <InternalConfig
+          config={config}
+          configError={configError}
+          configLoading={configLoading}
+        ></InternalConfig>
+      )}
 
       <InternalLinks></InternalLinks>
 
-      <InternalProjects
-        nxGraphError={nxGraphError}
-        nxGraphLoading={nxGraphLoading}
-        nxGraph={nxGraph}
-      ></InternalProjects>
+      {nxGraph && (
+        <InternalProjects
+          nxGraphError={nxGraphError}
+          nxGraphLoading={nxGraphLoading}
+          nxGraph={nxGraph}
+        ></InternalProjects>
+      )}
     </Box>
   );
 }

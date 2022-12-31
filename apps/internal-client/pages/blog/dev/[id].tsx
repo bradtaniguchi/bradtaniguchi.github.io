@@ -52,7 +52,9 @@ export default function DevToBlogPost({ blogPost }: DevToBlogPostProps) {
         </Box>
       </Card.Header>
       <Card.Body>
-        <div dangerouslySetInnerHTML={{ __html: blogPost.body_html }}></div>
+        <div
+          dangerouslySetInnerHTML={{ __html: blogPost.body_html ?? '' }}
+        ></div>
       </Card.Body>
       <Card.Body></Card.Body>
     </Card>
@@ -80,12 +82,12 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 export async function getStaticProps({
   params,
 }: GetStaticPropsContext): Promise<GetStaticPropsResult<DevToBlogPostProps>> {
-  const { id: idStr } = params;
+  const { id: idStr } = params as { id: string };
 
-  if (Array.isArray(idStr)) return;
+  if (Array.isArray(idStr)) throw new Error('id should not be an array');
 
   const id = Number(idStr);
-  if (isNaN(id)) return;
+  if (isNaN(id)) throw new Error('id should be a number');
 
   const blogPost = await getArticle(id);
 

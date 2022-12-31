@@ -39,7 +39,7 @@ const GithubPublicActivityRepo = (props: GithubPublicActivityProps) => (
 
 const GithubPublicActivityTime = (props: GithubPublicActivityProps) => (
   <Box as="span" color="fg.muted">
-    <span title={props.activity.created_at}>
+    <span title={props.activity.created_at ?? undefined}>
       on {Dayjs(props.activity.created_at).format('YYYY-MM-DD')}
     </span>
   </Box>
@@ -174,10 +174,10 @@ export const GithubPublicActivity = memo(function GithubPublicActivity(
                   <GithubPublicActivityLogin activity={props.activity} />
                   created issue{' '}
                   <Link
-                    href={props.activity.payload.issue.html_url}
-                    title={props.activity.payload.issue.title}
+                    href={props.activity.payload.issue?.html_url ?? '404'}
+                    title={props.activity.payload.issue?.title}
                   >
-                    {`#${props.activity.payload.issue.number}`}
+                    {`#${props.activity.payload.issue?.number}`}
                   </Link>{' '}
                   for <GithubPublicActivityRepo activity={props.activity} />
                   <GithubPublicActivityTime activity={props.activity} />
