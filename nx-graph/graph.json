@@ -301,6 +301,13 @@
               ]
             },
             {
+              "file": "apps/internal-client/components/blog/blog-layout.tsx",
+              "hash": "498730f6e637080cb2da8363c25e63481a8ce80a",
+              "deps": [
+                "npm:@primer/react"
+              ]
+            },
+            {
               "file": "apps/internal-client/components/blog/blog-post-display-mode.tsx",
               "hash": "36d5f53f975f04384b1f42e093db60fbcc896946"
             },
@@ -403,7 +410,7 @@
             },
             {
               "file": "apps/internal-client/components/projects/list-filters.tsx",
-              "hash": "ba74a4a7f3b2ebab8bf8bf6452c00a2f3fd71ad2",
+              "hash": "10ab5af675c76efa4ab61e5ccb860918dcd00685",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
@@ -416,6 +423,15 @@
               "hash": "263a96f37d89099bf5be80d1c9f6479dfd4cfcf0",
               "deps": [
                 "npm:@primer/react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/components/tags/tag-filter.tsx",
+              "hash": "c762e2ffdfc068a3e2354f601a909af6dc9658df",
+              "deps": [
+                "npm:@primer/react",
+                "npm:next",
+                "npm:react"
               ]
             },
             {
@@ -554,7 +570,7 @@
             },
             {
               "file": "apps/internal-client/pages/blog/index.tsx",
-              "hash": "e665370c5a250cbb9c9601d90119fee373520e97",
+              "hash": "312b65c67cf72e7ab3341d952e7a8f6acc57e88a",
               "deps": [
                 "common-react",
                 "forem-api",
@@ -584,7 +600,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "119c9944aea94caad7f60e2cceeaeb89fb257e29",
+              "hash": "18fa15bb9baad6c098860c3045fe840c0a38da79",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
@@ -605,7 +621,7 @@
             },
             {
               "file": "apps/internal-client/pages/styles.css",
-              "hash": "27b67e5e20b6f0105313a6602fc3a004c4093b78"
+              "hash": "3c45221a22e674f29c5056796f22daedba185433"
             },
             {
               "file": "apps/internal-client/project.json",
@@ -1050,7 +1066,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/index.ts",
-              "hash": "76ad61fe200a651564b9512965f2527f430640af"
+              "hash": "27c9bad72fb5b7fa1916826aae6ae83c856d76ce"
             },
             {
               "file": "libs/common-react/src/lib/hooks/theme-context-factory.ts",
@@ -1098,7 +1114,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/use-local-collection.ts",
-              "hash": "344e67e95b05de0aa0c2a6e507e47019fb28a46f",
+              "hash": "31899924e81c4fbbf1481ff3c3e792495287be65",
               "deps": [
                 "npm:fuse.js",
                 "npm:react"
@@ -1123,6 +1139,22 @@
             {
               "file": "libs/common-react/src/lib/hooks/use-script.ts",
               "hash": "8b5bf160ac1ea391287b718cedff8444e9426d6a",
+              "deps": [
+                "npm:react"
+              ]
+            },
+            {
+              "file": "libs/common-react/src/lib/hooks/use-tag-filter.spec.tsx",
+              "hash": "ec0ed95da9c7ddea83794a1f733796c1de33db67",
+              "deps": [
+                "npm:@testing-library/react",
+                "npm:@testing-library/jest-dom",
+                "npm:react"
+              ]
+            },
+            {
+              "file": "libs/common-react/src/lib/hooks/use-tag-filter.ts",
+              "hash": "e9f0fdd43acd44124c2e19ddf80305cd436156c9",
               "deps": [
                 "npm:react"
               ]
