@@ -2,32 +2,45 @@ import { act, render, screen, waitFor } from '@testing-library/react';
 import { useTagFilter } from './use-tag-filter';
 // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom';
+import { useEffect } from 'react';
 
 describe('useTagFilter', () => {
   type Element = { tags: string[] };
 
   let firstElement: Element;
-  // let secondElement: Element;
-  // let thirdElement: Element;
+  let secondElement: Element;
+  let thirdElement: Element;
 
   beforeEach(() => {
     firstElement = {
       tags: ['cat'],
     };
-    // secondElement = {
-    //   tags: ['bat'],
-    // };
-    // thirdElement = {
-    //   tags: ['cat', 'dog'],
-    // };
+    secondElement = {
+      tags: ['bat'],
+    };
+    thirdElement = {
+      tags: ['cat', 'dog'],
+    };
   });
 
   function UseTagFilterExample(props: {
     elements: Parameters<typeof useTagFilter<Element>>[0]['elements'];
+    initiallySelectedTags?: string[];
   }) {
-    const { selectableTags, selectedTags, toggleTag } = useTagFilter({
-      elements: props.elements,
-    });
+    const { elements, initiallySelectedTags } = props;
+    const { selectableTags, selectedTags, toggleTag, setSelectedTags } =
+      useTagFilter({
+        elements,
+      });
+
+    // effects
+    useEffect(() => {
+      if (initiallySelectedTags && initiallySelectedTags.length > 0) {
+        setSelectedTags(initiallySelectedTags);
+      }
+    }, [initiallySelectedTags, setSelectedTags]);
+
+    // callbacks
     const handleToggleTagClick = (tag: string) => () => {
       toggleTag(tag);
     };
@@ -66,9 +79,9 @@ describe('useTagFilter', () => {
       expect(screen.getByTestId('selectableTags').textContent).toEqual(
         JSON.stringify(expectedSelectableTags, null, 2)
       );
-      // expectedSelectableTags.forEach((tag) => {
-      //   expect(screen.getAllByTestId(`${tag}-btn`)).toHaveLength(1);
-      // });
+      expectedSelectableTags.forEach((tag) => {
+        expect(screen.getAllByTestId(`${tag}-btn`)).toHaveLength(1);
+      });
     }
     if (expectedSelectedTags) {
       expect(screen.getByTestId('selectedTags').textContent).toEqual(
@@ -94,16 +107,12 @@ describe('useTagFilter', () => {
     });
   });
 
-  test('renders single selected tag', async () => {
-    await act(async () => {
-      render(<UseTagFilterExample elements={[firstElement]} />);
-    });
+  test('handles single tag rendering and selection', async () => {
+    render(<UseTagFilterExample elements={[firstElement]} />);
 
-    await waitFor(() => {
-      expectResults({
-        expectedSelectableTags: ['cat'],
-        expectedSelectedTags: [],
-      });
+    expectResults({
+      expectedSelectableTags: ['cat'],
+      expectedSelectedTags: [],
     });
 
     clickTag('cat');
@@ -125,5 +134,30 @@ describe('useTagFilter', () => {
     });
   });
 
-  // TODO: add more extensive tests
+  test('handles multi-tag rendering and selection', async () => {
+    render(
+      <UseTagFilterExample
+        elements={[firstElement, secondElement, thirdElement]}
+      />
+    );
+
+    expectResults({
+      expectedSelectableTags: ['bat', 'cat', 'dog'],
+      expectedSelectedTags: [],
+    });
+
+    act(() => {
+      clickTag('dog');
+    });
+    act(() => {
+      clickTag('cat');
+    });
+
+    await waitFor(() => {
+      expectResults({
+        expectedSelectableTags: ['bat', 'cat', 'dog'],
+        expectedSelectedTags: ['dog', 'cat'],
+      });
+    });
+  });
 });
