@@ -1,12 +1,13 @@
 import {
   useHasMounted,
   useLocalCollection,
+  useTagFilter,
 } from '@bradtaniguchi-dev/common-react';
 import { getArticlesFromCache } from '@bradtaniguchi-dev/forem-api';
 import { Box, Button, Spinner, Text } from '@primer/react';
 import { GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DevToPost } from '../../components/blog/dev-to-post';
 import { StaticBlogPost } from '../../components/blog/static-blog-post';
 import { Card } from '../../components/core/card';
@@ -39,6 +40,10 @@ export default function Blog(props: BlogProps) {
     ? router.query.q.join(' ')
     : router.query.q;
 
+  const defaultTags = (
+    Array.isArray(router.query.tags) ? router.query.tags : [router.query.tags]
+  ).filter(Boolean);
+
   const [searchValue, setSearchValue] = useState<string>('');
   const [limit, setLimit] = useState<number>(5);
 
@@ -56,8 +61,42 @@ export default function Blog(props: BlogProps) {
 
   const handleShowMoreOnClick = () => setLimit(limit + 5);
 
+  /**
+   * Tag filter custom hook.
+   */
+  const { selectableTags, selectedTags, setSelectedTags } = useTagFilter({
+    elements: props.posts,
+  });
+
+  /**
+   * Filters for the useLocalCollection.
+   * These keep track of the selectedTags from the useTagFilter custom hook.
+   */
+  const filters = useMemo(() => {
+    return [
+      // only show posts that match the tag value if there is one
+      (post: IStaticBlogPost | DevMigratedPost) =>
+        selectedTags.length
+          ? selectedTags.some((tag) => (post.tags || []).includes(tag))
+          : true,
+    ];
+  }, [selectedTags]);
+
+  /**
+   * Runtime effect that is ran initially when the defaultTags are calculated.
+   * This needs to be ran here as the useTagFilter custom hook is not available
+   * on the server-side during render.
+   */
+  useEffect(() => {
+    if (defaultTags && defaultTags.length) setSelectedTags(defaultTags);
+  }, [defaultTags, setSelectedTags]);
+
+  /**
+   * Custom hook to manage a collection of posts. Handles filtering, and auto-sorting
+   */
   const { results: posts } = useLocalCollection({
     elements: props.posts,
+    filters,
     searchOptions: useMemo(
       () => ({
         keys: ['title', 'description', 'tags'] as Array<keyof IStaticBlogPost>,
@@ -92,8 +131,11 @@ export default function Blog(props: BlogProps) {
           <div>
             <ListFilters
               defaultSearchValue={defaultSearchValue}
+              selectableTags={selectableTags}
+              selectedTags={selectedTags}
               onSearchChange={handleSearchChange}
-              onClear={handleSearchClose}
+              onSearchClear={handleSearchClose}
+              onTagChange={setSelectedTags}
             />
           </div>
         </Box>
