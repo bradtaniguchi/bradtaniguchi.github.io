@@ -65,8 +65,9 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
   // state
   const [showTags, setShowTags] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>();
-  const [debouncedValue, setDebouncedValue] =
-    useState<string>(defaultSearchValue);
+  const [debouncedValue, setDebouncedValue] = useState<string>(
+    defaultSearchValue ?? ''
+  );
 
   // effects
   useEffect(() => {
@@ -77,7 +78,9 @@ export const ListFilters = memo(function ListFilters(props: ListFilterProps) {
   }, [defaultSearchValue]);
 
   const [isReadyFn, cancel] = useDebounce(
-    () => onSearchChange(debouncedValue),
+    () => {
+      if (typeof onSearchChange === 'function') onSearchChange(debouncedValue);
+    },
     searchDebounce ?? 100,
     [debouncedValue, onSearchChange]
   );

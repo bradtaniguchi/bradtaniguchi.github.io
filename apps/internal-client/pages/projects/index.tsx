@@ -39,7 +39,7 @@ export default function Projects(props: ProjectsProps) {
   const [limit, setLimit] = useState<number>(5);
 
   const handleSearchChange: ListFilterProps['onSearchChange'] = useCallback(
-    (searchValue) => {
+    (searchValue: string) => {
       setSearchValue(searchValue);
       setLimit(5);
     },

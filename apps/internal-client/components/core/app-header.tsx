@@ -23,7 +23,14 @@ import {
   Text,
 } from '@primer/react';
 import { useRouter } from 'next/router';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import {
+  MutableRefObject,
+  Ref,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { AppHeaderSearch } from './app-header-search';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -54,7 +61,7 @@ export default function AppHeader(props: AppHeaderProps) {
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
-  const anchorRef = useRef();
+  const anchorRef = useRef<HTMLButtonElement>(null);
 
   const themeToggleHandle = useCallback(() => {
     let nextColorMode: 'day' | 'night' | 'auto';

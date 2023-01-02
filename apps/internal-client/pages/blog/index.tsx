@@ -42,13 +42,13 @@ export default function Blog(props: BlogProps) {
 
   const defaultTags = (
     Array.isArray(router.query.tags) ? router.query.tags : [router.query.tags]
-  ).filter(Boolean);
+  ).filter((tag) => typeof tag === 'string' && tag) as string[];
 
   const [searchValue, setSearchValue] = useState<string>('');
   const [limit, setLimit] = useState<number>(5);
 
   const handleSearchChange: ListFilterProps['onSearchChange'] = useCallback(
-    (searchValue) => {
+    (searchValue: string) => {
       setSearchValue(searchValue);
       setLimit(5);
     },

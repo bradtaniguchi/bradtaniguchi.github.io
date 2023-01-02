@@ -69,7 +69,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 export async function getStaticProps({
   params,
 }: GetStaticPropsContext): Promise<GetStaticPropsResult<ProjectProps>> {
-  const { name } = params;
+  const { name } = params as { name: string };
 
   const filePath = `${PROJECTS_PATH}${name}.md`;
   const [project, markdown] = await Promise.all([

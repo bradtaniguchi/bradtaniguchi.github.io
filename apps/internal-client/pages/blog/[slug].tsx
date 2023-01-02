@@ -67,7 +67,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 export async function getStaticProps({
   params,
 }: GetStaticPropsContext): Promise<GetStaticPropsResult<BlogPostProps>> {
-  const { slug } = params;
+  const { slug } = params as { slug: string };
 
   const filePath = `${BLOG_PATH}${slug}.md`;
   const [blogPost, markdown] = await Promise.all([
