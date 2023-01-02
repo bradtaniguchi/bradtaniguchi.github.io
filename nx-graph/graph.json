@@ -217,7 +217,7 @@
               ],
               "options": {
                 "lintFilePatterns": [
-                  "apps/internal-client/**/*.{ts,tsx,js,jsx}"
+                  "apps/internal-client/**/*.{ts,tsx}"
                 ]
               },
               "inputs": [
@@ -291,7 +291,7 @@
             },
             {
               "file": "apps/internal-client/components/activity/github-public-activity.tsx",
-              "hash": "d27319e13e47e3c5af9689470b2f649644f3283e",
+              "hash": "96e5e2e10329c73bb072915518925503784db132",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
@@ -333,7 +333,7 @@
             },
             {
               "file": "apps/internal-client/components/core/app-header-search.tsx",
-              "hash": "3703ee432c2417b062910b05f4f5c541d507a57e",
+              "hash": "21704b6c2e313dd24d1b324f460662335f2854cd",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
@@ -342,7 +342,7 @@
             },
             {
               "file": "apps/internal-client/components/core/app-header.tsx",
-              "hash": "baa2de0c26a091f2622ef4b243b1cedee6249b82",
+              "hash": "ef169bc67b95d7424515b0fda239dd06d9cdccd1",
               "deps": [
                 "common-react",
                 "npm:@primer/octicons-react",
@@ -410,7 +410,7 @@
             },
             {
               "file": "apps/internal-client/components/projects/list-filters.tsx",
-              "hash": "10ab5af675c76efa4ab61e5ccb860918dcd00685",
+              "hash": "e84e4378bb0cc8218746c7d29188885107f31146",
               "deps": [
                 "npm:@primer/octicons-react",
                 "npm:@primer/react",
@@ -544,7 +544,7 @@
             },
             {
               "file": "apps/internal-client/pages/about.tsx",
-              "hash": "495338256bd46f417df13e4774941c4eee740ffc",
+              "hash": "bfe259950121e804cf664d15e553cc4a6692e731",
               "deps": [
                 "common-react",
                 "npm:@primer/react"
@@ -552,7 +552,7 @@
             },
             {
               "file": "apps/internal-client/pages/blog/[slug].tsx",
-              "hash": "7761f0b29364735f16dca26c913f595d9ae1b0c9",
+              "hash": "8d895b1f37357759d12488181788bfb29a501a63",
               "deps": [
                 "npm:next",
                 "npm:react-icons"
@@ -560,7 +560,7 @@
             },
             {
               "file": "apps/internal-client/pages/blog/dev/[id].tsx",
-              "hash": "53cbff304de591f0832085e89450f21d285e109e",
+              "hash": "247225e7b9e4840a22a8df16593f3895f22375c6",
               "deps": [
                 "npm:react-icons",
                 "npm:next",
@@ -570,7 +570,7 @@
             },
             {
               "file": "apps/internal-client/pages/blog/index.tsx",
-              "hash": "312b65c67cf72e7ab3341d952e7a8f6acc57e88a",
+              "hash": "ca73b62b0ecb68520ed6e71eb46f77e4cd034f2c",
               "deps": [
                 "common-react",
                 "forem-api",
@@ -581,7 +581,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "92e96cf7c9f23c01e9510f27fcfc34631258c0b1",
+              "hash": "3e513427c0ea0cabc9927ca715a13fef81d23ab9",
               "deps": [
                 "npm:@octokit/rest",
                 "npm:@primer/octicons-react",
@@ -592,7 +592,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/[name].tsx",
-              "hash": "c71186f90c25dddbd0096815f9d4af494a94147a",
+              "hash": "37dc60b250971fdb897a29202cea6690603da1d2",
               "deps": [
                 "npm:next",
                 "npm:react-icons"
@@ -600,7 +600,7 @@
             },
             {
               "file": "apps/internal-client/pages/projects/index.tsx",
-              "hash": "18fa15bb9baad6c098860c3045fe840c0a38da79",
+              "hash": "70042cb8b3c87d03e3bf66cd46b90f80c836f12f",
               "deps": [
                 "common-react",
                 "npm:@primer/react",
@@ -625,7 +625,7 @@
             },
             {
               "file": "apps/internal-client/project.json",
-              "hash": "8bc9b4bd367ea51a2f2c5d9a3bb810fe1da06166"
+              "hash": "5391ff82cfa319096d7fde6d23167d8981e64377"
             },
             {
               "file": "apps/internal-client/public/.gitkeep",
@@ -827,18 +827,11 @@
             },
             {
               "file": "apps/internal-client/tsconfig.json",
-              "hash": "cadb8cda700070fec16641a4c734213862573c1c"
+              "hash": "642493f201268bbfa1155cc0bc59c8b25ec6342d"
             },
             {
               "file": "apps/internal-client/tsconfig.spec.json",
               "hash": "14b06c6a5bf51709abab64ca3e8e0b35b5e52a43"
-            },
-            {
-              "file": "apps/internal-client/utils/error-boundary.tsx",
-              "hash": "4161c0a441f243000863aec46520b474df8a3526",
-              "deps": [
-                "npm:react"
-              ]
             },
             {
               "file": "apps/internal-client/utils/get-blog-post-meta-data.ts",
