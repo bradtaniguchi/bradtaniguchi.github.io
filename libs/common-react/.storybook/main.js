@@ -13,6 +13,7 @@ module.exports = {
   addons: [
     '@storybook/addon-essentials',
     ...rootMain.addons,
+    // eslint-disable-next-line storybook/no-uninstalled-addons
     '@nx/react/plugins/storybook',
   ],
   webpackFinal: async (config, { configType }) => {
