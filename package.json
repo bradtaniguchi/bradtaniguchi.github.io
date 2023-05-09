@@ -41,7 +41,12 @@
     "@next/bundle-analyzer": "^13.0.6",
     "@nrwl/rollup": "16.1.2",
     "@nrwl/webpack": "16.1.2",
+    "@nx/eslint-plugin": "16.1.2",
+    "@nx/jest": "16.1.2",
+    "@nx/js": "16.1.2",
     "@nx/linter": "16.1.2",
+    "@nx/node": "16.1.2",
+    "@nx/react": "16.1.2",
     "@nx/storybook": "16.1.2",
     "@nx/web": "16.1.2",
     "@nx/webpack": "16.1.2",
@@ -102,23 +107,19 @@
     "stylus-loader": "^7.1.0",
     "ts-jest": "29.1.0",
     "ts-node": "10.9.1",
-    "typedoc": "^0.22.15",
+    "typedoc": "^0.24.7",
     "typescript": "5.0.4",
     "url-loader": "^4.1.1",
     "webpack": "^5.75.0",
     "webpack-merge": "^5.8.0",
-    "yargs": "^17.5.0",
-    "@nx/react": "16.1.2",
-    "@nx/js": "16.1.2",
-    "@nx/node": "16.1.2",
-    "@nx/jest": "16.1.2",
-    "@nx/eslint-plugin": "16.1.2"
+    "yargs": "^17.5.0"
   },
   "lint-staged": {
     "*.ts": "eslint --cache --fix",
     "*.format:write": "prettier --write"
   },
   "dependencies": {
+    "@nx/next": "16.1.2",
     "@octokit/rest": "^19.0.3",
     "@primer/octicons-react": "^17.3.0",
     "@primer/react": "^35.4.0",
@@ -144,7 +145,6 @@
     "regenerator-runtime": "0.13.7",
     "styled-components": "5.3.6",
     "tslib": "^2.3.0",
-    "zod": "^3.19.1",
-    "@nx/next": "16.1.2"
+    "zod": "^3.19.1"
   }
 }
