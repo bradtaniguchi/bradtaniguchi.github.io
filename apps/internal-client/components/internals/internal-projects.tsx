@@ -11,7 +11,7 @@ export const InternalProjects = memo(function InternalProjects({
 }: {
   nxGraphLoading?: boolean;
   nxGraphError: unknown;
-  nxGraph: ProjectGraph;
+  nxGraph: ProjectGraph<unknown>;
 }) {
   const projects = useMemo(
     () =>
