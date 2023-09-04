@@ -1,50 +1,79 @@
-<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@bradtaniguchi-dev/storybook</title><meta name="description" content="Documentation for @bradtaniguchi-dev/storybook"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@bradtaniguchi-dev/storybook</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@bradtaniguchi-dev/storybook </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
-<a href="#storybook" id="storybook" style="color: inherit; text-decoration: none;">
-  <h1>storybook</h1>
-</a>
-<p>This library will be used to run/develop storybook. It will provide
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@bradtaniguchi-dev/storybook</title><meta name="description" content="Documentation for @bradtaniguchi-dev/storybook"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/search.js" id="tsd-search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base=".">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@bradtaniguchi-dev/storybook</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<h2>@bradtaniguchi-dev/storybook</h2></div>
+<div class="tsd-panel tsd-typography"><a id="md:storybook" class="tsd-anchor"></a><h1><a href="#md:storybook">storybook</a></h1><p>This library will be used to run/develop storybook. It will provide
 basic examples on how to write stories, and main setup code.</p>
 <p>Other libs will be leveraged with storybook via <a href="https://nx.dev/storybook/storybook-composition-setup">composition</a>.</p>
-
-<a href="#running-unit-tests" id="running-unit-tests" style="color: inherit; text-decoration: none;">
-  <h2>Running unit tests</h2>
-</a>
-<p>Run <code>nx test storybook</code> to execute the unit tests via <a href="https://jestjs.io">Jest</a>.</p>
-
-<a href="#running-storybook" id="running-storybook" style="color: inherit; text-decoration: none;">
-  <h2>Running storybook</h2>
-</a>
-<p>Run <code>nx run storybook:storybook</code> to execute the local storybook project.</p>
-
-<a href="#running-all-storybooks-locally" id="running-all-storybooks-locally" style="color: inherit; text-decoration: none;">
-  <h3>Running all storybooks locally</h3>
-</a>
-<p>This library is primarily used as the main storybook project, which uses storybook composition to
+<a id="md:running-unit-tests" class="tsd-anchor"></a><h2><a href="#md:running-unit-tests">Running unit tests</a></h2><p>Run <code>nx test storybook</code> to execute the unit tests via <a href="https://jestjs.io">Jest</a>.</p>
+<a id="md:running-storybook" class="tsd-anchor"></a><h2><a href="#md:running-storybook">Running storybook</a></h2><p>Run <code>nx run storybook:storybook</code> to execute the local storybook project.</p>
+<a id="md:running-all-storybooks-locally" class="tsd-anchor"></a><h3><a href="#md:running-all-storybooks-locally">Running all storybooks locally</a></h3><p>This library is primarily used as the main storybook project, which uses storybook composition to
 host/serve all storybooks within the project. These are built and combined within github-actions
 and deployed to github pages.</p>
 <p>To replicate this behavior locally run the follow commands:</p>
 <pre><code><span class="hl-0">npx</span><span class="hl-1"> </span><span class="hl-0">nx</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1">-</span><span class="hl-0">many</span><span class="hl-1"> --</span><span class="hl-0">target</span><span class="hl-1">=</span><span class="hl-0">build</span><span class="hl-1">-</span><span class="hl-0">storybook</span><span class="hl-1"> --</span><span class="hl-0">all</span><br/><span class="hl-0">mv</span><span class="hl-1"> </span><span class="hl-0">dist</span><span class="hl-1">/</span><span class="hl-0">storybook</span><span class="hl-1">/</span><span class="hl-0">storybook</span><span class="hl-2">/** dist/storybook/</span><br/><span class="hl-2">npx http-server dist/storybook</span>
-</code></pre>
-
-<a href="#adding-a-new-sub-storybook" id="adding-a-new-sub-storybook" style="color: inherit; text-decoration: none;">
-  <h3>Adding a new sub-storybook</h3>
-</a>
-<p>Storybooks will be generated, but wont be automatically linked without updating
+</code><button>Copy</button></pre>
+<a id="md:adding-a-new-sub-storybook" class="tsd-anchor"></a><h3><a href="#md:adding-a-new-sub-storybook">Adding a new sub-storybook</a></h3><p>Storybooks will be generated, but wont be automatically linked without updating
 the <code>./storybook/main.js</code> file within <strong>this</strong> project.</p>
 <p>For example:</p>
 <pre><code><span class="hl-3">module</span><span class="hl-1">.</span><span class="hl-0">export</span><span class="hl-1"> = {</span><br/><span class="hl-1">  </span><span class="hl-2">//...</span><br/><span class="hl-1">  </span><span class="hl-0">refs:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-2">// other refs...</span><br/><span class="hl-1">    </span><span class="hl-4">&#39;my-new-lib&#39;</span><span class="hl-0">:</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-0">title:</span><span class="hl-1"> </span><span class="hl-4">&#39;my-new-lib&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-0">url:</span><span class="hl-1"> </span><span class="hl-4">&#39;my-new-lib/&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
-</code></pre>
+</code><button>Copy</button></pre>
 <p>This will make it appear within the gh-page automatically. Otherwise to run individual storybooks,
 see the project&#39;s docs.</p>
-
-<a href="#runtime-issue" id="runtime-issue" style="color: inherit; text-decoration: none;">
-  <h3>Runtime issue</h3>
-</a>
-<p>There seems to be an issue with OpenSSL. Will result in running storybook to
+<a id="md:runtime-issue" class="tsd-anchor"></a><h3><a href="#md:runtime-issue">Runtime issue</a></h3><p>There seems to be an issue with OpenSSL. Will result in running storybook to
 print out the following:</p>
-<pre><code class="language-bash"><span class="hl-1">Error: error:0308010C:digital envelope routines::unsupported</span>
-</code></pre>
+<pre><code class="language-bash"><span class="hl-5">Error:</span><span class="hl-1"> </span><span class="hl-4">error:0308010C:digital</span><span class="hl-1"> </span><span class="hl-4">envelope</span><span class="hl-1"> </span><span class="hl-4">routines::unsupported</span>
+</code><button>Copy</button></pre>
 <p>Then run:</p>
-<pre><code class="language-bash"><span class="hl-5">export</span><span class="hl-1"> NODE_OPTIONS=--openssl-legacy-provider</span>
-</code></pre>
-</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-interface"><a href="interfaces/StorybookLandingProps.html" class="tsd-kind-icon">Storybook<wbr/>Landing<wbr/>Props</a></li><li class="tsd-kind-function"><a href="modules.html#StorybookLanding" class="tsd-kind-icon">Storybook<wbr/>Landing</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
+<pre><code class="language-bash"><span class="hl-6">export</span><span class="hl-1"> </span><span class="hl-0">NODE_OPTIONS</span><span class="hl-1">=</span><span class="hl-4">--openssl-legacy-provider</span>
+</code><button>Copy</button></pre>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-private" name="private"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Private</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-index-accordion tsd-page-navigation"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg>On This Page</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li>
+<ul>
+<li><a href="#md:storybook"><span>storybook</span></a></li>
+<li>
+<ul>
+<li><a href="#md:running-unit-tests"><span>Running unit tests</span></a></li>
+<li><a href="#md:running-storybook"><span>Running storybook</span></a></li>
+<li>
+<ul>
+<li><a href="#md:running-all-storybooks-locally"><span>Running all storybooks locally</span></a></li>
+<li><a href="#md:adding-a-new-sub-storybook"><span>Adding a new sub-<wbr/>storybook</span></a></li>
+<li><a href="#md:runtime-issue"><span>Runtime issue</span></a></li></ul></li></ul></li></ul></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4-path"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)" id="icon-4-text"></path></svg><span>@bradtaniguchi-<wbr/>dev/storybook</span></a>
+<ul class="tsd-small-nested-navigation">
+<li><a href="interfaces/StorybookLandingProps.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-256-path"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)" id="icon-256-text"></path></svg><span>Storybook<wbr/>Landing<wbr/>Props</span></a></li>
+<li><a href="functions/StorybookLanding.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg><span>Storybook<wbr/>Landing</span></a></li></ul></nav></div></div></div>
+<div class="tsd-generator">
+<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<div class="overlay"></div></body></html>

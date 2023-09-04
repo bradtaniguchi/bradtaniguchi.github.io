@@ -1,0 +1,1 @@
+(self.webpackChunkbradtaniguchi_dev=self.webpackChunkbradtaniguchi_dev||[]).push([[654],{"?4f7e":()=>{}}]);
