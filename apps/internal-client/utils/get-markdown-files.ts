@@ -1,4 +1,5 @@
 import { readdir } from 'fs-extra';
+import { join } from 'path';
 
 /**
  * Returns an array of strings, represent the list of markdown files.
@@ -8,5 +9,5 @@ export const getMarkdownFiles = (directoryPath: string): Promise<string[]> =>
   readdir(directoryPath).then((fileName) =>
     fileName
       .filter((fileName) => fileName.endsWith('.md'))
-      .map((fileName) => `${directoryPath}${fileName}`)
+      .map((fileName) => join(directoryPath, fileName))
   );

@@ -1,5 +1,4 @@
 import { getArticlesFromCache } from '@bradtaniguchi-dev/forem-api';
-import { BLOG_PATH } from '../constants/blog-path';
 import { DevMigratedPost, migrateDevPost } from '../models/dev-migrated-post';
 import { StaticBlogPost } from '../models/static-blog-post';
 import {
@@ -7,6 +6,7 @@ import {
   verifyBlogPostMetaData,
 } from './get-blog-post-meta-data';
 import { getMarkdownFiles } from './get-markdown-files';
+import { join } from 'path';
 
 /**
  * Returns the latest blog post. This includes posts from dev.to and
@@ -15,7 +15,7 @@ import { getMarkdownFiles } from './get-markdown-files';
 export async function getLatestPost(): Promise<
   StaticBlogPost | DevMigratedPost
 > {
-  const blogPaths = await getMarkdownFiles(BLOG_PATH);
+  const blogPaths = await getMarkdownFiles(join(process.cwd(), 'static/blog/'));
 
   const [blogPostsMetaData, devToPosts] = await Promise.all([
     getBlogPostsMetaData(blogPaths),

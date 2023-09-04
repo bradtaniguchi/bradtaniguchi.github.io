@@ -4,6 +4,7 @@ import {
   GetStaticPropsResult,
 } from 'next';
 import Link from 'next/link';
+import { join } from 'path';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Card } from '../../components/core/card';
 import { BLOG_PATH } from '../../constants/blog-path';
@@ -69,7 +70,7 @@ export async function getStaticProps({
 }: GetStaticPropsContext): Promise<GetStaticPropsResult<BlogPostProps>> {
   const { slug } = params as { slug: string };
 
-  const filePath = `${BLOG_PATH}${slug}.md`;
+  const filePath = join(BLOG_PATH, `${slug}.md`);
   const [blogPost, markdown] = await Promise.all([
     getBlogPostMetaData(filePath),
     getMarkdown(filePath),

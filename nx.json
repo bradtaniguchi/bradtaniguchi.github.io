@@ -6,7 +6,7 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/nx-cloud",
+      "runner": "nx-cloud",
       "options": {
         "cacheableOperations": [
           "build",
@@ -20,7 +20,15 @@
     }
   },
   "generators": {
-    "@nrwl/react": {
+    "@nx/node:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "strict": true,
+      "standaloneConfig": true,
+      "buildable": true,
+      "publishable": false
+    },
+    "@nx/react": {
       "application": {
         "style": "scss",
         "linter": "eslint",
@@ -40,7 +48,7 @@
         "publishable": false
       }
     },
-    "@nrwl/next": {
+    "@nx/next": {
       "app": {
         "style": "styled-components",
         "linter": "eslint",
@@ -63,14 +71,6 @@
         "style": "styled-components",
         "linter": "eslint"
       }
-    },
-    "@nrwl/node:library": {
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "strict": true,
-      "standaloneConfig": true,
-      "buildable": true,
-      "publishable": false
     }
   },
   "defaultProject": "internal-client",
@@ -86,7 +86,13 @@
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     },
     "build-storybook": {
-      "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/.storybook/**/*",
+        "{projectRoot}/.storybook/**/*",
+        "{projectRoot}/tsconfig.storybook.json"
+      ]
     }
   },
   "namedInputs": {
@@ -99,7 +105,9 @@
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/.storybook/**/*",
-      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/tsconfig.storybook.json"
     ]
   }
 }

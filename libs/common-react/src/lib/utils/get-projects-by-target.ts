@@ -17,6 +17,7 @@ export const getProjectsByTarget = ({
   target: string;
 }): string[] =>
   Object.entries(graph?.nodes || {}).reduce((acc, [project, node]) => {
-    if (Object.keys(node?.data?.targets).includes(target)) acc.push(project);
+    if (Object.keys(node?.data?.targets || {}).includes(target))
+      acc.push(project);
     return acc;
   }, [] as string[]);
