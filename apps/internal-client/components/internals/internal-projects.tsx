@@ -1,6 +1,6 @@
 import { getProjectsByTarget } from '@bradtaniguchi-dev/common-react';
 import { Box, NavList, Spinner, Text } from '@primer/react';
-import { ProjectGraph } from 'nx/src/config/project-graph';
+import { ProjectGraph } from '@nrwl/devkit';
 import { FileIcon } from '@primer/octicons-react';
 import { memo, useMemo } from 'react';
 
@@ -11,7 +11,7 @@ export const InternalProjects = memo(function InternalProjects({
 }: {
   nxGraphLoading?: boolean;
   nxGraphError: unknown;
-  nxGraph: ProjectGraph<unknown>;
+  nxGraph: ProjectGraph;
 }) {
   const projects = useMemo(
     () =>
