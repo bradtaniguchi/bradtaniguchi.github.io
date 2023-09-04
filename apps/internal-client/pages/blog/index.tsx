@@ -15,7 +15,6 @@ import {
   ListFilterProps,
   ListFilters,
 } from '../../components/projects/list-filters';
-import { BLOG_PATH } from '../../constants/blog-path';
 import {
   DevMigratedPost,
   isMigratedDevPost,
@@ -27,6 +26,7 @@ import {
   verifyBlogPostMetaData,
 } from '../../utils/get-blog-post-meta-data';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
+import { join } from 'path';
 
 export interface BlogProps {
   posts: Array<IStaticBlogPost | DevMigratedPost>;
@@ -180,7 +180,9 @@ export default function Blog(props: BlogProps) {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<BlogProps>
 > {
-  const blogPaths = await getMarkdownFiles(BLOG_PATH);
+  const blogPaths = await getMarkdownFiles(
+    join(process.cwd(), 'apps/internal-client/static/blog/')
+  );
 
   const [blogPostsMetaData, devToPosts] = await Promise.all([
     getBlogPostsMetaData(blogPaths),
