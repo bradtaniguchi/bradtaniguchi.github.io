@@ -12,7 +12,8 @@
         "tsConfig": "libs/forem-api/tsconfig.lib.json",
         "packageJson": "libs/forem-api/package.json",
         "main": "libs/forem-api/src/index.ts",
-        "assets": ["libs/forem-api/*.md"]
+        "assets": ["libs/forem-api/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {

@@ -6,10 +6,11 @@
   "targets": {
     "build": {
       "executor": "@nx/next:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/internal-client",
         "outputPath": "dist/apps/internal-client"
       },
       "configurations": {
@@ -45,7 +46,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/apps/internal-client"],
+      "outputs": [
+        "{workspaceRoot}/coverage/apps/internal-client"
+      ],
       "options": {
         "jestConfig": "apps/internal-client/jest.config.ts",
         "passWithNoTests": true
@@ -53,9 +56,13 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/internal-client/**/*.{ts,tsx}"]
+        "lintFilePatterns": [
+          "apps/internal-client/**/*.{ts,tsx}"
+        ]
       }
     },
     "smoke": {
