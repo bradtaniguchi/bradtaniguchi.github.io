@@ -4,8 +4,10 @@ import {
   GetStaticPropsResult,
 } from 'next';
 import Link from 'next/link';
+import { join } from 'path';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Card } from '../../components/core/card';
+import { BLOG_PATH } from '../../constants/blog-path';
 import { StaticBlogPost } from '../../models/static-blog-post';
 import {
   getBlogPostMetaData,
@@ -14,7 +16,6 @@ import {
 } from '../../utils/get-blog-post-meta-data';
 import { getMarkdown } from '../../utils/get-markdown';
 import { getMarkdownFiles } from '../../utils/get-markdown-files';
-import { join } from 'path';
 
 export interface BlogPostProps {
   blogPost: StaticBlogPost;
@@ -48,9 +49,7 @@ export default function BlogPost({ markdown, blogPost }: BlogPostProps) {
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  const projectPaths = await getMarkdownFiles(
-    join(process.cwd(), 'apps/internal-client/static/blog/')
-  );
+  const projectPaths = await getMarkdownFiles(BLOG_PATH);
 
   const blogPostsMetaData = await getBlogPostsMetaData(projectPaths);
 
@@ -71,7 +70,7 @@ export async function getStaticProps({
 }: GetStaticPropsContext): Promise<GetStaticPropsResult<BlogPostProps>> {
   const { slug } = params as { slug: string };
 
-  const filePath = `${join(process.cwd(), '../../static/blog')}${slug}.md`;
+  const filePath = join(BLOG_PATH, `${slug}.md`);
   const [blogPost, markdown] = await Promise.all([
     getBlogPostMetaData(filePath),
     getMarkdown(filePath),
