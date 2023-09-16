@@ -84,7 +84,7 @@ export default function Index(props: IndexProps) {
                       href={props.user.html_url}
                       target="_blank"
                       rel="noreferrer"
-                      aria-label="LinkedIn url"
+                      aria-label="Github profile url"
                     >
                       <Box
                         display="flex"
@@ -93,25 +93,6 @@ export default function Index(props: IndexProps) {
                         sx={{ gap: '2' }}
                       >
                         <FaGithub /> <div>bradtaniguchi</div>
-                        <TabExternalIcon />
-                      </Box>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="https://twitter.com/brad_taniguchi"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Twitter handle url"
-                    >
-                      <Box
-                        display="flex"
-                        flexDirection="row"
-                        alignItems="center"
-                        sx={{ gap: '2' }}
-                      >
-                        <FaTwitter />
-                        <div>@brad_taniguchi</div>
                         <TabExternalIcon />
                       </Box>
                     </Link>
@@ -130,25 +111,6 @@ export default function Index(props: IndexProps) {
                         sx={{ gap: '2' }}
                       >
                         <FaLinkedin /> <div>LinkedIn</div>
-                        <TabExternalIcon />
-                      </Box>
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link
-                      href="https://www.codewars.com/users/bradtaniguchi"
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Codewars profile url"
-                    >
-                      <Box
-                        display="flex"
-                        flexDirection="row"
-                        alignItems="center"
-                        sx={{ gap: '2' }}
-                      >
-                        <SiCodewars /> <div>Codewars</div>
                         <TabExternalIcon />
                       </Box>
                     </Link>
