@@ -16,7 +16,7 @@ import {
   isMigratedDevPost,
 } from '../models/dev-migrated-post';
 import { StaticBlogPost as IStaticBlogPost } from '../models/static-blog-post';
-import { getLatestPost } from '../utils/get-latest-post';
+import { getLatestPosts } from '../utils/get-latest-post';
 import { getMarkdown } from '../utils/get-markdown';
 import { withHeaders } from '../utils/with-headers';
 
@@ -35,9 +35,9 @@ export interface IndexProps {
    */
   user: RestEndpointMethodTypes['users']['getByUsername']['response']['data'];
   /**
-   * The latest blog post
+   * The latest 5 blog posts
    */
-  latestPost: IStaticBlogPost | DevMigratedPost;
+  latestPosts: Array<IStaticBlogPost | DevMigratedPost>;
 }
 
 export default function Index(props: IndexProps) {
@@ -186,14 +186,24 @@ export default function Index(props: IndexProps) {
             </Box>
           </Card.Header>
           <Card.Body>
-            <section>
-              {(() => {
-                const { latestPost } = props;
-                if (isMigratedDevPost(latestPost))
-                  return <DevToPost blog={latestPost} displayMode="column" />;
-                return <StaticBlogPost blog={latestPost} />;
-              })()}
-            </section>
+            <Box
+              display="flex"
+              flexDirection={['column']}
+              alignItems="center"
+              sx={{ gap: '6' }}
+            >
+              {props.latestPosts.map((post) =>
+                isMigratedDevPost(post) ? (
+                  <div key={post.slug}>
+                    <DevToPost blog={post} displayMode="column" />
+                  </div>
+                ) : (
+                  <div key={post.slug}>
+                    <StaticBlogPost blog={post} displayMode="column" />
+                  </div>
+                )
+              )}
+            </Box>
           </Card.Body>
         </Card>
       </Box>
@@ -263,7 +273,7 @@ export async function getStaticProps(): Promise<{
 }> {
   const octokit = new Octokit();
 
-  const [readme, { data: user }, githubActivities, latestPost] =
+  const [readme, { data: user }, githubActivities, latestPosts] =
     await Promise.all([
       getMarkdown('README.md'),
       octokit.users.getByUsername({
@@ -294,7 +304,7 @@ export async function getStaticProps(): Promise<{
             })
         ),
 
-      getLatestPost(),
+      getLatestPosts(),
     ]);
 
   return {
@@ -302,7 +312,7 @@ export async function getStaticProps(): Promise<{
       readme,
       activities: [...githubActivities],
       user,
-      latestPost,
+      latestPosts,
     },
   };
 }
