@@ -53,3 +53,5 @@ Thumbs.db
 
 # lighthouse files in WSL
 C:*
+
+.nx
