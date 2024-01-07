@@ -84,7 +84,7 @@ export default function Index(props: IndexProps) {
                       href={props.user.html_url}
                       target="_blank"
                       rel="noreferrer"
-                      aria-label="Github profile url"
+                      aria-label="Github profile url from picture"
                     >
                       <Box
                         display="flex"
