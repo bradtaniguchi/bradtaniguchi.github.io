@@ -43,11 +43,13 @@ export interface IndexProps {
 export default function Index(props: IndexProps) {
   return (
     <Box
+      id="main-grid"
       display="grid"
-      gridGap={3}
-      gridTemplateColumns={['1fr', '1fr 1fr', '1fr 1fr 1fr']}
+      sx={{ gap: ['3 0', '3'] }}
+      gridTemplateColumns={['minmax(0, 1fr)', '1fr 1fr', '1fr 1fr 1fr']}
     >
       <Box
+        id="column-1"
         display="flex"
         gridColumn={['span 1', 'span 2', 'span 1']}
         flexDirection="column"
@@ -170,61 +172,59 @@ export default function Index(props: IndexProps) {
         </Card>
       </Box>
 
-      <Box gridColumn={['span 1', 'span 2', 'span 2']}>
-        <Box gridColumn="span 2">
-          <Box display="grid" gridGap={3}>
-            <Card gridColumn="span 2">
-              <Card.Header display="flex">README</Card.Header>
-              <Card.Body>
-                <div>
-                  This website acts as my portfolio and blog. It is currently
-                  under construction and will be continually updated. This is
-                  actually the third version of my portfolio site and is used as
-                  a test-bed for developing things with new technologies. To
-                  learn more about how this project was built, checkout the{' '}
-                  <Link href="/about">about</Link> page.
-                </div>
-              </Card.Body>
-            </Card>
+      <Box
+        id="column-2"
+        display="flex"
+        gridColumn={['span 1', 'span 2', 'span 2']}
+        flexDirection="column"
+        sx={{ gap: '3' }}
+      >
+        <Card gridColumn="span 2">
+          <Card.Header display="flex">README</Card.Header>
+          <Card.Body>
+            <div>
+              This website acts as my portfolio and blog. It is currently under
+              construction and will be continually updated. This is actually the
+              third version of my portfolio site and is used as a test-bed for
+              developing things with new technologies. To learn more about how
+              this project was built, checkout the{' '}
+              <Link href="/about">about</Link> page.
+            </div>
+          </Card.Body>
+        </Card>
 
-            <Card gridColumn="span 2">
-              <Card.Header display="flex">
-                <Box flexGrow="100">Github README</Box>
-                <Box>
-                  <a
-                    href={GITHUB_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="Github profile URL"
-                  >
-                    <StyledOcticon
-                      icon={MarkGithubIcon}
-                      size={16}
-                      sx={{ mr: 2 }}
-                    />
-                  </a>
-                </Box>
-              </Card.Header>
-              <Card.Body>
-                <div dangerouslySetInnerHTML={{ __html: props.readme }}></div>
-              </Card.Body>
-            </Card>
+        <Card gridColumn="span 2">
+          <Card.Header display="flex">
+            <Box flexGrow="100">Github README</Box>
+            <Box>
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Github profile URL"
+              >
+                <StyledOcticon icon={MarkGithubIcon} size={16} sx={{ mr: 2 }} />
+              </a>
+            </Box>
+          </Card.Header>
+          <Card.Body>
+            <div dangerouslySetInnerHTML={{ __html: props.readme }}></div>
+          </Card.Body>
+        </Card>
 
-            <Card gridColumn="span 2">
-              <Card.Header display="flex">
-                <Box flexGrow="100">Latest Activity</Box>
-                {/* TODO: add client-side filtering */}
-                {/* TODO: add support for RSS-feed */}
-                {/* <Box>
+        <Card gridColumn="span 2">
+          <Card.Header display="flex">
+            <Box flexGrow="100">Latest Activity</Box>
+            {/* TODO: add client-side filtering */}
+            {/* TODO: add support for RSS-feed */}
+            {/* <Box>
                   <RssIcon></RssIcon>
                 </Box> */}
-              </Card.Header>
-              <Card.Body>
-                <Activities activities={props.activities} />
-              </Card.Body>
-            </Card>
-          </Box>
-        </Box>
+          </Card.Header>
+          <Card.Body>
+            <Activities activities={props.activities} />
+          </Card.Body>
+        </Card>
       </Box>
     </Box>
   );
