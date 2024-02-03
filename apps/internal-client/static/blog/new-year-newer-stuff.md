@@ -1,12 +1,12 @@
 ---
-title: new-year-new-stuff
+title: new-year-newer-stuff
 description: Simplifying, and diversifying
 published: true
 date: 2024-01-15T00:00:00.000Z
-slug: new-year-new-stuff
+slug: new-year-newer-stuff
 ---
 
-# new-year-new-stuff
+# new-year-newer-stuff
 
 Welcome to 2024!
 
