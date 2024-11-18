@@ -38,6 +38,11 @@ export default function About() {
           about React, and improve SEO compared to the previous versions, built
           on Angular and Angular.js respectively.
         </p>
+        <p>
+          I&apos;m not able to update this anywhere near as much as I&apos;d
+          like, but its here and will probably get replaced by something in the
+          future at some point.
+        </p>
       </Box>
 
       {config && (
