@@ -7,7 +7,7 @@ on:
 
 jobs:
   gen-affected:
-    timeout-minutes: 5
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     outputs:
       AFFECTED: ${{ steps.gen-affected.outputs.AFFECTED }}
