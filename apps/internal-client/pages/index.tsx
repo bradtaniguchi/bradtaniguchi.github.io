@@ -1,6 +1,6 @@
 import { Octokit, RestEndpointMethodTypes } from '@octokit/rest';
-import { MarkGithubIcon, TabExternalIcon } from '@primer/octicons-react';
-import { Box, LinkButton, StyledOcticon } from '@primer/react';
+import { TabExternalIcon } from '@primer/octicons-react';
+import { Box, LinkButton } from '@primer/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
@@ -9,7 +9,6 @@ import { Activities } from '../components/activity/activities';
 import { DevToPost } from '../components/blog/dev-to-post';
 import { StaticBlogPost } from '../components/blog/static-blog-post';
 import { Card } from '../components/core/card';
-import { GITHUB_URL } from '../constants/github-url';
 import { Activity } from '../models/activity';
 import {
   DevMigratedPost,
@@ -193,7 +192,7 @@ export default function Index(props: IndexProps) {
           </Card.Body>
         </Card>
 
-        <Card gridColumn="span 2">
+        {/* <Card gridColumn="span 2">
           <Card.Header display="flex">
             <Box flexGrow="100">Github README</Box>
             <Box>
@@ -210,7 +209,7 @@ export default function Index(props: IndexProps) {
           <Card.Body>
             <div dangerouslySetInnerHTML={{ __html: props.readme }}></div>
           </Card.Body>
-        </Card>
+        </Card> */}
 
         <Card gridColumn="span 2">
           <Card.Header display="flex">

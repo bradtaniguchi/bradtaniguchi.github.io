@@ -1,10 +1,9 @@
 # bradtaniguchi-dev
 
-This repo represents my portfolio/blog site that is hosted on github-pages.
+This repo represents my portfolio/blog site that is hosted on github-pages. It is built using [Next.js](https://nextjs.org/) and [Nx](https://nx.dev/).
 
-## Project road-map
-
-[roadmap](https://github.com/users/bradtaniguchi/projects/6)
+Today it represents the "latest" way I'd build a blog/portfolio site, but as with
+most of my projects is unfinished and always a work in progress.
 
 ## License
 
