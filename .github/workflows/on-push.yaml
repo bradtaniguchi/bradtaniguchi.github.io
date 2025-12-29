@@ -53,7 +53,7 @@ jobs:
       #     E2E_BASE_URL: local
       # TODO: can this be removed?
       - run: npx rimraf dist/apps/internal-client/exported/bradtaniguchi-dev
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: internal-client
           path: dist/apps/internal-client/exported
@@ -74,7 +74,7 @@ jobs:
       - uses: ./.github/actions/init-job
       - run: npx nx run-many --target=build-storybook --all
       - run: mv dist/storybook/storybook/** dist/storybook/
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: internal-storybooks
           path: dist/storybook
@@ -93,19 +93,19 @@ jobs:
       - uses: ./.github/actions/init-job
       - run: npx nx graph --file=dist/nx-graph/index.html
       - run: npx nx graph --file=dist/nx-graph/graph.json
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: internal-nx-graph
           path: dist/nx-graph
           retention-days: 3
       - run: npx nx run-many --target=typedoc --all
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: internal-docs
           path: dist/docs
           retention-days: 3
       - run: npm run build:config
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: config
           path: dist/config.json
@@ -156,7 +156,7 @@ jobs:
           # should make config.json available
           path: dist
       # DEBUG build
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: gh-pages-dist
           path: dist
