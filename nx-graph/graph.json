@@ -349,91 +349,6 @@
           "implicitDependencies": []
         }
       },
-      "forem-api": {
-        "name": "forem-api",
-        "type": "lib",
-        "data": {
-          "name": "forem-api",
-          "root": "libs/forem-api",
-          "$schema": "../../node_modules/nx/schemas/project-schema.json",
-          "sourceRoot": "libs/forem-api/src",
-          "projectType": "library",
-          "targets": {
-            "build": {
-              "dependsOn": [
-                "^build"
-              ],
-              "inputs": [
-                "production",
-                "^production"
-              ],
-              "executor": "@nx/js:tsc",
-              "outputs": [
-                "{options.outputPath}"
-              ],
-              "options": {
-                "outputPath": "dist/libs/forem-api",
-                "tsConfig": "libs/forem-api/tsconfig.lib.json",
-                "packageJson": "libs/forem-api/package.json",
-                "main": "libs/forem-api/src/index.ts",
-                "assets": [
-                  "libs/forem-api/*.md"
-                ],
-                "updateBuildableProjectDepsInPackageJson": true
-              },
-              "configurations": {}
-            },
-            "lint": {
-              "inputs": [
-                "default",
-                "{workspaceRoot}/.eslintrc.json"
-              ],
-              "executor": "@nx/linter:eslint",
-              "outputs": [
-                "{options.outputFile}"
-              ],
-              "options": {
-                "lintFilePatterns": [
-                  "libs/forem-api/**/*.ts"
-                ]
-              },
-              "configurations": {}
-            },
-            "test": {
-              "inputs": [
-                "default",
-                "^production",
-                "{workspaceRoot}/jest.preset.js"
-              ],
-              "executor": "@nx/jest:jest",
-              "outputs": [
-                "{workspaceRoot}/coverage/{projectRoot}"
-              ],
-              "options": {
-                "jestConfig": "libs/forem-api/jest.config.ts",
-                "passWithNoTests": true
-              },
-              "configurations": {}
-            },
-            "get-articles": {
-              "executor": "nx:run-commands",
-              "options": {
-                "command": "npx ts-node --project=libs/forem-api/tools/tsconfig.json libs/forem-api/tools/get-articles.ts"
-              },
-              "configurations": {}
-            },
-            "get-article": {
-              "executor": "nx:run-commands",
-              "options": {
-                "command": "npx ts-node --project=libs/forem-api/tools/tsconfig.json libs/forem-api/tools/get-article.ts"
-              },
-              "configurations": {}
-            }
-          },
-          "tags": [],
-          "implicitDependencies": []
-        }
-      },
       "storybook": {
         "name": "storybook",
         "type": "lib",
@@ -552,6 +467,91 @@
               "configurations": {}
             }
           },
+          "implicitDependencies": []
+        }
+      },
+      "forem-api": {
+        "name": "forem-api",
+        "type": "lib",
+        "data": {
+          "name": "forem-api",
+          "root": "libs/forem-api",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/forem-api/src",
+          "projectType": "library",
+          "targets": {
+            "build": {
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "executor": "@nx/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/forem-api",
+                "tsConfig": "libs/forem-api/tsconfig.lib.json",
+                "packageJson": "libs/forem-api/package.json",
+                "main": "libs/forem-api/src/index.ts",
+                "assets": [
+                  "libs/forem-api/*.md"
+                ],
+                "updateBuildableProjectDepsInPackageJson": true
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ],
+              "executor": "@nx/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "libs/forem-api/**/*.ts"
+                ]
+              },
+              "configurations": {}
+            },
+            "test": {
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/forem-api/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "get-articles": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "npx ts-node --project=libs/forem-api/tools/tsconfig.json libs/forem-api/tools/get-articles.ts"
+              },
+              "configurations": {}
+            },
+            "get-article": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "npx ts-node --project=libs/forem-api/tools/tsconfig.json libs/forem-api/tools/get-article.ts"
+              },
+              "configurations": {}
+            }
+          },
+          "tags": [],
           "implicitDependencies": []
         }
       },
@@ -708,8 +708,8 @@
           "type": "static"
         }
       ],
-      "forem-api": [],
       "storybook": [],
+      "forem-api": [],
       "markdown": [],
       "common": []
     }
