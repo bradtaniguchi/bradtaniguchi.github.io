@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'sha/ref to deploy'
+        description: "sha/ref to deploy"
         required: true
-        default: 'main'
+        default: "main"
 
 jobs:
   internal-client:
@@ -18,7 +18,7 @@ jobs:
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
       SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
-      SENTRY_DEPLOYMENT_ENVIRONMENT: 'production'
+      SENTRY_DEPLOYMENT_ENVIRONMENT: "production"
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
       GOOGLE_ANALYTICS: ${{ secrets.GOOGLE_ANALYTICS }}
@@ -103,26 +103,26 @@ jobs:
           ref: ${{ github.event.inputs.ref }}
       - uses: ./.github/actions/init-job
       - run: mkdir dist
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: internal-client
           # This gets moved to the top-level dist, as it will
           # manage all the other contents.
           path: dist
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: internal-storybooks
           # This gets changed to be plural for a cleaner URL
           path: dist/storybooks
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: internal-nx-graph
           path: dist/nx-graph
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: internal-docs
           path: dist/docs
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: config
           # should make config.json available
