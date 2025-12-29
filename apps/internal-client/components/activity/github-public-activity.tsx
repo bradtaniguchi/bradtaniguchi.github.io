@@ -116,7 +116,7 @@ export const GithubPublicActivity = memo(function GithubPublicActivity(
                       <Link
                         href={(
                           (props.activity.payload as PayloadWithCommits)
-                            .commits[0].url || ''
+                            .commits?.[0].url || ''
                         )
                           .replace('api.github.com/repos/', 'github.com/')
                           .replace('/commits/', '/commit/')}
